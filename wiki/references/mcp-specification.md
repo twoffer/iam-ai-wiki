@@ -5,8 +5,8 @@ status: evolving
 confidence: high
 aliases: [MCP, Model Context Protocol, modelcontextprotocol.io, MCP spec]
 enterprise_analogs: []
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
+last_updated: 2026-06-19
+sources: [mcp-authorization-overview, mcp-authorization-server-discovery]
 related: [mcp-authorization, anthropic, mcp-authorization-extensions, authorization-server-discovery, client-registration, security-considerations]
 tags: [mcp, protocol, spec, reference]
 ---
@@ -20,7 +20,7 @@ The **Model Context Protocol (MCP)** is an open protocol standardizing how appli
 Authorization is an **optional**, transport-level part of the spec, defined for HTTP-based transports as a profile of [[oauth-2-1|OAuth 2.1]]. The authorization specification spans four documents, tracked here as:
 
 - [[mcp-authorization]] (overview) — ingested; see [[mcp-authorization-overview]].
-- [[authorization-server-discovery]] — raw present, not yet ingested.
+- [[authorization-server-discovery]] — ingested; see [[mcp-authorization-server-discovery]].
 - [[client-registration]] — raw present, not yet ingested.
 - [[security-considerations]] — raw present, not yet ingested.
 

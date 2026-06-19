@@ -5,8 +5,8 @@ status: evolving
 confidence: high
 aliases: [MCP client registration, client ID metadata documents, dynamic client registration, DCR]
 enterprise_analogs: [RFC 7591 Dynamic Client Registration, OIDC Dynamic Client Registration 1.0, manual client pre-registration, OAuth Client ID Metadata Documents draft]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
+last_updated: 2026-06-19
+sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
 related: [mcp-authorization, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, authorization-server-discovery]
 tags: [oauth, client-registration, dcr, mcp]
 ---
@@ -24,6 +24,10 @@ tags: [oauth, client-registration, dcr, mcp]
 3. **[[rfc-7591-dynamic-client-registration|Dynamic Client Registration (RFC 7591)]]** — **MAY** be supported; the client POSTs to `/register` and receives client credentials. **Deprecated** in this profile, "retained for backwards compatibility with authorization servers that do not support Client ID Metadata Documents." The OIDC variant is [[openid-connect-dynamic-client-registration]].
 
 Before initiating the authorization flow, clients MUST obtain a `client_id` through one of these three, following the selection priority defined in the dedicated document.
+
+## Authorization Server Binding (per-AS state)
+
+A single MCP server may front **multiple, independent** authorization servers ([[authorization-server-discovery]]), and a `client_id` is unique to the AS that issued it ([RFC 6749 §2.2](https://datatracker.ietf.org/doc/html/rfc6749#section-2.2)). The [[mcp-authorization-server-discovery|AS Discovery]] document therefore requires clients to **maintain separate registration state — client credentials and tokens — per authorization server** and to **never** assume credentials valid at one AS are accepted at another. The dedicated client-registration document defines the *Authorization Server Binding* requirements for associating each client credential with its issuing AS; those normative details will be filled in when `raw/MCPAuthorization_ClientRegistration.md` is ingested.
 
 ## Relation to pre-AI IAM
 

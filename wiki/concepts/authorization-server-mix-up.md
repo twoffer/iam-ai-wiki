@@ -5,9 +5,9 @@ status: stub
 confidence: high
 aliases: [mix-up attack, AS mix-up, OAuth mix-up, issuer mix-up]
 enterprise_analogs: [RFC 9207 Authorization Server Issuer Identification, RFC 9700 OAuth 2.0 Security BCP, OAuth mix-up attack]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [rfc-9207-authorization-server-issuer-identification, authorization-server-discovery, confused-deputy, proof-key-for-code-exchange, security-considerations, mcp-authorization]
+last_updated: 2026-06-19
+sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
+related: [rfc-9207-authorization-server-issuer-identification, authorization-server-discovery, rfc-8414-authorization-server-metadata, confused-deputy, proof-key-for-code-exchange, security-considerations, mcp-authorization]
 tags: [security, mix-up, oauth, threat-model, stub]
 ---
 
@@ -15,7 +15,13 @@ tags: [security, mix-up, oauth, threat-model, stub]
 
 An **authorization-server mix-up** is an attack in which a client is tricked into interacting with the wrong authorization server — for example, sending an authorization code or token issued by the honest AS to an attacker-controlled endpoint, or accepting a response that originated from a different AS than the one the client believes it is talking to. It is a [[confused-deputy]] instance specific to the discovery/redirect machinery.
 
-## How MCP defends against it
+MCP defends at **two layers**, with two separate issuer validations:
+
+## Defense 1 — Metadata-document issuer validation (discovery layer)
+
+The [[mcp-authorization-server-discovery|AS Discovery]] document (*Metadata Validation*) requires that, after fetching an AS-metadata document, the client validate it per [[rfc-8414-authorization-server-metadata|RFC 8414]] §3.3 / [[openid-connect-discovery|OIDC Discovery]] §4.3: the `issuer` **inside** the document MUST be **identical** to the issuer identifier used to construct the well-known URL. A document fetched from `https://attacker.example/.well-known/oauth-authorization-server` claiming `"issuer": "https://honest.example"` MUST be rejected. This stops an attacker who controls a metadata endpoint from impersonating a trusted issuer and redirecting the client's endpoints before any redirect happens.
+
+## Defense 2 — Authorization-response `iss` validation (redirect layer)
 
 The [[mcp-authorization-overview]] (*Authorization Response Validation*) mandates [[rfc-9207-authorization-server-issuer-identification|RFC 9207]] issuer validation:
 
@@ -23,7 +29,7 @@ The [[mcp-authorization-overview]] (*Authorization Response Validation*) mandate
 - On the authorization response, the client MUST compare the returned `iss` to the recorded issuer using **exact string comparison** (RFC 3986 §6.2.1) with **no normalization** (no case folding, default-port elision, trailing-slash, or percent-encoding changes).
 - If the AS advertises `authorization_response_iss_parameter_supported: true` but `iss` is absent, the client MUST **reject** the response. The rule applies to error responses too — on mismatch the client MUST NOT act on or display the error fields.
 
-The spec notes a future revision is expected to upgrade AS inclusion of `iss` from SHOULD to MUST. Mix-up defense composes with PKCE (which protects the code) and with the [[authorization-server-discovery]] rules (which constrain *which* AS is trusted).
+The spec notes a future revision is expected to upgrade AS inclusion of `iss` from SHOULD to MUST. The two defenses are complementary: Defense 1 ensures the client fetched its endpoints from the genuine issuer; Defense 2 ensures the response it later receives came from that same issuer. Both compose with PKCE (which protects the code) and with the [[authorization-server-discovery]] rules (which constrain *which* AS is trusted).
 
 ## Relation to pre-AI IAM
 

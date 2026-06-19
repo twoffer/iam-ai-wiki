@@ -16,7 +16,7 @@
 
 ## Topics
 
-- [[authorization-server-discovery]] — finding/validating the AS via RFC 9728 → RFC 8414 / OIDC · evolving · high
+- [[authorization-server-discovery]] — finding/validating the AS via RFC 9728 → RFC 8414 / OIDC; two-layer issuer validation · stable · high
 - [[canonical-server-uri]] — the RFC 8707 `resource` parameter and canonical URI rules for MCP servers · stable · high
 - [[client-registration]] — Client ID Metadata Documents, pre-registration, deprecated DCR · evolving · high
 - [[mcp-authorization]] — MCP's transport-level authorization model, a profile of OAuth 2.1 · evolving · high
@@ -52,3 +52,4 @@ _None yet._
 ## Sources
 
 - [[mcp-authorization-overview]] — summary of MCP Authorization spec, doc 1 of 4 (Overview) · stable · high
+- [[mcp-authorization-server-discovery]] — summary of MCP Authorization spec, doc 2 of 4 (AS Discovery) · stable · high

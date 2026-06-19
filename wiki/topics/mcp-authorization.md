@@ -5,8 +5,8 @@ status: evolving
 confidence: high
 aliases: [Model Context Protocol authorization, MCP auth, MCP OAuth profile]
 enterprise_analogs: [OAuth 2.1 draft-ietf-oauth-v2-1-13, RFC 6749 §1.1 roles, RFC 6750 Bearer Token Usage, RFC 8707 Resource Indicators, RFC 9728 Protected Resource Metadata]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
+last_updated: 2026-06-19
+sources: [mcp-authorization-overview, mcp-authorization-server-discovery]
 related: [mcp-specification, delegated-authorization, authorization-server-discovery, client-registration, scope-selection-strategy, canonical-server-uri, token-audience-binding, proof-key-for-code-exchange, step-up-authorization, token-passthrough, security-considerations, oauth-2-1]
 tags: [mcp, oauth, authorization, profile]
 ---

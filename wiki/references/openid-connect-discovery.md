@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [OIDC Discovery, OpenID Connect Discovery, openid-configuration, well-known openid]
 enterprise_analogs: []
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [authorization-server-discovery, rfc-8414-authorization-server-metadata, openid-connect-dynamic-client-registration, mcp-authorization, openid-foundation]
+last_updated: 2026-06-19
+sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
+related: [authorization-server-discovery, rfc-8414-authorization-server-metadata, openid-connect-dynamic-client-registration, mcp-authorization, openid-foundation, authorization-server-mix-up]
 tags: [oidc, discovery, metadata, spec, openid-foundation, reference]
 ---
 
@@ -18,6 +18,13 @@ tags: [oidc, discovery, metadata, spec, openid-foundation, reference]
 ## Role in MCP Authorization
 
 The second of the two AS-discovery mechanisms. Per the [[mcp-authorization-overview]], an MCP authorization server MUST provide **at least one** of [[rfc-8414-authorization-server-metadata|RFC 8414]] or OIDC Discovery, and MCP clients MUST support **both**, trying OAuth 2.0 metadata before the OIDC endpoint. See [[authorization-server-discovery]].
+
+The [[mcp-authorization-server-discovery|AS Discovery]] document specifies **two OIDC endpoint shapes** the client must try (after the OAuth 2.0 endpoint) for an issuer with a path component such as `https://auth.example.com/tenant1`:
+
+- **Path insertion:** `https://auth.example.com/.well-known/openid-configuration/tenant1`
+- **Path appending:** `https://auth.example.com/tenant1/.well-known/openid-configuration`
+
+For a path-less issuer (`https://auth.example.com`) only `https://auth.example.com/.well-known/openid-configuration` applies. Retrieved documents MUST be validated per [§4.3](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationValidation): the document's `issuer` MUST be identical to the issuer used to build the URL, or the client rejects it — see [[authorization-server-mix-up]].
 
 ## Link
 
