@@ -36,3 +36,15 @@ Ingested raw/MCPAuthorization_AuthorizationServerDiscovery.md; 1 new source page
 - client-registration: added "Authorization Server Binding (per-AS state)" section forward-referencing doc 3; added doc-2 source
 - mcp-authorization: added mcp-authorization-server-discovery to sources (discovery claims now backed by doc 2)
 - _index.md: added source line for doc 2; bumped authorization-server-discovery to stable
+
+## [2026-06-19] ingest | MCP Authorization Specification — Client Registration (doc 3 of 4)
+Ingested raw/MCPAuthorization_ClientRegistration.md; 1 new source page, 7 pages updated.
+- mcp-authorization-client-registration: new source page summarizing doc 3 (three mechanisms + selection priority; CIMD client/AS requirements, example doc, advertising; pre-registration; deprecated DCR + application_type constraints; Authorization Server Binding)
+- client-registration: major rewrite — removed "not yet ingested" stub note; added mechanism table, four-step selection priority, full CIMD client/AS requirements, pre-registration forms, DCR application_type rules, and the now-filled Authorization Server Binding section; status evolving → stable
+- oauth-client-id-metadata-documents: added "Requirements under the MCP profile" (https+path client_id, required fields, client_id-matches-URL, private_key_jwt §6.2, AS fetch/validate/cache) and CIMD portability across ASes; added doc-3 source and rfc-8414 to related
+- rfc-7591-dynamic-client-registration: added "Constraints under the MCP profile" (application_type native/web, registration_endpoint gating, AS-binding re-registration); added doc-3 source and rfc-8414 to related
+- openid-connect-dynamic-client-registration: added "The application_type parameter" section (source of native/web semantics; OIDC default of web breaks localhost redirects); added doc-3 source
+- rfc-8414-authorization-server-metadata: added "Capability signals for client registration" (client_id_metadata_document_supported and registration_endpoint as selection-priority signals); added doc-3 source and client-registration/oauth-client-id-metadata-documents to related
+- mcp-authorization: added mcp-authorization-client-registration to sources (client-registration claims now backed by doc 3)
+- mcp-authorization-overview: updated "Notable for future ingests" — doc 3 now ingested; only security-considerations (doc 4) remains a forward stub
+- _index.md: added source line for doc 3; bumped client-registration to stable

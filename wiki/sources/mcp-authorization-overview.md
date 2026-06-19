@@ -40,5 +40,5 @@ The document's primary contribution is **bridging**: it defines no new cryptogra
 
 ## Notable for future ingests
 
-- Three sibling documents are referenced from here. Doc 2, [[authorization-server-discovery]], has since been ingested (see [[mcp-authorization-server-discovery]]). [[client-registration]] and [[security-considerations]] remain forward stubs; their raw files (`raw/MCPAuthorization_ClientRegistration.md`, `raw/MCPAuthorization_SecurityConsiderations.md`) are present but not yet ingested.
+- Three sibling documents are referenced from here. Doc 2, [[authorization-server-discovery]] (see [[mcp-authorization-server-discovery]]), and doc 3, [[client-registration]] (see [[mcp-authorization-client-registration]]), have since been ingested. [[security-considerations]] remains a forward stub; its raw file (`raw/MCPAuthorization_SecurityConsiderations.md`) is present but not yet ingested.
 - The spec is a **draft** revision; normative levels (e.g., `iss` SHOULD → MUST) are expected to change.

@@ -5,10 +5,10 @@ status: evolving
 confidence: high
 aliases: [Client ID Metadata Documents, CIMD, URL client_id, draft-ietf-oauth-client-id-metadata-document]
 enterprise_analogs: []
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [client-registration, rfc-7591-dynamic-client-registration, mcp-authorization, security-considerations]
-tags: [oauth, client-registration, draft, ietf, reference]
+last_updated: 2026-06-19
+sources: [mcp-authorization-client-registration, mcp-authorization-overview]
+related: [client-registration, rfc-7591-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, security-considerations]
+tags: [oauth, client-registration, cimd, draft, ietf, reference]
 ---
 
 # OAuth Client ID Metadata Documents (draft)
@@ -17,7 +17,18 @@ tags: [oauth, client-registration, draft, ietf, reference]
 
 ## Role in MCP Authorization
 
-The **preferred** client-identity mechanism. Per the [[mcp-authorization-overview]], authorization servers and MCP clients **SHOULD** support Client ID Metadata Documents, and the profile deprecates Dynamic Client Registration in their favor. One of the three [[client-registration]] mechanisms. Their security (validating the fetched document, the `redirect_uris`, and the URL itself) is called out as a dedicated topic in [[security-considerations]].
+The **preferred** client-identity mechanism and the top capability-gated choice in the [[client-registration]] selection priority. Per the [[mcp-authorization-overview]], authorization servers and MCP clients **SHOULD** support Client ID Metadata Documents, and the profile deprecates Dynamic Client Registration in their favor. Their security (validating the fetched document, the `redirect_uris`, and the URL itself) is called out as a dedicated topic in [[security-considerations]].
+
+## Requirements under the MCP profile
+
+The Client Registration document ([[mcp-authorization-client-registration]]) restates the draft's key requirements:
+
+- The `client_id` URL **MUST** use the `https` scheme and **contain a path component** (e.g., `https://example.com/client.json`).
+- The metadata document **MUST** include at least `client_id`, `client_name`, and `redirect_uris`, and its `client_id` **MUST** match the document URL exactly.
+- The client **MAY** authenticate with `private_key_jwt` (with JWKS) per draft §6.2; otherwise it is a public client (`token_endpoint_auth_method: "none"`).
+- The authorization server **SHOULD** fetch the document for URL-formatted `client_id`s, **MUST** validate that its `client_id` matches the URL, **MUST** validate the request `redirect_uri` against the document's `redirect_uris`, **MUST** confirm the document is valid JSON with the required fields, and **SHOULD** cache it respecting HTTP cache headers.
+
+**Discovery and portability.** An AS advertises support with `"client_id_metadata_document_supported": true` in its [[rfc-8414-authorization-server-metadata|Authorization Server Metadata]]. Unlike pre-registered or DCR credentials, CIMD client IDs are **portable across authorization servers** — they are self-hosted URLs resolved on demand, so no re-registration is needed when a server's AS changes (see *Authorization Server Binding* in [[client-registration]]).
 
 ## Link
 
