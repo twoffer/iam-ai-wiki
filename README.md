@@ -21,7 +21,7 @@ In practice: the LLM agent on one side, [Obsidian](https://obsidian.md) open on 
 Three layers — **immutable sources**, an **LLM-owned wiki**, and a **schema** ([`CLAUDE.md`](CLAUDE.md)) that makes the LLM a disciplined maintainer rather than a generic chatbot.
 
 ```
-raw/           # immutable source documents — the LLM reads, never writes
+raw/           # immutable source documents — the LLM reads, never writes (third-party; see raw/README.md)
 wiki/          # curated, interlinked pages — owned entirely by the LLM
   concepts/    # foundational ideas (agentic-identity, confused-deputy, …)
   topics/      # subjects w/ active discourse (mcp-authorization, scope-selection, …)
