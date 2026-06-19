@@ -7,7 +7,7 @@ aliases: [PKCE, code_challenge, code_verifier, RFC 7636]
 enterprise_analogs: [RFC 7636 PKCE, OAuth 2.1 §4.1.1 (mandatory PKCE + S256), OAuth 2.1 §7.5.2 code interception, authorization code injection defense]
 last_updated: 2026-06-19
 sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [mcp-authorization, oauth-2-1, rfc-7636-pkce, rfc-8414-authorization-server-metadata, openid-connect-discovery, authorization-server-mix-up, confused-deputy, security-considerations]
+related: [mcp-authorization, oauth-2-1, rfc-7636-pkce, rfc-8414-authorization-server-metadata, openid-connect-discovery, authorization-server-mix-up, confused-deputy, security-considerations, public-vs-confidential-client]
 tags: [oauth, pkce, security, core-concept]
 ---
 
@@ -15,7 +15,7 @@ tags: [oauth, pkce, security, core-concept]
 
 **PKCE** binds an OAuth authorization code to the specific client instance that requested it, defeating authorization-code interception/injection. The client generates a secret `code_verifier`, sends its hash as `code_challenge` in the authorization request, and proves possession by sending the `code_verifier` at the token endpoint. An intercepted code is worthless without the verifier.
 
-In MCP it is **not optional**: the [[mcp-authorization|MCP authorization]] flow has the client "Generate PKCE parameters" as a required step ([[mcp-authorization-overview]], *Authorization Flow Steps*), and [[oauth-2-1|OAuth 2.1]] mandates PKCE for all authorization-code clients (public and confidential). This matters because MCP clients are typically **public clients** (desktop hosts, CLIs, agent runtimes) that cannot keep a client secret.
+In MCP it is **not optional**: the [[mcp-authorization|MCP authorization]] flow has the client "Generate PKCE parameters" as a required step ([[mcp-authorization-overview]], *Authorization Flow Steps*), and [[oauth-2-1|OAuth 2.1]] mandates PKCE for all authorization-code clients (public and confidential). This matters because MCP clients are typically **public clients** (desktop hosts, CLIs, agent runtimes) that cannot keep a client secret — for a public client PKCE is the *primary* code-binding defense rather than defense in depth (see [[public-vs-confidential-client]]).
 
 ## Role in the MCP flow
 

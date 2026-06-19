@@ -74,3 +74,11 @@ Ingested raw/MCPAuthorization_SecurityConsiderations.md (final doc); 1 new sourc
 - sibling source pages (server-discovery, client-registration): added doc-4 source to related for graph connectivity
 - _index.md: added doc-4 source + 3 concepts + 2 references; bumped authorization-server-mix-up, confused-deputy, token-passthrough, security-considerations to stable
 - note: no incident pages — doc 4 describes threat classes and mitigations, not real-world incidents
+
+## [2026-06-19] query | Public vs. confidential MCP OAuth clients & the PKCE flow
+- public-vs-confidential-client: new concept — answers whether MCP assumes always-public (no: spec mandates AS support for "both confidential and public clients", `raw/MCPAuthorization_Overview.md:68`, with a `private_key_jwt` confidential path via CIMD), what public means in practice (`token_endpoint_auth_method: none`, no client_credentials, mandatory PKCE/rotation/exact-redirect), and how PKCE differs by client type (PKCE as sole code-binding defense for public vs defense-in-depth for confidential)
+- proof-key-for-code-exchange: added cross-ref + note that PKCE is primary (not defense-in-depth) for public clients
+- oauth-2-1: added cross-ref on the "both confidential and public clients" baseline clause
+- mcp-authorization: added cross-ref + "MCP clients are typically public" note on the OAuth 2.1 building block
+- client-registration / oauth-client-id-metadata-documents / token-theft / machine-identity: added reciprocal `related` cross-refs
+- _index.md: added public-vs-confidential-client under Concepts

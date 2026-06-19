@@ -7,7 +7,7 @@ aliases: [token theft, stolen token, leaked token, token leakage, token exfiltra
 enterprise_analogs: [OAuth 2.1 §7.1 token storage, OAuth 2.1 §4.3.1 refresh token rotation, RFC 9700 OAuth 2.0 Security BCP, bearer token replay]
 last_updated: 2026-06-19
 sources: [mcp-authorization-security-considerations]
-related: [token-audience-binding, token-passthrough, mcp-authorization, security-considerations, oauth-2-1, machine-identity]
+related: [token-audience-binding, token-passthrough, mcp-authorization, security-considerations, oauth-2-1, machine-identity, public-vs-confidential-client]
 tags: [security, token, threat-model, core-concept]
 ---
 
