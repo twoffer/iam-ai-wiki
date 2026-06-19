@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [audience restriction, audience validation, resource indicators, token audience]
 enterprise_analogs: [RFC 8707 Resource Indicators, JWT `aud` claim (RFC 7519), OAuth 2.1 §5.2 token validation, RFC 9068 JWT access tokens]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, canonical-server-uri, rfc-8707-resource-indicators, token-passthrough, confused-deputy, authorization-server-mix-up, delegated-authorization]
+last_updated: 2026-06-19
+sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
+related: [mcp-authorization, canonical-server-uri, rfc-8707-resource-indicators, rfc-9068-jwt-access-tokens, token-passthrough, confused-deputy, authorization-server-mix-up, security-considerations, delegated-authorization]
 tags: [oauth, audience, token, security, core-concept]
 ---
 
@@ -21,6 +21,8 @@ tags: [oauth, audience, token, security, core-concept]
 - **Server side (audience validation).** MCP servers, acting as OAuth 2.1 resource servers, MUST validate that an access token "was issued specifically for them as the intended audience" per RFC 8707 §2, and MUST reject anything else with `401`. Servers MUST only accept tokens valid for their own resources and MUST NOT accept or transit any other tokens — the [[token-passthrough]] prohibition (*Access Token Usage*).
 
 Together these make the token a key cut for one lock: the AS stamps the audience from the `resource` parameter; the resource server checks the stamp.
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document (*Access Token Privilege Restriction*) frames a missing or unchecked stamp as two distinct failures: **audience validation failures** (a server accepts tokens minted for other services because it never checks the [[rfc-9068-jwt-access-tokens|RFC 9068]] `aud` claim) and **token passthrough** (it then forwards those tokens onward). The first breaks the boundary; the second weaponizes the break. The client-side `resource` requirement aligns with [RFC 9728 §7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4).
 
 ## Why it matters
 

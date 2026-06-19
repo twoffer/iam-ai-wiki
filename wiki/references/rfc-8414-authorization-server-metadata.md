@@ -6,8 +6,8 @@ confidence: high
 aliases: [RFC 8414, Authorization Server Metadata, AS metadata, oauth-authorization-server]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [authorization-server-discovery, client-registration, openid-connect-discovery, oauth-client-id-metadata-documents, mcp-authorization, rfc-9207-authorization-server-issuer-identification, authorization-server-mix-up]
+sources: [mcp-authorization-security-considerations, mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview]
+related: [authorization-server-discovery, client-registration, openid-connect-discovery, oauth-client-id-metadata-documents, mcp-authorization, proof-key-for-code-exchange, rfc-9207-authorization-server-issuer-identification, authorization-server-mix-up]
 tags: [oauth, discovery, metadata, spec, ietf, reference]
 ---
 
@@ -30,6 +30,10 @@ Beyond endpoints, the AS-metadata document is where a client reads the capabilit
 
 - **`client_id_metadata_document_supported`** — a boolean (set to `true`) by which an AS advertises support for [[oauth-client-id-metadata-documents|Client ID Metadata Documents]]. Clients SHOULD check it before using a URL `client_id`. This field is defined by the CIMD draft, not RFC 8414 itself.
 - **`registration_endpoint`** — the standard RFC 8414 field; its presence is the signal a client uses to fall back to [[rfc-7591-dynamic-client-registration|Dynamic Client Registration]] when CIMD is unavailable.
+
+## Capability signal for PKCE support
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document makes this metadata document the **PKCE-support discovery channel** ([[proof-key-for-code-exchange]]). The standard RFC 8414 field **`code_challenge_methods_supported`** lists the PKCE methods (e.g., `S256`) the AS accepts. Because neither OAuth 2.1 nor PKCE defines any other way to discover support, MCP clients MUST treat its **absence** here as "PKCE unsupported" and **refuse to proceed** — a downgrade-attack defense. (The parallel rule for [[openid-connect-discovery|OIDC Discovery]], where the field is not formally defined but MUST still be present for MCP, is on that page.)
 
 ## Link
 

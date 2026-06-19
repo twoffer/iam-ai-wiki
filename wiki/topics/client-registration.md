@@ -6,8 +6,8 @@ confidence: high
 aliases: [MCP client registration, client ID metadata documents, dynamic client registration, DCR]
 enterprise_analogs: [RFC 7591 Dynamic Client Registration, OpenID Connect Dynamic Client Registration 1.0 application_type, manual client pre-registration, OAuth Client ID Metadata Documents draft-ietf-oauth-client-id-metadata-document-00, RFC 6749 §2.2 client identifier uniqueness]
 last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [mcp-authorization, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, authorization-server-discovery, security-considerations]
+sources: [mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview, mcp-authorization-security-considerations]
+related: [mcp-authorization, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, authorization-server-discovery, security-considerations, server-side-request-forgery, confused-deputy]
 tags: [oauth, client-registration, cimd, dcr, mcp]
 ---
 
@@ -85,6 +85,14 @@ A single MCP server may front **multiple, independent** authorization servers ([
 - **CIMD client IDs are exempt and portable.** Because they are self-hosted HTTPS URLs the AS resolves on demand, no re-registration is needed when the AS changes.
 
 This is the registration-state counterpart to the per-AS credential isolation that [[authorization-server-discovery]] requires when a resource lists several authorization servers.
+
+## Security of the registration mechanisms
+
+Each registration path carries threats the [[mcp-authorization-security-considerations|Security Considerations]] document treats normatively ([[security-considerations]]):
+
+- **CIMD fetch → [[server-side-request-forgery|SSRF]].** Because the AS dereferences a `client_id` URL supplied by an unknown client, it can be steered into requesting internal endpoints; ASes SHOULD apply SSRF defenses and the trust policies above.
+- **CIMD `localhost` impersonation.** Exact `redirect_uri` matching cannot distinguish a legitimate `localhost` client from an attacker who claims the same metadata URL; ASes MUST display the redirect-URI hostname and SHOULD warn on `localhost`-only URIs (see [[open-redirection]]).
+- **Proxy servers → [[confused-deputy]].** An MCP proxy with a **static** upstream client ID MUST obtain user consent for **each dynamically registered client** before forwarding to a third-party AS, so prior consent on the static ID cannot be ridden by a malicious downstream client.
 
 ## Relation to pre-AI IAM
 

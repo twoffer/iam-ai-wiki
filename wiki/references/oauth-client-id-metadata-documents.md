@@ -6,8 +6,8 @@ confidence: high
 aliases: [Client ID Metadata Documents, CIMD, URL client_id, draft-ietf-oauth-client-id-metadata-document]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-overview]
-related: [client-registration, rfc-7591-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, security-considerations]
+sources: [mcp-authorization-security-considerations, mcp-authorization-client-registration, mcp-authorization-overview]
+related: [client-registration, rfc-7591-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, security-considerations, server-side-request-forgery, open-redirection]
 tags: [oauth, client-registration, cimd, draft, ietf, reference]
 ---
 
@@ -29,6 +29,16 @@ The Client Registration document ([[mcp-authorization-client-registration]]) res
 - The authorization server **SHOULD** fetch the document for URL-formatted `client_id`s, **MUST** validate that its `client_id` matches the URL, **MUST** validate the request `redirect_uri` against the document's `redirect_uris`, **MUST** confirm the document is valid JSON with the required fields, and **SHOULD** cache it respecting HTTP cache headers.
 
 **Discovery and portability.** An AS advertises support with `"client_id_metadata_document_supported": true` in its [[rfc-8414-authorization-server-metadata|Authorization Server Metadata]]. Unlike pre-registered or DCR credentials, CIMD client IDs are **portable across authorization servers** — they are self-hosted URLs resolved on demand, so no re-registration is needed when a server's AS changes (see *Authorization Server Binding* in [[client-registration]]).
+
+## Security considerations (draft §6)
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document (*Client ID Metadata Document Security*) requires ASes to weigh the [draft §6](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-client-id-metadata-document-00#name-security-considerations) implications of taking a URL from an unknown client and fetching it:
+
+- **[[server-side-request-forgery|SSRF]] (Authorization Server Abuse Protection).** The AS fetches an attacker-supplied URL and could be steered into requesting internal/admin endpoints. ASes **SHOULD** consider SSRF risks on the metadata fetch.
+- **`localhost` redirect-URI impersonation.** CIMD cannot by itself stop an attacker from claiming a legitimate client's metadata URL as their `client_id` and binding a `localhost` port as the `redirect_uri` to capture the code — the user still sees the legitimate `client_name`. ASes **SHOULD** warn on `localhost`-only redirect URIs, **MAY** require additional attestation, and **MUST** clearly display the redirect URI hostname during authorization. (See [[open-redirection]].)
+- **Trust policies.** ASes **MAY** apply domain-based policies — allowlists, accept-any-HTTPS for open servers, reputation checks, domain-age/certificate restrictions, prominent hostname display — while retaining full control over access policy.
+
+These are detailed on [[security-considerations]] and feed the [[client-registration]] validation rules.
 
 ## Link
 

@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [RFC 9207, Issuer Identification, iss parameter, authorization_response_iss_parameter_supported]
 enterprise_analogs: []
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [authorization-server-mix-up, mcp-authorization, authorization-server-discovery, proof-key-for-code-exchange, confused-deputy]
+last_updated: 2026-06-19
+sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
+related: [authorization-server-mix-up, mcp-authorization, authorization-server-discovery, proof-key-for-code-exchange, confused-deputy, security-considerations]
 tags: [oauth, security, mix-up, spec, ietf, reference]
 ---
 
@@ -24,6 +24,8 @@ The [[mcp-authorization-overview]] (*Authorization Response Validation*) makes `
 - If the AS advertises support but `iss` is absent, **reject**. Applies to error responses too.
 
 The overview also applies a local-policy provision: a present `iss` is validated even if metadata doesn't advertise support.
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document (*Mix-Up Attacks*) explains why `iss` validation is irreplaceable: **PKCE alone does not prevent mix-up** (the client sends the `code_verifier` to the attacker's token endpoint), and **resource indicators do not help** when the attacker's AS intercepts requests before the honest AS. The mitigation **depends on the honest AS emitting `iss`** — hence the intent to upgrade AS emission from SHOULD to MUST. See [[authorization-server-mix-up]].
 
 ## Link
 

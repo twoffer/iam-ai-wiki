@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: [OAuth 2.1, oauth-v2-1, draft-ietf-oauth-v2-1-13]
 enterprise_analogs: [RFC 6749 OAuth 2.0, RFC 6750, RFC 7636 PKCE, RFC 8252]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, ietf-oauth-working-group]
+last_updated: 2026-06-19
+sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
+related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, security-considerations, token-theft, open-redirection, ietf-oauth-working-group]
 tags: [oauth, spec, ietf, reference]
 ---
 
@@ -20,6 +20,20 @@ Referenced as `draft-ietf-oauth-v2-1-13` in the [[mcp-authorization-overview]].
 ## Role in MCP Authorization
 
 It is the **baseline**: MCP authorization servers MUST implement OAuth 2.1 for both confidential and public clients, and MCP servers act as OAuth 2.1 **resource servers**. Token usage and validation in MCP conform to OAuth 2.1 §5 (Resource Requests), §5.2 (token validation), and §5.3 (error handling). See [[mcp-authorization]] and [[proof-key-for-code-exchange]].
+
+## Security sections MCP requires
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document requires implementers to follow OAuth 2.1 **§7 "Security Considerations"** in full, and pins specific sub-sections to MCP MUSTs:
+
+| OAuth 2.1 § | MCP use |
+| --- | --- |
+| §1.5 Communication Security | HTTPS on all AS endpoints; redirect URIs `localhost` or HTTPS |
+| §4.1.1 | PKCE `S256` challenge method ([[proof-key-for-code-exchange]]) |
+| §4.3.1 Token Endpoint Extension | refresh-token rotation for public clients ([[token-theft]]) |
+| §5.2 | inbound access-token validation ([[token-audience-binding]]) |
+| §7.1 | secure token storage ([[token-theft]]) |
+| §7.5 / §7.5.2 | authorization-code protection via PKCE |
+| §7.12.2 | open-redirection precautions ([[open-redirection]]) |
 
 ## Link
 

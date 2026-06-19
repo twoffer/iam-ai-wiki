@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [canonical server URI, resource parameter, resource indicator, canonical MCP URI]
 enterprise_analogs: [RFC 8707 Resource Indicators, RFC 9728 resource identifier, RFC 3986 URI normalization]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [token-audience-binding, rfc-8707-resource-indicators, rfc-9728-protected-resource-metadata, mcp-authorization]
+last_updated: 2026-06-19
+sources: [mcp-authorization-overview, mcp-authorization-security-considerations]
+related: [token-audience-binding, rfc-8707-resource-indicators, rfc-9728-protected-resource-metadata, mcp-authorization, security-considerations]
 tags: [oauth, resource-indicators, audience, uri, mcp]
 ---
 
@@ -23,7 +23,7 @@ MCP clients **MUST** implement RFC 8707. The `resource` parameter:
 2. **MUST** identify the MCP server the token will be used with.
 3. **MUST** use the server's **canonical URI** (RFC 8707 §2), aligned with the `resource` of [[rfc-9728-protected-resource-metadata|RFC 9728]].
 
-Clients **MUST** send it **regardless of whether the AS supports it**. Example (URL-encoded):
+Clients **MUST** send it **regardless of whether the AS supports it**. The [[mcp-authorization-security-considerations|Security Considerations]] document (*Access Token Privilege Restriction*) reaffirms this as a MUST and pins it to [RFC 9728 §7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4) — the canonical URI is the client-side input that lets the AS bind the token's audience. Example (URL-encoded):
 
 ```
 &resource=https%3A%2F%2Fmcp.example.com

@@ -6,7 +6,7 @@ confidence: high
 aliases: [Model Context Protocol authorization, MCP auth, MCP OAuth profile]
 enterprise_analogs: [OAuth 2.1 draft-ietf-oauth-v2-1-13, RFC 6749 §1.1 roles, RFC 6750 Bearer Token Usage, RFC 8707 Resource Indicators, RFC 9728 Protected Resource Metadata]
 last_updated: 2026-06-19
-sources: [mcp-authorization-overview, mcp-authorization-server-discovery, mcp-authorization-client-registration]
+sources: [mcp-authorization-overview, mcp-authorization-server-discovery, mcp-authorization-client-registration, mcp-authorization-security-considerations]
 related: [mcp-specification, delegated-authorization, authorization-server-discovery, client-registration, scope-selection-strategy, canonical-server-uri, token-audience-binding, proof-key-for-code-exchange, step-up-authorization, token-passthrough, security-considerations, oauth-2-1]
 tags: [mcp, oauth, authorization, profile]
 ---
@@ -95,4 +95,4 @@ In short, MCP authorization is standard OAuth with the *optional-but-recommended
 - [[client-registration]] — Client ID Metadata Documents, pre-registration, Dynamic Client Registration.
 - [[scope-selection-strategy]] — least-privilege scope requests and `WWW-Authenticate` guidance.
 - [[canonical-server-uri]] — the `resource` parameter and canonical URI rules (RFC 8707).
-- [[security-considerations]] — normative threat mitigations (forthcoming ingest).
+- [[security-considerations]] — normative threat mitigations (audience binding, token theft, PKCE discovery, mix-up, open redirection, CIMD security, confused deputy, privilege restriction).

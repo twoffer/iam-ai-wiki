@@ -48,3 +48,29 @@ Ingested raw/MCPAuthorization_ClientRegistration.md; 1 new source page, 7 pages 
 - mcp-authorization: added mcp-authorization-client-registration to sources (client-registration claims now backed by doc 3)
 - mcp-authorization-overview: updated "Notable for future ingests" — doc 3 now ingested; only security-considerations (doc 4) remains a forward stub
 - _index.md: added source line for doc 3; bumped client-registration to stable
+
+## [2026-06-19] ingest | MCP Authorization Specification — Security Considerations (doc 4 of 4)
+Ingested raw/MCPAuthorization_SecurityConsiderations.md (final doc); 1 new source page, 3 new concepts, 2 new references, 14 pages updated. Completes the MCP Authorization spec in the wiki.
+- mcp-authorization-security-considerations: new source page summarizing doc 4 (the normative OAuth threat-model checklist: nine threat areas, full bridging)
+- security-considerations: major rewrite — removed "not yet ingested" stub note; added all nine threat sections (audience binding, token theft, communication security, PKCE + PKCE-support discovery, mix-up, open redirection, CIMD security, confused deputy, access-token privilege restriction) with normative detail and full bridging; status stub → stable
+- token-theft: new concept — secure storage (OAuth 2.1 §7.1), short-lived tokens, refresh-token rotation for public clients (§4.3.1)
+- open-redirection: new concept — registered + exact-match redirect URIs, `state`, untrusted-URI precautions (OAuth 2.1 §7.12.2)
+- server-side-request-forgery: new concept — SSRF surface created by AS fetching attacker-supplied CIMD URLs (draft §6); registration-free identity as the new wrinkle
+- rfc-9068-jwt-access-tokens: new reference — JWT access-token profile; the `aud` claim underpinning server-side audience validation
+- mcp-security-best-practices: new stub reference — the non-spec MCP guide doc 4 repeatedly defers to (token passthrough, confused deputy); not ingested
+- token-passthrough: stub → stable — added two-failure-mode decomposition and the upstream-API "two hats" rule (MUST NOT pass through; mint a separate token as OAuth client to upstream)
+- confused-deputy: evolving → stable — added the proxy-server / static-client-ID / consent-per-dynamically-registered-client rule; removed forward-stub note
+- authorization-server-mix-up: stub → stable — added "why weaker measures don't suffice" (PKCE alone fails, resource indicators don't help, depends on honest AS emitting `iss`); removed forward-stub note
+- proof-key-for-code-exchange: added mandatory PKCE-support discovery (`code_challenge_methods_supported`, refuse-to-proceed downgrade defense) and `S256` requirement
+- token-audience-binding: added the Access Token Privilege Restriction two-dimensions framing (audience-validation failure vs passthrough); RFC 9728 §7.4
+- rfc-8414-authorization-server-metadata: added `code_challenge_methods_supported` as PKCE-support signal
+- openid-connect-discovery: added the MCP requirement to verify/include `code_challenge_methods_supported` (non-standard-but-mandatory field)
+- oauth-client-id-metadata-documents: added draft §6 security (SSRF, localhost impersonation, trust policies)
+- oauth-2-1: added "Security sections MCP requires" table (§1.5/§4.1.1/§4.3.1/§5.2/§7.1/§7.5/§7.12.2)
+- rfc-9728-protected-resource-metadata: added §7.4 alignment for the mandatory `resource` parameter
+- rfc-7636-pkce / rfc-8707-resource-indicators / rfc-9207-authorization-server-issuer-identification: added doc-4 detail and source cross-refs
+- mcp-authorization / client-registration / canonical-server-uri: added doc-4 source + security cross-refs; mcp-authorization sub-pages note de-stubbed
+- mcp-authorization-overview: "Notable for future ingests" — all four spec docs now ingested; flagged Security Best Practices guide as the remaining un-ingested external doc
+- sibling source pages (server-discovery, client-registration): added doc-4 source to related for graph connectivity
+- _index.md: added doc-4 source + 3 concepts + 2 references; bumped authorization-server-mix-up, confused-deputy, token-passthrough, security-considerations to stable
+- note: no incident pages — doc 4 describes threat classes and mitigations, not real-world incidents

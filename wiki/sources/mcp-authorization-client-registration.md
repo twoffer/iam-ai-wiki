@@ -7,7 +7,7 @@ aliases: [MCP Client Registration, MCP client registration spec, MCP client ID m
 enterprise_analogs: [OAuth Client ID Metadata Document draft-ietf-oauth-client-id-metadata-document-00, draft-ietf-oauth-client-id-metadata-document-00 §6.2 private_key_jwt, RFC 7591 Dynamic Client Registration, OpenID Connect Dynamic Client Registration 1.0 application_type, RFC 6749 §2.2 client identifier uniqueness, private_key_jwt client authentication]
 last_updated: 2026-06-19
 sources: [raw/MCPAuthorization_ClientRegistration.md]
-related: [mcp-authorization, mcp-authorization-overview, client-registration, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, authorization-server-discovery, security-considerations]
+related: [mcp-authorization, mcp-authorization-overview, client-registration, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, authorization-server-discovery, security-considerations, mcp-authorization-security-considerations]
 tags: [mcp, oauth, client-registration, cimd, dcr, spec, source]
 ---
 

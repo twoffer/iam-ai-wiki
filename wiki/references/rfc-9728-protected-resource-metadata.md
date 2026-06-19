@@ -6,8 +6,8 @@ confidence: high
 aliases: [RFC 9728, Protected Resource Metadata, PRM, oauth-protected-resource, resource_metadata]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [authorization-server-discovery, mcp-authorization, scope-selection-strategy, rfc-8414-authorization-server-metadata, token-audience-binding, client-registration]
+sources: [mcp-authorization-security-considerations, mcp-authorization-server-discovery, mcp-authorization-overview]
+related: [authorization-server-discovery, mcp-authorization, scope-selection-strategy, rfc-8414-authorization-server-metadata, token-audience-binding, rfc-8707-resource-indicators, client-registration]
 tags: [oauth, discovery, metadata, spec, ietf, reference]
 ---
 
@@ -23,6 +23,8 @@ The [[mcp-authorization-server-discovery|AS Discovery]] document adds the operat
 
 - **Two location mechanisms** (server implements one; client supports both): the `resource_metadata` parameter in the `WWW-Authenticate` header on a `401` (§5.1), or the well-known URI served either at the MCP endpoint's path (`https://example.com/public/mcp` → `https://example.com/.well-known/oauth-protected-resource/public/mcp`) or at the root (`https://example.com/.well-known/oauth-protected-resource`). Clients prefer the header, then fall back to the well-known URIs (path-based, then root).
 - **Multiple authorization servers.** A document may list several, each an independent AS; the client selects which to use per [§7.6](https://datatracker.ietf.org/doc/html/rfc9728#name-authorization-servers) and keeps registration state isolated per AS (see [[client-registration]]).
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document (*Access Token Privilege Restriction*) additionally cites **[§7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4)** as the alignment point for the client's mandatory [[rfc-8707-resource-indicators|`resource`]] parameter: naming the protected resource explicitly is what binds the token to its intended audience and keeps it from being misused across services ([[token-audience-binding]]).
 
 ## Link
 

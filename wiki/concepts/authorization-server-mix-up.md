@@ -1,14 +1,14 @@
 ---
 title: Authorization Server Mix-Up
 category: concept
-status: stub
+status: stable
 confidence: high
 aliases: [mix-up attack, AS mix-up, OAuth mix-up, issuer mix-up]
 enterprise_analogs: [RFC 9207 Authorization Server Issuer Identification, RFC 9700 OAuth 2.0 Security BCP, OAuth mix-up attack]
 last_updated: 2026-06-19
-sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
+sources: [mcp-authorization-security-considerations, mcp-authorization-server-discovery, mcp-authorization-overview]
 related: [rfc-9207-authorization-server-issuer-identification, authorization-server-discovery, rfc-8414-authorization-server-metadata, confused-deputy, proof-key-for-code-exchange, security-considerations, mcp-authorization]
-tags: [security, mix-up, oauth, threat-model, stub]
+tags: [security, mix-up, oauth, threat-model, core-concept]
 ---
 
 # Authorization Server Mix-Up
@@ -31,6 +31,14 @@ The [[mcp-authorization-overview]] (*Authorization Response Validation*) mandate
 
 The spec notes a future revision is expected to upgrade AS inclusion of `iss` from SHOULD to MUST. The two defenses are complementary: Defense 1 ensures the client fetched its endpoints from the genuine issuer; Defense 2 ensures the response it later receives came from that same issuer. Both compose with PKCE (which protects the code) and with the [[authorization-server-discovery]] rules (which constrain *which* AS is trusted).
 
+## Why weaker measures don't suffice
+
+The [[mcp-authorization-security-considerations|Security Considerations]] document (*Mix-Up Attacks*) is explicit that issuer identification is *necessary* — other controls do not cover this attack:
+
+- **PKCE alone does not prevent mix-up.** In a mix-up, the client is tricked into talking to the attacker's AS and redeems the code at the attacker's token endpoint — so it hands the attacker the `code_verifier` itself. PKCE protects against an interceptor who lacks the verifier, not against a client that willingly sends it to the wrong endpoint.
+- **Resource indicators do not help** when the attacker's AS intercepts requests *before* they reach the honest AS; audience binding constrains where a token is used, not which AS the client is talking to.
+- **The defense depends on honest ASes emitting `iss`.** Authorization Response Validation provides no protection against an *honest* server that simply omits `iss` — there is nothing for the client to validate. This is precisely why the spec intends to make AS `iss` emission a MUST.
+
 ## Relation to pre-AI IAM
 
 This is the textbook **OAuth mix-up attack** and its standard mitigation (RFC 9207), catalogued in the OAuth 2.0 Security BCP (RFC 9700). Practitioners who deploy multi-AS or federated OAuth already know issuer identification as the fix.
@@ -38,5 +46,3 @@ This is the textbook **OAuth mix-up attack** and its standard mitigation (RFC 92
 ## Why pre-AI IAM is insufficient
 
 Mix-up risk scales with **dynamic, runtime discovery of authorization servers** — exactly MCP's model, where a client connects to servers (and thus ASes) it has never seen and did not pre-configure. With no human integrator to pin the AS in advance, the client must validate issuer identity automatically on every flow, which is why MCP makes RFC 9207 validation mandatory.
-
-> **Status:** stub. Seeded from the MCP overview's `iss`-validation rules; to be expanded when [[security-considerations]] (raw doc 4) is ingested.
