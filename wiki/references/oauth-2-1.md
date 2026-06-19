@@ -7,7 +7,7 @@ aliases: [OAuth 2.1, oauth-v2-1, draft-ietf-oauth-v2-1-13]
 enterprise_analogs: [RFC 6749 OAuth 2.0, RFC 6750, RFC 7636 PKCE, RFC 8252]
 last_updated: 2026-06-19
 sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, security-considerations, token-theft, open-redirection, ietf-oauth-working-group]
+related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, security-considerations, token-theft, open-redirection, ietf-oauth-working-group, public-vs-confidential-client]
 tags: [oauth, spec, ietf, reference]
 ---
 
@@ -19,7 +19,7 @@ Referenced as `draft-ietf-oauth-v2-1-13` in the [[mcp-authorization-overview]].
 
 ## Role in MCP Authorization
 
-It is the **baseline**: MCP authorization servers MUST implement OAuth 2.1 for both confidential and public clients, and MCP servers act as OAuth 2.1 **resource servers**. Token usage and validation in MCP conform to OAuth 2.1 §5 (Resource Requests), §5.2 (token validation), and §5.3 (error handling). See [[mcp-authorization]] and [[proof-key-for-code-exchange]].
+It is the **baseline**: MCP authorization servers MUST implement OAuth 2.1 for both confidential and public clients (see [[public-vs-confidential-client]]), and MCP servers act as OAuth 2.1 **resource servers**. Token usage and validation in MCP conform to OAuth 2.1 §5 (Resource Requests), §5.2 (token validation), and §5.3 (error handling). See [[mcp-authorization]] and [[proof-key-for-code-exchange]].
 
 ## Security sections MCP requires
 

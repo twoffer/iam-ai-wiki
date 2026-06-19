@@ -7,7 +7,7 @@ aliases: [machine identity, workload identity, non-human identity, NHI]
 enterprise_analogs: [RFC 6749 §4.4 client_credentials, mutual TLS / X.509, SPIFFE/SPIRE SVID, API keys, service accounts]
 last_updated: 2026-06-18
 sources: [mcp-authorization-overview]
-related: [agentic-identity, delegated-authorization, mcp-authorization, tool-use-authorization]
+related: [agentic-identity, delegated-authorization, mcp-authorization, tool-use-authorization, public-vs-confidential-client]
 tags: [machine-identity, workload, agentic, stub]
 ---
 

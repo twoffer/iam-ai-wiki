@@ -10,6 +10,7 @@
 - [[machine-identity]] — an agent's own (workload) identity vs. the user authority it carries · stub · medium
 - [[open-redirection]] — malicious/lax `redirect_uri` for phishing or code capture; exact matching + `state` · stable · high
 - [[proof-key-for-code-exchange]] — PKCE: binds an auth code to the requesting client; mandatory in MCP, with support discovery · stable · high
+- [[public-vs-confidential-client]] — OAuth client types; MCP assumes public by default and accommodates confidential, shaping the PKCE flow · stable · high
 - [[server-side-request-forgery]] — SSRF: an AS fetching attacker-supplied CIMD URLs reaching internal endpoints · stable · high
 - [[step-up-authorization]] — runtime escalation of scopes via `insufficient_scope` challenges · stable · high
 - [[token-audience-binding]] — issuing/validating tokens for a specific resource audience (RFC 8707) · stable · high

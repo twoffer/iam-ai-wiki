@@ -7,7 +7,7 @@ aliases: [Model Context Protocol authorization, MCP auth, MCP OAuth profile]
 enterprise_analogs: [OAuth 2.1 draft-ietf-oauth-v2-1-13, RFC 6749 §1.1 roles, RFC 6750 Bearer Token Usage, RFC 8707 Resource Indicators, RFC 9728 Protected Resource Metadata]
 last_updated: 2026-06-19
 sources: [mcp-authorization-overview, mcp-authorization-server-discovery, mcp-authorization-client-registration, mcp-authorization-security-considerations]
-related: [mcp-specification, delegated-authorization, authorization-server-discovery, client-registration, scope-selection-strategy, canonical-server-uri, token-audience-binding, proof-key-for-code-exchange, step-up-authorization, token-passthrough, security-considerations, oauth-2-1]
+related: [mcp-specification, delegated-authorization, authorization-server-discovery, client-registration, scope-selection-strategy, canonical-server-uri, token-audience-binding, proof-key-for-code-exchange, step-up-authorization, token-passthrough, security-considerations, oauth-2-1, public-vs-confidential-client]
 tags: [mcp, oauth, authorization, profile]
 ---
 
@@ -33,7 +33,7 @@ The AS may be co-located with the MCP server or run as a separate entity; its im
 
 The profile makes several otherwise-optional OAuth features **mandatory**:
 
-- **Authorization servers MUST implement [[oauth-2-1|OAuth 2.1]]** for both confidential and public clients.
+- **Authorization servers MUST implement [[oauth-2-1|OAuth 2.1]]** for both confidential and public clients (see [[public-vs-confidential-client]]; MCP clients are typically public).
 - **MCP servers MUST implement [[rfc-9728-protected-resource-metadata|Protected Resource Metadata]] (RFC 9728)**, and clients MUST use it to discover the AS. See [[authorization-server-discovery]].
 - **Authorization servers MUST provide at least one of** [[rfc-8414-authorization-server-metadata|AS Metadata (RFC 8414)]] or [[openid-connect-discovery|OIDC Discovery]]; **clients MUST support both**.
 - **Clients MUST implement [[rfc-8707-resource-indicators|Resource Indicators (RFC 8707)]]** — every authorization and token request carries a `resource` parameter naming the target server's [[canonical-server-uri|canonical URI]].
