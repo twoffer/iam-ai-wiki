@@ -117,6 +117,7 @@ Override the generic rule with these tiers for this domain.
 ## Conventions
 
 - **Wikilinks + standard markdown.** Use `[[slug]]` for internal links.
+- **Never hard-wrap prose.** Write each paragraph and each list item as a single continuous line and rely on the editor's soft-wrap (Obsidian, VS Code, GitHub). Do not insert fixed-column line breaks inside `.md` files, and do not use trailing-two-space or trailing-backslash hard breaks. Headings, tables, code fences, and the blank lines between blocks stay on their own lines as usual. This applies to every markdown file the wiki owns — `wiki/`, `_index.md`, `log.md`, `README.md`, and `CLAUDE.md` itself — but never to `raw/`, which is immutable and keeps whatever wrapping its source had. It governs Markdown only: git commit messages are hard-wrapped as usual.
 - **Citations.** Every non-trivial claim cites either a `wiki/sources/<slug>.md` page or a `raw/` file path.
 - **Contested vs superseded.**
   - *Contested*: two current sources actively disagree. Surface both under a "Contested claims" section on the relevant page. Set `status: contested`.
