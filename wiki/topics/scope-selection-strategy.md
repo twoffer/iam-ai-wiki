@@ -3,11 +3,11 @@ title: Scope Selection Strategy
 category: topic
 status: stable
 confidence: high
-aliases: [scope selection, scope strategy, scopes_supported, scope challenge handling]
-enterprise_analogs: [OAuth scopes (RFC 6749 §3.3), RFC 6750 §3 WWW-Authenticate scope, least privilege, RFC 9728 scopes_supported]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, step-up-authorization, human-in-the-loop-authorization, tool-use-authorization, rfc-6750-bearer-token-usage, rfc-9728-protected-resource-metadata]
+aliases: [scope selection, scope strategy, scope minimization, scopes_supported, scope challenge handling]
+enterprise_analogs: [OAuth scopes (RFC 6749 §3.3), RFC 6750 §3 WWW-Authenticate scope, least privilege, RFC 9728 scopes_supported, blast-radius reduction]
+last_updated: 2026-07-08
+sources: [mcp-authorization-overview, mcp-security-best-practices]
+related: [mcp-authorization, step-up-authorization, human-in-the-loop-authorization, tool-use-authorization, rfc-6750-bearer-token-usage, rfc-9728-protected-resource-metadata, token-theft, mcp-security-best-practices]
 tags: [oauth, scopes, least-privilege, mcp]
 ---
 
@@ -39,6 +39,19 @@ Requesting all advertised scopes (when no specific challenge is given) defers th
 ## Runtime: insufficient-scope challenges
 
 When a client already holds a token but hits an operation it is under-scoped for, the server SHOULD return `403` with `error="insufficient_scope"` and a `scope` challenge. The client then performs [[step-up-authorization]], unioning old and new scopes. Servers SHOULD emit all scopes for a single operation at once (not drip them one per round-trip) and SHOULD be consistent in their inclusion strategy (minimum / recommended / extended). Scope accumulation across operations is the client's responsibility, keeping servers stateless about client scope sets.
+
+## Scope minimization: the security case
+
+The [[mcp-security-best-practices|Security Best Practices]] guide (*Scope Minimization*) supplies the threat model behind the strategy. The attack framing: a token carrying broad scopes (`files:*`, `db:*`, `admin:*`) — granted up front because the server exposed everything in `scopes_supported` and the client requested it all — is obtained via log leakage, memory scraping, or local interception. The consequences of poor scope design:
+
+- **Expanded blast radius** — the stolen token reaches unrelated tools and resources, with immediate **privilege chaining** and no further elevation prompts.
+- **Revocation friction** — revoking a max-privilege token disrupts every workflow at once.
+- **Audit noise** — one omnibus scope masks per-operation user intent, and without elevation metrics, over-broad requests become normalized ("scope inflation blindness").
+- **Consent abandonment** — users decline dialogs listing excessive scopes ([[human-in-the-loop-authorization]]).
+
+The prescribed model is progressive least privilege: a **minimal initial scope set** (e.g., `mcp:tools-basic` for low-risk discovery/read operations), **incremental elevation** via targeted `WWW-Authenticate` `scope="..."` challenges when privileged operations are first attempted ([[step-up-authorization]]), and **down-scoping tolerance** — servers accept reduced-scope tokens, and the AS MAY issue a subset of what was requested. Servers should emit precise challenges rather than the full catalog and log elevation events (scope requested, subset granted) with correlation IDs; clients should begin with baseline scopes and cache recent denials to avoid repeated elevation loops.
+
+The guide's *Common Mistakes* list is a useful design lint: publishing all possible scopes in `scopes_supported` (reinforcing that it should stay the minimal-basic set); wildcard or omnibus scopes (`*`, `all`, `full-access`); bundling unrelated privileges to preempt future prompts; returning the entire scope catalog in every challenge; silently changing scope semantics without versioning; and treating claimed scopes in a token as sufficient **without server-side authorization logic** — scopes gate entry, but the resource server still authorizes each operation (see [[tool-use-authorization]]).
 
 ## Relation to pre-AI IAM
 

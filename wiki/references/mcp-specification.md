@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: [MCP, Model Context Protocol, modelcontextprotocol.io, MCP spec]
 enterprise_analogs: []
-last_updated: 2026-06-19
+last_updated: 2026-07-08
 sources: [mcp-authorization-overview, mcp-authorization-server-discovery]
-related: [mcp-authorization, anthropic, mcp-authorization-extensions, authorization-server-discovery, client-registration, security-considerations]
+related: [mcp-authorization, anthropic, mcp-authorization-extensions, authorization-server-discovery, client-registration, security-considerations, mcp-security-best-practices]
 tags: [mcp, protocol, spec, reference]
 ---
 
@@ -17,14 +17,14 @@ The **Model Context Protocol (MCP)** is an open protocol standardizing how appli
 
 ## Authorization within MCP
 
-Authorization is an **optional**, transport-level part of the spec, defined for HTTP-based transports as a profile of [[oauth-2-1|OAuth 2.1]]. The authorization specification spans four documents, tracked here as:
+Authorization is an **optional**, transport-level part of the spec, defined for HTTP-based transports as a profile of [[oauth-2-1|OAuth 2.1]]. The authorization specification spans four documents, all ingested:
 
-- [[mcp-authorization]] (overview) — ingested; see [[mcp-authorization-overview]].
-- [[authorization-server-discovery]] — ingested; see [[mcp-authorization-server-discovery]].
-- [[client-registration]] — raw present, not yet ingested.
-- [[security-considerations]] — raw present, not yet ingested.
+- [[mcp-authorization]] (overview) — see [[mcp-authorization-overview]].
+- [[authorization-server-discovery]] — see [[mcp-authorization-server-discovery]].
+- [[client-registration]] — see [[mcp-authorization-client-registration]].
+- [[security-considerations]] — see [[mcp-authorization-security-considerations]].
 
-Optional, additive [[mcp-authorization-extensions|authorization extensions]] are maintained separately.
+The documentation site also carries a non-spec [[mcp-security-best-practices|Security Best Practices]] guide (tutorials section) that the Security Considerations document defers to; it is ingested as well. Optional, additive [[mcp-authorization-extensions|authorization extensions]] are maintained separately.
 
 ## Link
 
@@ -33,4 +33,4 @@ Optional, additive [[mcp-authorization-extensions|authorization extensions]] are
 
 ## Notes
 
-This wiki currently covers only the **draft** revision's authorization chapter. Other parts of the MCP spec (lifecycle, tools, resources, prompts, transports) are out of the ingested scope so far.
+This wiki currently covers the **draft** revision's authorization chapter plus the security best-practices tutorial. Other parts of the MCP spec (lifecycle, tools, resources, prompts, transports) are out of the ingested scope so far.

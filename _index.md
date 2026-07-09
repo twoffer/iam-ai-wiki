@@ -4,14 +4,17 @@
 
 - [[agentic-identity]] — domain anchor: who an agent is and whose authority it carries · evolving · medium
 - [[authorization-server-mix-up]] — tricking a client into using the wrong AS; defended by RFC 9207 `iss` validation · stable · high
+- [[authorization-url-injection]] — malicious authorization URLs from MCP servers: `javascript:` XSS, shell-injection RCE; scheme allowlists, no shell opening · stable · high
 - [[confused-deputy]] — privileged agent tricked into misusing its delegated authority · stable · high
 - [[delegated-authorization]] — an agent acting on a resource on behalf of a consenting user · stable · high
-- [[human-in-the-loop-authorization]] — requiring explicit human consent for agent authority/actions · stub · medium
+- [[human-in-the-loop-authorization]] — explicit human consent for agent authority/actions; proxy consent pages and pre-execution dialogs · evolving · high
 - [[machine-identity]] — an agent's own (workload) identity vs. the user authority it carries · stub · medium
 - [[open-redirection]] — malicious/lax `redirect_uri` for phishing or code capture; exact matching + `state` · stable · high
+- [[prompt-injection]] — untrusted content steering an agent's delegated authority; injection as authorization bypass · stub · medium
 - [[proof-key-for-code-exchange]] — PKCE: binds an auth code to the requesting client; mandatory in MCP, with support discovery · stable · high
 - [[public-vs-confidential-client]] — OAuth client types; MCP assumes public by default and accommodates confidential, shaping the PKCE flow · stable · high
-- [[server-side-request-forgery]] — SSRF: an AS fetching attacker-supplied CIMD URLs reaching internal endpoints · stable · high
+- [[server-side-request-forgery]] — SSRF on both sides: the AS fetching CIMD URLs, the MCP client fetching discovery metadata · stable · high
+- [[session-hijacking]] — stolen/guessed MCP session IDs: impersonation, and prompt injection into the agent's event stream · stable · high
 - [[step-up-authorization]] — runtime escalation of scopes via `insufficient_scope` challenges · stable · high
 - [[token-audience-binding]] — issuing/validating tokens for a specific resource audience (RFC 8707) · stable · high
 - [[token-passthrough]] — anti-pattern: accepting or forwarding tokens not issued for you · stable · high
@@ -23,6 +26,7 @@
 - [[authorization-server-discovery]] — finding/validating the AS via RFC 9728 → RFC 8414 / OIDC; two-layer issuer validation · stable · high
 - [[canonical-server-uri]] — the RFC 8707 `resource` parameter and canonical URI rules for MCP servers · stable · high
 - [[client-registration]] — Client ID Metadata Documents, pre-registration, deprecated DCR; per-AS binding · stable · high
+- [[local-mcp-server-security]] — local MCP servers: pre-execution consent, sandboxing, localhost access control, stdio-proxy escalation · stable · high
 - [[mcp-authorization]] — MCP's transport-level authorization model, a profile of OAuth 2.1 · evolving · high
 - [[scope-selection-strategy]] — least-privilege scope selection for domain-blind clients · stable · high
 - [[security-considerations]] — normative threat model: audience binding, token theft, PKCE discovery, mix-up, open redirect, CIMD security, confused deputy, privilege restriction · stable · high
@@ -30,7 +34,6 @@
 ## References
 
 - [[mcp-authorization-extensions]] — optional, additive, composable auth extensions (ext-auth repo) · stub · high
-- [[mcp-security-best-practices]] — MCP guide the spec defers to for token-passthrough & confused-deputy detail (not ingested) · stub · high
 - [[mcp-specification]] — the Model Context Protocol open spec; authorization is one optional chapter · evolving · high
 - [[oauth-2-1]] — consolidated OAuth 2.0 + best practices; MCP's baseline · evolving · high
 - [[oauth-client-id-metadata-documents]] — URL-as-`client_id`; preferred MCP client identity (draft) · evolving · high
@@ -43,6 +46,7 @@
 - [[rfc-8707-resource-indicators]] — `resource` parameter for audience-restricted tokens · stable · high
 - [[rfc-9068-jwt-access-tokens]] — JWT access-token profile; the `aud` audience claim servers validate · stable · high
 - [[rfc-9207-authorization-server-issuer-identification]] — `iss` parameter; mix-up defense · stable · high
+- [[rfc-9700-oauth-security-bcp]] — OAuth 2.0 Security BCP; the pre-AI baseline the MCP guidance builds on (not ingested) · stub · high
 - [[rfc-9728-protected-resource-metadata]] — `.well-known/oauth-protected-resource`; mandatory on MCP servers · stable · high
 
 ## Entities
@@ -61,3 +65,4 @@ _None yet._
 - [[mcp-authorization-overview]] — summary of MCP Authorization spec, doc 1 of 4 (Overview) · stable · high
 - [[mcp-authorization-security-considerations]] — summary of MCP Authorization spec, doc 4 of 4 (Security Considerations) · stable · high
 - [[mcp-authorization-server-discovery]] — summary of MCP Authorization spec, doc 2 of 4 (AS Discovery) · stable · high
+- [[mcp-security-best-practices]] — summary of the MCP Security Best Practices guide: eight attack classes beyond the normative spec · stable · high

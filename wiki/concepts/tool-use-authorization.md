@@ -5,9 +5,9 @@ status: stub
 confidence: medium
 aliases: [tool authorization, tool scoping, tool-call authorization, tool permissions]
 enterprise_analogs: [OAuth scopes, RBAC/ABAC, RFC 8693 token exchange, fine-grained API authorization]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, scope-selection-strategy, step-up-authorization, delegated-authorization, agentic-identity]
+last_updated: 2026-07-08
+sources: [mcp-authorization-overview, mcp-security-best-practices]
+related: [mcp-authorization, scope-selection-strategy, step-up-authorization, delegated-authorization, agentic-identity, session-hijacking, prompt-injection]
 tags: [tool-use, scopes, authorization, agentic, stub]
 ---
 
@@ -19,6 +19,8 @@ tags: [tool-use, scopes, authorization, agentic, stub]
 
 The overview does not enumerate per-tool permissions, but it provides the substrate: scopes are the unit of tool-use authority, and the [[scope-selection-strategy]] plus [[step-up-authorization]] govern how a client acquires exactly the scopes a given tool call requires — "determined dynamically based on the specific request arguments and context" ([[mcp-authorization-overview]], *Runtime Insufficient Scope Errors*). A `403 insufficient_scope` on a tool invocation is the server telling the client it lacks authorization for that specific operation.
 
+The [[mcp-security-best-practices|Security Best Practices]] guide adds two edges. First, **scopes are necessary but not sufficient**: treating claimed scopes in a token as authorization "without server-side authorization logic" is a named common mistake — the resource server still decides each operation (*Scope Minimization → Common Mistakes*). Second, **tool inventory integrity is part of tool-use authorization**: in the [[session-hijacking|session-hijack prompt-injection]] scenario, a forged `notifications/tools/list_changed` can leave a client "with tools that they were not aware were enabled" — the *set* of invocable tools, not just permission to call them, is attacker-influencable state that must be protected.
+
 ## Relation to pre-AI IAM
 
 Mapping tool operations to OAuth scopes is ordinary **fine-grained API authorization** — scopes, RBAC/ABAC policy at the resource server, and token exchange (RFC 8693) for downstream calls. A practitioner models each tool as a protected operation guarded by a scope/permission check.
@@ -27,4 +29,4 @@ Mapping tool operations to OAuth scopes is ordinary **fine-grained API authoriza
 
 The novelty is that **the caller is an autonomous, non-deterministic agent** choosing tools and arguments at runtime, potentially under adversarial influence. Authorization must therefore be decided per call against the *actual arguments and context*, not pre-bound at integration time, and must resist an agent being steered into invoking a tool it was never meant to. Per-operation scope challenges ([[step-up-authorization]]) are an early answer; richer tool-level policy, argument-aware authorization, and binding tool calls to user intent are open agentic concerns.
 
-> **Status:** stub. Seeded from the MCP overview's scope/operation model; to be expanded by future tool-authorization sources.
+> **Status:** stub. Seeded from the MCP overview's scope/operation model, with the Security Best Practices guide's server-side-authorization and tool-inventory-integrity points added; still awaiting dedicated tool-authorization sources (argument-aware policy, tool poisoning, intent binding).

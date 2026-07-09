@@ -41,5 +41,5 @@ The document's primary contribution is **bridging**: it defines no new cryptogra
 ## Notable for future ingests
 
 - All three sibling documents referenced from here have now been ingested: doc 2, [[authorization-server-discovery]] (see [[mcp-authorization-server-discovery]]); doc 3, [[client-registration]] (see [[mcp-authorization-client-registration]]); and doc 4, [[security-considerations]] (see [[mcp-authorization-security-considerations]]). The full MCP Authorization specification is now in the wiki.
-- The separate (non-spec) [[mcp-security-best-practices|Security Best Practices]] guide, which the Security Considerations document repeatedly cites for token passthrough and confused-deputy detail, is **not** yet ingested (no copy under `raw/`).
+- The separate (non-spec) [[mcp-security-best-practices|Security Best Practices]] guide, which the Security Considerations document repeatedly cites for token passthrough and confused-deputy detail, was ingested 2026-07-08 (`raw/MCPSecurityBestPractices.md`). The full MCP authorization security corpus tracked by this wiki is now ingested.
 - The spec is a **draft** revision; normative levels (e.g., `iss` SHOULD → MUST) are expected to change.

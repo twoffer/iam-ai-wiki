@@ -3,11 +3,11 @@ title: Confused Deputy
 category: concept
 status: stable
 confidence: high
-aliases: [confused deputy problem, confused deputy attack, deputy confusion]
-enterprise_analogs: [OAuth 2.0 mix-up attack, CSRF, RFC 9700 OAuth 2.0 Security BCP, ambient authority]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [token-audience-binding, token-passthrough, authorization-server-mix-up, client-registration, mcp-authorization, security-considerations, agentic-identity, delegated-authorization, mcp-security-best-practices]
+aliases: [confused deputy problem, confused deputy attack, deputy confusion, MCP proxy server attack]
+enterprise_analogs: [OAuth 2.0 mix-up attack, CSRF, RFC 9700 OAuth 2.0 Security BCP, ambient authority, consent-cookie bypass]
+last_updated: 2026-07-08
+sources: [mcp-security-best-practices, mcp-authorization-security-considerations, mcp-authorization-overview]
+related: [token-audience-binding, token-passthrough, authorization-server-mix-up, client-registration, mcp-authorization, security-considerations, agentic-identity, delegated-authorization, mcp-security-best-practices, open-redirection, human-in-the-loop-authorization, prompt-injection]
 tags: [security, confused-deputy, threat-model, core-concept]
 ---
 
@@ -24,15 +24,34 @@ An MCP client holds tokens delegated by a user and connects to multiple servers.
 
 The [[mcp-authorization-overview]] lists "mix-up and confused deputy attacks" among the threats its [[security-considerations]] chapter addresses normatively, and the [[mcp-authorization-security-considerations|Security Considerations]] document gives the canonical MCP instance below.
 
-## The proxy-server / consent case (Security Considerations)
+## The proxy-server / consent case
 
-The most concrete MCP confused-deputy scenario is an **MCP proxy server that fronts a third-party API** using a **static (pre-registered) client ID** at the third party's authorization server. Because the third-party AS already has consent on file for that static client, it may **skip its consent screen** on subsequent authorizations. An attacker who can drive a [[client-registration|dynamically registered]] downstream client through the proxy can ride that prior consent and, using a stolen authorization code, obtain tokens **without the user actually consenting** ([[mcp-authorization-security-considerations]], *Confused Deputy Problem*).
+The most concrete MCP confused-deputy scenario is an **MCP proxy server that fronts a third-party API** using a **static (pre-registered) client ID** at the third party's authorization server. Because the third-party AS already has consent on file for that static client, it may **skip its consent screen** on subsequent authorizations. An attacker who can drive a [[client-registration|dynamically registered]] downstream client through the proxy can ride that prior consent and, using a stolen authorization code, obtain tokens **without the user actually consenting** ([[mcp-authorization-security-considerations]], *Confused Deputy Problem*). The [[mcp-security-best-practices|Security Best Practices]] guide supplies the full anatomy, summarized below.
 
-The normative fix:
+### Vulnerable conditions
 
-> MCP proxy servers using static client IDs **MUST obtain user consent for each dynamically registered client** before forwarding to third-party authorization servers (which may require additional consent).
+The attack requires **all four** conditions simultaneously ([[mcp-security-best-practices]], *Vulnerable Conditions*):
 
-This is distinct from the audience-binding defense: it protects the **consent** step rather than the token-audience step. The complementary token-level rule — never relay the inbound token to the upstream, mint a separate one — is the [[token-passthrough]] "two hats" requirement. Fuller treatment lives in the [[mcp-security-best-practices|Security Best Practices]] guide.
+1. The proxy uses a **static client ID** with the third-party AS (which may lack dynamic registration, forcing one shared upstream identity for every downstream client).
+2. The proxy lets MCP clients **dynamically register**, each receiving its own `client_id` and self-declared `redirect_uri`.
+3. The third-party AS sets a **consent cookie** on the user agent after the first approval, keyed to the static client ID.
+4. The proxy does **not** run per-client consent before forwarding to the third-party AS.
+
+### Attack anatomy
+
+A user first authorizes legitimately; the third-party AS drops its consent cookie for the proxy's static client ID. Later, the attacker dynamically registers a malicious client whose `redirect_uri` points at attacker infrastructure and sends the user a crafted authorization link. The user's browser still carries the consent cookie, so the third-party AS **skips the consent screen** and issues its code; the proxy exchanges it, mints an **MCP authorization code**, and — following the malicious registration — redirects it to the attacker's `redirect_uri`. The attacker exchanges that code for MCP tokens and reaches the third-party API as the user, who approved nothing ([[mcp-security-best-practices]], *Attack Description*). The deputy is the proxy: its standing upstream consent was applied to a request the user never sanctioned.
+
+### The mitigation stack
+
+The headline rule — proxies using static client IDs **MUST obtain user consent for each dynamically registered client before forwarding to third-party authorization servers** — decomposes into concrete controls ([[mcp-security-best-practices]], *Mitigation*):
+
+- **Per-client consent storage (MUST).** Keep a per-user registry of approved `client_id` values, check it **before** initiating the third-party flow, and store decisions securely (server-side or in server-specific cookies).
+- **Consent UI (MUST).** The proxy-owned consent page names the requesting client, displays the third-party scopes requested, shows the registered `redirect_uri` tokens will be sent to, and carries CSRF protection and anti-clickjacking headers (`frame-ancestors` CSP / `X-Frame-Options: DENY`). See [[human-in-the-loop-authorization]].
+- **Consent-cookie hygiene (MUST).** Consent-tracking cookies use the `__Host-` prefix, `Secure`/`HttpOnly`/`SameSite=Lax`, cryptographic signing or server-side sessions, and bind to the specific `client_id` — never a bare "user has consented" flag.
+- **Redirect-URI validation (MUST).** Exact string matching against the registered URI — no patterns or wildcards — rejecting any change made without re-registration (see [[open-redirection]]).
+- **`state` lifecycle (MUST).** A cryptographically random, single-use, short-lived (~10 min) `state` per authorization request, exactly matched at the callback against the cookie/session copy. Crucially, the `state`-bearing cookie or session is stored **only after the user approves the consent screen** and set immediately before the third-party redirect — setting it earlier "renders the consent screen ineffective," since an attacker could then drive the flow past a screen the user never saw.
+
+The consent-timing point is what makes this a *deputy* problem rather than a plumbing bug: consent approval at the authorization endpoint must be **enforced at the callback endpoint**, or the deputy honors authority the user never granted. This is distinct from the audience-binding defense: it protects the **consent** step rather than the token-audience step. The complementary token-level rule — never relay the inbound token to the upstream, mint a separate one — is the [[token-passthrough]] "two hats" requirement.
 
 ## Relation to pre-AI IAM
 
@@ -42,7 +61,7 @@ This is a well-known OAuth threat class. The **OAuth 2.0 mix-up attack**, **CSRF
 
 The classic mitigations assume a **fixed, human-integrated topology** and a deputy whose behavior is deterministic code. Agentic systems break both:
 
-- The deputy's control flow is **influenced by untrusted natural-language input** (prompt injection), so an attacker can steer *which* request the deputy makes, not just intercept it. Authority confusion can be induced through data, not only through protocol manipulation.
+- The deputy's control flow is **influenced by untrusted natural-language input** ([[prompt-injection]]), so an attacker can steer *which* request the deputy makes, not just intercept it. Authority confusion can be induced through data, not only through protocol manipulation — see [[session-hijacking]] for a sourced infrastructure-level delivery vector.
 - The deputy brokers **many dynamically discovered servers**, so the population of potential victims/attackers is open and unbounded.
 
 This is why MCP promotes optional OAuth hardening (audience binding, issuer validation, no token passthrough) to **mandatory**, adds consent-per-dynamic-client for proxy servers, and why prompt-injection-as-authorization-bypass is a first-class agentic concern beyond anything the pre-AI threat model required. The proxy-server consent requirement in particular has no clean pre-AI analog: classic OAuth had no notion of an intermediary that dynamically registers downstream clients on the fly.

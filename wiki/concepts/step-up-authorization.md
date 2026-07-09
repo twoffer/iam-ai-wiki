@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [step-up auth, incremental authorization, scope step-up, insufficient_scope handling]
 enterprise_analogs: [RFC 6750 §3.1 insufficient_scope, OAuth incremental authorization, RFC 9470 step-up authentication challenge, OIDC claims request]
-last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [scope-selection-strategy, mcp-authorization, tool-use-authorization, delegated-authorization, human-in-the-loop-authorization]
+last_updated: 2026-07-08
+sources: [mcp-authorization-overview, mcp-security-best-practices]
+related: [scope-selection-strategy, mcp-authorization, tool-use-authorization, delegated-authorization, human-in-the-loop-authorization, token-theft]
 tags: [oauth, scopes, step-up, authorization, core-concept]
 ---
 
@@ -24,6 +24,8 @@ tags: [oauth, scopes, step-up, authorization, core-concept]
 **Scope accumulation is a client-side responsibility.** Servers stay stateless about client scope sets: they emit only the scopes needed for the current operation and need not echo previously granted ones. Clients acting for a user SHOULD attempt step-up; `client_credentials` clients MAY step up or abort immediately.
 
 Servers SHOULD challenge with *all* scopes a single operation needs at once (not one at a time), and MAY bundle related/anticipated scopes to cut the number of round-trips — trading breadth against authorization friction. Hierarchical scopes (e.g., `admin` implying `read`) need not be deduplicated by the client; the AS normalizes redundancy at issuance.
+
+The [[mcp-security-best-practices|Security Best Practices]] guide (*Scope Minimization*) frames step-up as the security control that makes least privilege workable: incremental elevation is what allows the initial grant to stay minimal, containing [[token-theft|token-compromise]] blast radius. It adds two operational refinements: servers should emit **precise** challenges (never the full scope catalog) and log each elevation event — scope requested, subset granted — with correlation IDs for auditability; clients should **cache recent denials** so a permanently refused scope does not trigger repeated elevation loops. See the fuller threat framing on [[scope-selection-strategy]].
 
 ## Relation to pre-AI IAM
 
