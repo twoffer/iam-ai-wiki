@@ -5,8 +5,8 @@ status: stable
 confidence: high
 aliases: [MCP client registration, client ID metadata documents, dynamic client registration, DCR]
 enterprise_analogs: [RFC 7591 Dynamic Client Registration, OpenID Connect Dynamic Client Registration 1.0 application_type, manual client pre-registration, OAuth Client ID Metadata Documents draft-ietf-oauth-client-id-metadata-document-00, RFC 6749 §2.2 client identifier uniqueness]
-last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview, mcp-authorization-security-considerations]
+last_updated: 2026-07-08
+sources: [mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview, mcp-authorization-security-considerations, mcp-security-best-practices]
 related: [mcp-authorization, oauth-client-id-metadata-documents, rfc-7591-dynamic-client-registration, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, authorization-server-discovery, security-considerations, server-side-request-forgery, confused-deputy, public-vs-confidential-client]
 tags: [oauth, client-registration, cimd, dcr, mcp]
 ---
@@ -92,7 +92,7 @@ Each registration path carries threats the [[mcp-authorization-security-consider
 
 - **CIMD fetch → [[server-side-request-forgery|SSRF]].** Because the AS dereferences a `client_id` URL supplied by an unknown client, it can be steered into requesting internal endpoints; ASes SHOULD apply SSRF defenses and the trust policies above.
 - **CIMD `localhost` impersonation.** Exact `redirect_uri` matching cannot distinguish a legitimate `localhost` client from an attacker who claims the same metadata URL; ASes MUST display the redirect-URI hostname and SHOULD warn on `localhost`-only URIs (see [[open-redirection]]).
-- **Proxy servers → [[confused-deputy]].** An MCP proxy with a **static** upstream client ID MUST obtain user consent for **each dynamically registered client** before forwarding to a third-party AS, so prior consent on the static ID cannot be ridden by a malicious downstream client.
+- **Proxy servers → [[confused-deputy]].** An MCP proxy with a **static** upstream client ID MUST obtain user consent for **each dynamically registered client** before forwarding to a third-party AS, so prior consent on the static ID cannot be ridden by a malicious downstream client. Unauthenticated dynamic registration is one of the four vulnerable conditions in the attack's full anatomy ([[mcp-security-best-practices]]): it is what lets the attacker mint a client whose self-declared `redirect_uri` points at attacker infrastructure. See [[confused-deputy]] for the complete condition list and mitigation stack (per-client consent registry, consent UI, cookie hygiene, `state` lifecycle).
 
 ## Relation to pre-AI IAM
 

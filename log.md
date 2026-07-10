@@ -82,3 +82,32 @@ Ingested raw/MCPAuthorization_SecurityConsiderations.md (final doc); 1 new sourc
 - mcp-authorization: added cross-ref + "MCP clients are typically public" note on the OAuth 2.1 building block
 - client-registration / oauth-client-id-metadata-documents / token-theft / machine-identity: added reciprocal `related` cross-refs
 - _index.md: added public-vs-confidential-client under Concepts
+
+## [2026-07-08] ingest | MCP Security Best Practices guide
+Ingested raw/MCPSecurityBestPractices.md (the non-spec guide the Security Considerations doc defers to); reference stub converted to a full source page, 3 new pages, 2 new stubs, 17 pages updated. Completes the MCP authorization security corpus tracked so far.
+- mcp-security-best-practices: reference stub converted into the source page (wiki/references/ → wiki/sources/, same slug so all inbound links still resolve); comprehensive summary of the eight attack classes with a coverage map
+- session-hijacking: new concept — impersonation and prompt-injection variants; sessions MUST NOT be used for authentication, non-deterministic session IDs, <user_id>:<session_id> binding
+- authorization-url-injection: new concept — javascript:/data: scheme XSS and shell-open command injection from malicious authorization URLs; scheme allowlists, non-shell openers, CSP, sanitization
+- local-mcp-server-security: new topic — one-click install pre-execution consent MUSTs, sandboxing guardrails, stdio/localhost access control, and the stdio-proxy escalation chain
+- rfc-9700-oauth-security-bcp: new stub reference — the OAuth 2.0 Security BCP the guide says to read alongside; resolves many existing RFC 9700 mentions
+- prompt-injection: new stub concept — prompt injection as authorization bypass; seeded from the session-hijack vector and the confused-deputy analysis
+- confused-deputy: added full attack anatomy (four vulnerable conditions, consent-cookie mechanics) and the mitigation stack (per-client consent registry, consent-UI MUSTs, __Host- cookie hygiene, exact redirect matching, state-after-consent lifecycle)
+- token-passthrough: added the four risk classes behind the prohibition (control circumvention, audit-trail failures, trust-boundary breakage, future compatibility)
+- server-side-request-forgery: restructured to two surfaces — AS fetching CIMD URLs and MCP client fetching discovery metadata (cloud metadata endpoints, DNS rebinding, RFC 9728 §7.7 private-range blocking, egress proxies)
+- security-considerations: added "companion guide" section mapping the guide's extensions onto the normative checklist; prompt-injection wrinkle now links the sourced instance
+- scope-selection-strategy: added "Scope minimization: the security case" (blast-radius threat model, progressive least privilege, down-scoping tolerance, common-mistakes lint)
+- step-up-authorization: added minimization framing, precise challenges + elevation logging, denial caching against elevation loops
+- human-in-the-loop-authorization: stub → evolving, confidence medium → high; added the guide's two consent surfaces (proxy per-client consent page MUSTs, local-server pre-execution consent)
+- tool-use-authorization: added scopes-not-sufficient-without-server-side-authz and tool-inventory integrity (forged tools/list_changed); stays stub
+- token-theft: added scope breadth as the second blast-radius dial; session-ID adjacency
+- open-redirection: added "In the proxy-server role" (exact matching, state lifecycle at MCP proxies)
+- client-registration: expanded the proxy-server security bullet with the four-condition anatomy pointer
+- mcp-authorization: added companion-guide paragraph under sub-pages
+- mcp-authorization-overview: "Notable for future ingests" — guide now ingested; corpus complete
+- mcp-specification: fixed stale ingestion statuses (docs 3–4 were still marked not ingested) and added the guide to the document list
+- oauth-2-1: noted the guide's client-side use of §1.5 (HTTPS on discovery fetches as SSRF mitigation)
+- rfc-9728-protected-resource-metadata: added §7.7 private-range-blocking cross-ref
+- rfc-7591-dynamic-client-registration: added "As an attack enabler" (DCR's role in the consent-cookie confused-deputy attack)
+- agentic-identity: linked the prompt-injection stub
+- _index.md: added 5 entries, moved mcp-security-best-practices References → Sources, updated human-in-the-loop and SSRF lines
+- note: no incident pages — the guide documents attack classes and mitigations, not real-world incidents

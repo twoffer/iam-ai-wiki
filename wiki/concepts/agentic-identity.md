@@ -5,9 +5,9 @@ status: evolving
 confidence: medium
 aliases: [agent identity, AI agent identity, agentic IAM]
 enterprise_analogs: [OAuth 2.1 client / resource owner separation, RFC 6749 delegated authorization, RFC 8693 token exchange, workload identity (SPIFFE)]
-last_updated: 2026-06-18
+last_updated: 2026-07-08
 sources: [mcp-authorization-overview]
-related: [delegated-authorization, machine-identity, mcp-authorization, tool-use-authorization, human-in-the-loop-authorization, confused-deputy, token-audience-binding]
+related: [delegated-authorization, machine-identity, mcp-authorization, tool-use-authorization, human-in-the-loop-authorization, confused-deputy, token-audience-binding, prompt-injection]
 tags: [agentic, identity, core-concept, domain-anchor]
 ---
 
@@ -36,6 +36,6 @@ The constituent pieces are all standard: delegated user authority is OAuth ([[oa
 
 ## Why pre-AI IAM is insufficient
 
-What is new is the **composition and dynamism**: an agent assembles chains of delegated and self-authority at runtime, across services chosen on the fly, while being influenceable by untrusted data. Pre-AI IAM assembled these chains *statically*, at integration time, under human control. The open problems — propagating identity through agent chains, attesting AI-generated tokens, preventing prompt-injection-driven authority confusion — arise because the binding between "who is acting" and "whose authority is used" must now be maintained automatically, per request, in an adversarial input environment. The MCP profile is one early, scoped answer (see [[mcp-authorization|Why pre-AI IAM is insufficient]] there); broader agentic-identity standards are still emerging.
+What is new is the **composition and dynamism**: an agent assembles chains of delegated and self-authority at runtime, across services chosen on the fly, while being influenceable by untrusted data. Pre-AI IAM assembled these chains *statically*, at integration time, under human control. The open problems — propagating identity through agent chains, attesting AI-generated tokens, preventing [[prompt-injection|prompt-injection-driven]] authority confusion — arise because the binding between "who is acting" and "whose authority is used" must now be maintained automatically, per request, in an adversarial input environment. The MCP profile is one early, scoped answer (see [[mcp-authorization|Why pre-AI IAM is insufficient]] there); broader agentic-identity standards are still emerging.
 
 > **Status:** evolving. Seeded from the MCP Authorization overview; expected to deepen as agent-to-agent authentication, attestation, and workload-identity sources are ingested.

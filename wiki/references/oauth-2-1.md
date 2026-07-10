@@ -5,8 +5,8 @@ status: evolving
 confidence: high
 aliases: [OAuth 2.1, oauth-v2-1, draft-ietf-oauth-v2-1-13]
 enterprise_analogs: [RFC 6749 OAuth 2.0, RFC 6750, RFC 7636 PKCE, RFC 8252]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
+last_updated: 2026-07-08
+sources: [mcp-authorization-security-considerations, mcp-authorization-overview, mcp-security-best-practices]
 related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, security-considerations, token-theft, open-redirection, ietf-oauth-working-group, public-vs-confidential-client]
 tags: [oauth, spec, ietf, reference]
 ---
@@ -34,6 +34,8 @@ The [[mcp-authorization-security-considerations|Security Considerations]] docume
 | §7.1 | secure token storage ([[token-theft]]) |
 | §7.5 / §7.5.2 | authorization-code protection via PKCE |
 | §7.12.2 | open-redirection precautions ([[open-redirection]]) |
+
+The [[mcp-security-best-practices|Security Best Practices]] guide additionally leans on **§1.5** from the client side: requiring HTTPS on all OAuth-related URLs an MCP client fetches during discovery (loopback exempt for development) doubles as an [[server-side-request-forgery|SSRF]] mitigation, and the same scheme discipline anchors [[authorization-url-injection|authorization-URL validation]].
 
 ## Link
 

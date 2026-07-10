@@ -5,8 +5,8 @@ status: stable
 confidence: high
 aliases: [token passthrough, token pass-through, token forwarding, confused token relay]
 enterprise_analogs: [RFC 8707 audience restriction, OAuth 2.1 §5.2 audience validation, RFC 9068 JWT audience claim, RFC 8693 token exchange (the correct alternative)]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
+last_updated: 2026-07-08
+sources: [mcp-security-best-practices, mcp-authorization-security-considerations, mcp-authorization-overview]
 related: [token-audience-binding, confused-deputy, mcp-authorization, security-considerations, rfc-9068-jwt-access-tokens, mcp-security-best-practices]
 tags: [security, token, anti-pattern, core-concept]
 ---
@@ -37,7 +37,18 @@ The sharpest normative statement concerns an MCP server that itself calls upstre
 
 > If the MCP server makes requests to upstream APIs, it may act as an OAuth **client** to them. The access token used at the upstream API is a **separate** token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.
 
-In other words, the server wears two hats — resource server to its MCP client, OAuth client to the upstream — and each hat carries its own audience-bound token. This is the operational form of "obtain a new token for the next hop" and the concrete defense against the proxy/intermediary [[confused-deputy]] case. Fuller treatment is in the [[mcp-security-best-practices|Security Best Practices]] guide.
+In other words, the server wears two hats — resource server to its MCP client, OAuth client to the upstream — and each hat carries its own audience-bound token. This is the operational form of "obtain a new token for the next hop" and the concrete defense against the proxy/intermediary [[confused-deputy]] case.
+
+## Why it is forbidden — the four risk classes
+
+The [[mcp-security-best-practices|Security Best Practices]] guide (to which the spec defers for the full rationale) decomposes the harm into four classes (*Token Passthrough → Risks*):
+
+1. **Security-control circumvention.** The MCP server or downstream API may enforce rate limiting, request validation, or traffic monitoring keyed to the token's audience or other credential constraints; clients presenting upstream-issued tokens directly bypass all of it.
+2. **Accountability and audit-trail failures.** With opaque upstream tokens the MCP server cannot identify or distinguish its own clients; the downstream resource server's logs attribute requests to the wrong source and identity; and a server that relays without validating claims (roles, privileges, audience) lets a stolen token turn it into a **data-exfiltration proxy**. All three make incident investigation and controls harder.
+3. **Trust-boundary breakage.** The downstream server extends trust — assumptions about origin and client behavior — to specific entities. A token accepted by multiple services without proper validation means an attacker who compromises one service can pivot into the others on the same token.
+4. **Future-compatibility risk.** Even a deliberate "pure proxy" will eventually need its own security controls; starting with proper token-audience separation is what keeps the security model able to evolve.
+
+The guide's bottom line restates the spec: MCP servers **MUST NOT** accept any token that was not explicitly issued for them.
 
 ## Relation to pre-AI IAM
 

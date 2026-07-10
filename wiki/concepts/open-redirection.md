@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [open redirect, open redirection, redirect_uri attack, redirection attack]
 enterprise_analogs: [OAuth 2.1 §7.12.2 open redirection, exact redirect-URI matching, RFC 9700 OAuth 2.0 Security BCP, OAuth state parameter / CSRF]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations]
-related: [mcp-authorization, security-considerations, authorization-server-mix-up, confused-deputy, oauth-client-id-metadata-documents, oauth-2-1]
+last_updated: 2026-07-08
+sources: [mcp-authorization-security-considerations, mcp-security-best-practices]
+related: [mcp-authorization, security-considerations, authorization-server-mix-up, confused-deputy, oauth-client-id-metadata-documents, oauth-2-1, authorization-url-injection]
 tags: [security, oauth, redirect, threat-model, core-concept]
 ---
 
@@ -23,6 +23,10 @@ tags: [security, oauth, redirect, threat-model, core-concept]
 - **Untrusted-URI precautions (MUST / SHOULD).** ASes MUST take precautions against redirecting user agents to untrusted URIs ([[oauth-2-1|OAuth 2.1]] §7.12.2), and SHOULD only auto-redirect to a redirection URI they trust — otherwise informing the user and relying on the user to decide.
 
 Exact redirect-URI matching also underpins the [[oauth-client-id-metadata-documents|CIMD]] flow, where the AS validates the request's `redirect_uri` against the `redirect_uris` in the fetched metadata document; the `localhost`-impersonation caveat ([[security-considerations]]) is the place where exact matching is necessary but not sufficient.
+
+## In the proxy-server role
+
+An MCP proxy server that registers downstream clients wears the AS hat toward them, and the [[mcp-security-best-practices|Security Best Practices]] guide makes the same controls MUSTs in that role: validate the request's `redirect_uri` by **exact string matching** (no patterns or wildcards) against the registered value, reject any request whose `redirect_uri` changed without re-registration, and run the full `state` lifecycle — cryptographically random per request, stored server-side **only after consent approval**, exactly matched at the callback, single-use, and short-lived (~10 minutes). A malicious `redirect_uri` supplied at dynamic registration is precisely how the [[confused-deputy|consent-cookie confused-deputy attack]] delivers the stolen authorization code to the attacker. The sibling threat where the *client* mishandles a hostile authorization URL (rather than the AS mishandling a redirect target) is [[authorization-url-injection]].
 
 ## Relation to pre-AI IAM
 

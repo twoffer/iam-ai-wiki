@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [MCP security considerations, MCP authorization security]
 enterprise_analogs: [OAuth 2.1 §7 Security Considerations, RFC 9700 OAuth 2.0 Security BCP, RFC 6819 OAuth threat model, RFC 9207 issuer identification, RFC 8707 audience restriction, RFC 9068 JWT access tokens]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [mcp-authorization, token-audience-binding, token-passthrough, confused-deputy, authorization-server-mix-up, proof-key-for-code-exchange, open-redirection, token-theft, server-side-request-forgery, oauth-client-id-metadata-documents, canonical-server-uri, oauth-2-1, mcp-security-best-practices]
+last_updated: 2026-07-08
+sources: [mcp-authorization-security-considerations, mcp-authorization-overview, mcp-security-best-practices]
+related: [mcp-authorization, token-audience-binding, token-passthrough, confused-deputy, authorization-server-mix-up, proof-key-for-code-exchange, open-redirection, token-theft, server-side-request-forgery, oauth-client-id-metadata-documents, canonical-server-uri, oauth-2-1, mcp-security-best-practices, session-hijacking, local-mcp-server-security, authorization-url-injection, prompt-injection]
 tags: [security, threat-model, mcp]
 ---
 
@@ -99,6 +99,10 @@ The capstone requirement, with two failure modes:
 
 Therefore MCP servers **MUST** validate inbound tokens ([[oauth-2-1|OAuth 2.1]] §5.2) before processing, **MUST** accept only tokens that name them in the audience claim, and **MUST** reject the rest. If a server calls upstream APIs it acts as an OAuth **client** to them and uses a **separate** token issued by the upstream AS — it **MUST NOT** pass through the token received from the MCP client. Clients **MUST** implement the `resource` parameter ([[rfc-8707-resource-indicators|RFC 8707]]), aligning with [RFC 9728 §7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). See [[token-passthrough]] and [[token-audience-binding]].
 
+## The companion Security Best Practices guide
+
+The separate (non-spec) [[mcp-security-best-practices|Security Best Practices]] guide — which this document defers to for the token-passthrough and confused-deputy rationale — extends the normative checklist above with attack classes that sit outside the OAuth flow proper: the full consent-cookie anatomy and proxy mitigation stack for the [[confused-deputy]] case, the four risk classes behind the [[token-passthrough]] prohibition, [[server-side-request-forgery|SSRF]] against the *client's* discovery fetches (the mirror of the CIMD case above), [[session-hijacking]] (including its prompt-injection variant), [[local-mcp-server-security|local MCP server compromise]], [[authorization-url-injection|malicious authorization URLs]] (XSS/RCE), and a [[scope-selection-strategy|scope-minimization]] model. Implementers should treat the two documents as one threat model split across a normative and an advisory tier.
+
 ## Relation to pre-AI IAM
 
 These map almost one-to-one onto the **OAuth 2.0 Security Best Current Practice (RFC 9700)** and the original threat model (RFC 6819): audience restriction, short-lived and rotated tokens, TLS everywhere, PKCE with `S256`, issuer identification, exact redirect-URI matching, and SSRF defenses for server-side fetches. A practitioner's OAuth threat model transfers directly; the MCP document's job is to tighten *which* mitigations are mandatory and to add a few MCP-specific items (PKCE-support discovery via metadata, CIMD `localhost` impersonation, consent-per-dynamic-client for proxy servers).
@@ -111,4 +115,4 @@ The agentic deployment model — open client/server populations discovered at ru
 - **Registration-free client identity (CIMD)** adds a *new* server-side attack surface absent from pre-registration: the AS fetches attacker-supplied URLs ([[server-side-request-forgery|SSRF]]) and must contend with `localhost` redirect impersonation.
 - **MCP proxy/intermediary servers** are confused deputies by construction; consent-per-dynamic-client is a requirement with no clean pre-AI analog.
 
-The new agentic wrinkle the document does **not** itself address is **prompt injection as an authorization-bypass vector** — untrusted content steering the deputy. That lives in the [[confused-deputy]] analysis and the [[mcp-security-best-practices|Security Best Practices]] guide rather than in this normative checklist.
+The new agentic wrinkle the document does **not** itself address is **[[prompt-injection|prompt injection as an authorization-bypass vector]]** — untrusted content steering the deputy. The [[mcp-security-best-practices|Security Best Practices]] guide supplies the corpus's first concrete instance ([[session-hijacking|session hijack prompt injection]]); the broader analysis lives on [[confused-deputy]] and [[prompt-injection]] rather than in this normative checklist.

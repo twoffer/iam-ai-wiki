@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [RFC 7591, Dynamic Client Registration, DCR, /register]
 enterprise_analogs: []
-last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-overview]
-related: [client-registration, oauth-client-id-metadata-documents, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization]
+last_updated: 2026-07-08
+sources: [mcp-authorization-client-registration, mcp-authorization-overview, mcp-security-best-practices]
+related: [client-registration, oauth-client-id-metadata-documents, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, confused-deputy]
 tags: [oauth, client-registration, dcr, spec, ietf, reference]
 ---
 
@@ -25,6 +25,10 @@ The Client Registration document ([[mcp-authorization-client-registration]]) add
 
 - **`application_type`.** Where an AS supports OIDC, it may constrain redirect URIs by the [[openid-connect-dynamic-client-registration|OIDC]] `application_type`. Clients **MUST** set it (`native` for desktop/mobile/CLI/`localhost`; `web` for remote browser apps), because omitting it defaults to `web` under OIDC and can reject native-style redirect URIs. Clients **MUST** handle such rejections and **MAY** retry with a corrected `application_type` or redirect URIs.
 - **Authorization Server Binding.** Persisted DCR credentials **MUST** be keyed to the issuing AS `issuer`; when a server's AS changes, the client **MUST NOT** reuse them and **MUST** re-register. See [[client-registration]].
+
+## As an attack enabler
+
+Unauthenticated dynamic registration is one of the four vulnerable conditions in the [[confused-deputy]] consent-cookie attack against MCP proxy servers ([[mcp-security-best-practices]]): the attacker uses the `/register` endpoint to mint a client whose self-declared `redirect_uri` points at attacker infrastructure, then rides the user's prior consent for the proxy's static upstream client ID. This abuse surface is part of why the MCP profile deprecates DCR and requires proxies to obtain per-client consent.
 
 ## Link
 

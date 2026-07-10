@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: [token theft, stolen token, leaked token, token leakage, token exfiltration]
 enterprise_analogs: [OAuth 2.1 §7.1 token storage, OAuth 2.1 §4.3.1 refresh token rotation, RFC 9700 OAuth 2.0 Security BCP, bearer token replay]
-last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations]
-related: [token-audience-binding, token-passthrough, mcp-authorization, security-considerations, oauth-2-1, machine-identity, public-vs-confidential-client]
+last_updated: 2026-07-08
+sources: [mcp-authorization-security-considerations, mcp-security-best-practices]
+related: [token-audience-binding, token-passthrough, mcp-authorization, security-considerations, oauth-2-1, machine-identity, public-vs-confidential-client, session-hijacking, scope-selection-strategy]
 tags: [security, token, threat-model, core-concept]
 ---
 
@@ -23,7 +23,7 @@ The mitigations are layered — reduce the chance of leakage, then reduce the va
 - **Short-lived access tokens (SHOULD).** Authorization servers SHOULD issue short-lived access tokens so a leaked token expires quickly.
 - **Refresh-token rotation for public clients (MUST).** For public clients — the typical MCP client — ASes MUST rotate refresh tokens ([[oauth-2-1|OAuth 2.1]] §4.3.1): each refresh returns a new refresh token and invalidates the old one, so a stolen refresh token is detectable (a replay of the retired token signals theft) and bounded in lifetime.
 
-[[token-audience-binding|Audience binding]] is the complementary control: a stolen token still only works at the audience it was minted for, limiting where theft can be cashed in.
+[[token-audience-binding|Audience binding]] is the complementary control: a stolen token still only works at the audience it was minted for, limiting where theft can be cashed in. **Scope breadth is the other blast-radius dial**: the [[mcp-security-best-practices|Security Best Practices]] guide's scope-minimization threat model starts from exactly this event — a token obtained "via log leakage, memory scraping, or local interception" — and shows how omnibus scopes turn one theft into lateral access, privilege chaining, and painful revocation (see [[scope-selection-strategy]]). The adjacent credential class is the transport session: a stolen **session ID** must never function as a stolen token, which is why MCP forbids session-based authentication ([[session-hijacking]]).
 
 ## Relation to pre-AI IAM
 
