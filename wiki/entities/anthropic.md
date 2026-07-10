@@ -3,12 +3,12 @@ title: Anthropic
 category: entity
 status: stub
 confidence: medium
-aliases: [Anthropic PBC]
+aliases: ["Anthropic PBC"]
 enterprise_analogs: []
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-specification, mcp-authorization, mcp-authorization-extensions]
-tags: [entity, vendor, mcp, ai]
+sources: ["mcp-authorization-overview"]
+related: ["mcp-specification", "mcp-authorization", "mcp-authorization-extensions"]
+tags: ["entity", "vendor", "mcp", "ai"]
 ---
 
 # Anthropic

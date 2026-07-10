@@ -3,12 +3,12 @@ title: OpenID Connect Discovery 1.0
 category: reference
 status: stable
 confidence: high
-aliases: [OIDC Discovery, OpenID Connect Discovery, openid-configuration, well-known openid]
+aliases: ["OIDC Discovery", "OpenID Connect Discovery", "openid-configuration", "well-known openid"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [authorization-server-discovery, rfc-8414-authorization-server-metadata, openid-connect-dynamic-client-registration, mcp-authorization, proof-key-for-code-exchange, openid-foundation, authorization-server-mix-up]
-tags: [oidc, discovery, metadata, spec, openid-foundation, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-server-discovery", "mcp-authorization-overview"]
+related: ["authorization-server-discovery", "rfc-8414-authorization-server-metadata", "openid-connect-dynamic-client-registration", "mcp-authorization", "proof-key-for-code-exchange", "openid-foundation", "authorization-server-mix-up"]
+tags: ["oidc", "discovery", "metadata", "spec", "openid-foundation", "reference"]
 ---
 
 # OpenID Connect Discovery 1.0

@@ -3,12 +3,12 @@ title: Token Audience Binding
 category: concept
 status: stable
 confidence: high
-aliases: [audience restriction, audience validation, resource indicators, token audience]
-enterprise_analogs: [RFC 8707 Resource Indicators, JWT `aud` claim (RFC 7519), OAuth 2.1 §5.2 token validation, RFC 9068 JWT access tokens]
+aliases: ["audience restriction", "audience validation", "resource indicators", "token audience"]
+enterprise_analogs: ["RFC 8707 Resource Indicators", "JWT `aud` claim (RFC 7519)", "OAuth 2.1 §5.2 token validation", "RFC 9068 JWT access tokens"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [mcp-authorization, canonical-server-uri, rfc-8707-resource-indicators, rfc-9068-jwt-access-tokens, token-passthrough, confused-deputy, authorization-server-mix-up, security-considerations, delegated-authorization]
-tags: [oauth, audience, token, security, core-concept]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["mcp-authorization", "canonical-server-uri", "rfc-8707-resource-indicators", "rfc-9068-jwt-access-tokens", "token-passthrough", "confused-deputy", "authorization-server-mix-up", "security-considerations", "delegated-authorization"]
+tags: ["oauth", "audience", "token", "security", "core-concept"]
 ---
 
 # Token Audience Binding

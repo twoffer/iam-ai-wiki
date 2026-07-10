@@ -3,12 +3,12 @@ title: Agentic Identity
 category: concept
 status: evolving
 confidence: medium
-aliases: [agent identity, AI agent identity, agentic IAM]
-enterprise_analogs: [OAuth 2.1 client / resource owner separation, RFC 6749 delegated authorization, RFC 8693 token exchange, workload identity (SPIFFE)]
+aliases: ["agent identity", "AI agent identity", "agentic IAM"]
+enterprise_analogs: ["OAuth 2.1 client / resource owner separation", "RFC 6749 delegated authorization", "RFC 8693 token exchange", "workload identity (SPIFFE)"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview]
-related: [delegated-authorization, machine-identity, mcp-authorization, tool-use-authorization, human-in-the-loop-authorization, confused-deputy, token-audience-binding, prompt-injection]
-tags: [agentic, identity, core-concept, domain-anchor]
+sources: ["mcp-authorization-overview"]
+related: ["delegated-authorization", "machine-identity", "mcp-authorization", "tool-use-authorization", "human-in-the-loop-authorization", "confused-deputy", "token-audience-binding", "prompt-injection"]
+tags: ["agentic", "identity", "core-concept", "domain-anchor"]
 ---
 
 # Agentic Identity

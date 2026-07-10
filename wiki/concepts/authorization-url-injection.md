@@ -3,12 +3,12 @@ title: Authorization URL Injection
 category: concept
 status: stable
 confidence: high
-aliases: [OAuth authorization URL validation, javascript URL injection, malicious authorization URL, XSS via authorization URL, command injection via URL opening]
-enterprise_analogs: [DOM-based XSS via javascript: URIs, OS command injection (CWE-78), URL scheme allowlisting, Content Security Policy, RFC 8252 §8 native-app browser hand-off]
+aliases: ["OAuth authorization URL validation", "javascript URL injection", "malicious authorization URL", "XSS via authorization URL", "command injection via URL opening"]
+enterprise_analogs: ["DOM-based XSS via javascript: URIs", "OS command injection (CWE-78)", "URL scheme allowlisting", "Content Security Policy", "RFC 8252 §8 native-app browser hand-off"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices]
-related: [mcp-authorization, open-redirection, local-mcp-server-security, session-hijacking, security-considerations, token-theft]
-tags: [security, oauth, xss, rce, threat-model, core-concept]
+sources: ["mcp-security-best-practices"]
+related: ["mcp-authorization", "open-redirection", "local-mcp-server-security", "session-hijacking", "security-considerations", "token-theft"]
+tags: ["security", "oauth", "xss", "rce", "threat-model", "core-concept"]
 ---
 
 # Authorization URL Injection

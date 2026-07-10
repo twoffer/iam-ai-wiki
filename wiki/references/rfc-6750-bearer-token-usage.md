@@ -3,12 +3,12 @@ title: RFC 6750 — OAuth 2.0 Bearer Token Usage
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 6750, Bearer Token Usage, WWW-Authenticate Bearer, insufficient_scope]
+aliases: ["RFC 6750", "Bearer Token Usage", "WWW-Authenticate Bearer", "insufficient_scope"]
 enterprise_analogs: []
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, scope-selection-strategy, step-up-authorization, oauth-2-1]
-tags: [oauth, bearer-token, spec, ietf, reference]
+sources: ["mcp-authorization-overview"]
+related: ["mcp-authorization", "scope-selection-strategy", "step-up-authorization", "oauth-2-1"]
+tags: ["oauth", "bearer-token", "spec", "ietf", "reference"]
 ---
 
 # RFC 6750 — OAuth 2.0 Bearer Token Usage

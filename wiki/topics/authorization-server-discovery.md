@@ -3,12 +3,12 @@ title: Authorization Server Discovery
 category: topic
 status: stable
 confidence: high
-aliases: [AS discovery, authorization server metadata discovery, protected resource metadata discovery]
-enterprise_analogs: [RFC 8414 Authorization Server Metadata, RFC 9728 Protected Resource Metadata, OpenID Connect Discovery 1.0, RFC 9207 issuer identification, RFC 6749 §2.2 client identifier uniqueness]
+aliases: ["AS discovery", "authorization server metadata discovery", "protected resource metadata discovery"]
+enterprise_analogs: ["RFC 8414 Authorization Server Metadata", "RFC 9728 Protected Resource Metadata", "OpenID Connect Discovery 1.0", "RFC 9207 issuer identification", "RFC 6749 §2.2 client identifier uniqueness"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [mcp-authorization, rfc-9728-protected-resource-metadata, rfc-8414-authorization-server-metadata, openid-connect-discovery, rfc-9207-authorization-server-issuer-identification, authorization-server-mix-up, client-registration]
-tags: [oauth, discovery, metadata, mcp]
+sources: ["mcp-authorization-server-discovery", "mcp-authorization-overview"]
+related: ["mcp-authorization", "rfc-9728-protected-resource-metadata", "rfc-8414-authorization-server-metadata", "openid-connect-discovery", "rfc-9207-authorization-server-issuer-identification", "authorization-server-mix-up", "client-registration"]
+tags: ["oauth", "discovery", "metadata", "mcp"]
 ---
 
 # Authorization Server Discovery

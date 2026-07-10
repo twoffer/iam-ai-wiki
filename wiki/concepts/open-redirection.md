@@ -3,12 +3,12 @@ title: Open Redirection
 category: concept
 status: stable
 confidence: high
-aliases: [open redirect, open redirection, redirect_uri attack, redirection attack]
-enterprise_analogs: [OAuth 2.1 §7.12.2 open redirection, exact redirect-URI matching, RFC 9700 OAuth 2.0 Security BCP, OAuth state parameter / CSRF]
+aliases: ["open redirect", "open redirection", "redirect_uri attack", "redirection attack"]
+enterprise_analogs: ["OAuth 2.1 §7.12.2 open redirection", "exact redirect-URI matching", "RFC 9700 OAuth 2.0 Security BCP", "OAuth state parameter / CSRF"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-security-considerations, mcp-security-best-practices]
-related: [mcp-authorization, security-considerations, authorization-server-mix-up, confused-deputy, oauth-client-id-metadata-documents, oauth-2-1, authorization-url-injection]
-tags: [security, oauth, redirect, threat-model, core-concept]
+sources: ["mcp-authorization-security-considerations", "mcp-security-best-practices"]
+related: ["mcp-authorization", "security-considerations", "authorization-server-mix-up", "confused-deputy", "oauth-client-id-metadata-documents", "oauth-2-1", "authorization-url-injection"]
+tags: ["security", "oauth", "redirect", "threat-model", "core-concept"]
 ---
 
 # Open Redirection

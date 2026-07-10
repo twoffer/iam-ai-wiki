@@ -3,12 +3,12 @@ title: RFC 8414 — OAuth 2.0 Authorization Server Metadata
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 8414, Authorization Server Metadata, AS metadata, oauth-authorization-server]
+aliases: ["RFC 8414", "Authorization Server Metadata", "AS metadata", "oauth-authorization-server"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-client-registration, mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [authorization-server-discovery, client-registration, openid-connect-discovery, oauth-client-id-metadata-documents, mcp-authorization, proof-key-for-code-exchange, rfc-9207-authorization-server-issuer-identification, authorization-server-mix-up]
-tags: [oauth, discovery, metadata, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-client-registration", "mcp-authorization-server-discovery", "mcp-authorization-overview"]
+related: ["authorization-server-discovery", "client-registration", "openid-connect-discovery", "oauth-client-id-metadata-documents", "mcp-authorization", "proof-key-for-code-exchange", "rfc-9207-authorization-server-issuer-identification", "authorization-server-mix-up"]
+tags: ["oauth", "discovery", "metadata", "spec", "ietf", "reference"]
 ---
 
 # RFC 8414 — OAuth 2.0 Authorization Server Metadata

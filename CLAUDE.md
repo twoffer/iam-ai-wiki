@@ -51,14 +51,16 @@ title: <human-readable name>
 category: <concept | topic | reference | entity | incident | source>
 status: <stub | stable | evolving | contested | deprecated | superseded>
 confidence: <high | medium | low>
-aliases: [<alternate terms>]
-enterprise_analogs: [<pre-AI IAM patterns this maps to; required on concepts/topics, conditional elsewhere — see Bridging>]
+aliases: ["<alternate term>", "<alternate term>"]
+enterprise_analogs: ["<pre-AI IAM patterns this maps to; required on concepts/topics, conditional elsewhere — see Bridging>"]
 last_updated: <YYYY-MM-DD>
-sources: [<wiki/sources/ slugs or raw/ file paths>]
-related: [<wiki page slugs>]
-tags: [<tags>]
+sources: ["<wiki/sources/ slug or raw/ file path>"]
+related: ["<wiki page slug>"]
+tags: ["<tag>"]
 ---
 ```
+
+Every item in every frontmatter list is double-quoted — see *Frontmatter list quoting* under Conventions. An empty list is written `[]`.
 
 ## Confidence rules
 
@@ -111,6 +113,7 @@ Override the generic rule with these tiers for this domain.
    - Missing or broken cross-references
    - Gaps in coverage relative to the in-scope list
    - Pages missing the bridging sections where defaults call for them
+   - Frontmatter list items that are not double-quoted, and any item silently split or coerced by an unquoted `,` or `: ` (see *Frontmatter list quoting*)
 2. Apply fixes (update pages, add stubs, repair links, adjust `status`)
 3. Update `_index.md` and append to `log.md`
 
@@ -118,6 +121,7 @@ Override the generic rule with these tiers for this domain.
 
 - **Wikilinks + standard markdown.** Use `[[slug]]` for internal links.
 - **Never hard-wrap prose.** Write each paragraph and each list item as a single continuous line and rely on the editor's soft-wrap (Obsidian, VS Code, GitHub). Do not insert fixed-column line breaks inside `.md` files, and do not use trailing-two-space or trailing-backslash hard breaks. Headings, tables, code fences, and the blank lines between blocks stay on their own lines as usual. This applies to every markdown file the wiki owns — `wiki/`, `_index.md`, `log.md`, `README.md`, and `CLAUDE.md` itself — but never to `raw/`, which is immutable and keeps whatever wrapping its source had. It governs Markdown only: git commit messages are hard-wrapped as usual.
+- **Frontmatter list quoting.** Every item in every frontmatter list (`aliases`, `enterprise_analogs`, `sources`, `related`, `tags`) MUST be wrapped in double quotes, including bare kebab-case slugs: `related: ["mcp-authorization", "token-theft"]`. Write an empty list as `[]`. The rule is unconditional so that no author has to notice the hazard: inside a YAML flow sequence a bare `,` is an item separator and a bare `: ` is the mapping indicator, so an unquoted `OS elevation prompts (UAC, Gatekeeper)` silently becomes two list items and an unquoted `DOM-based XSS via javascript: URIs` silently becomes a nested dictionary. Both corruptions are invisible in the source text. Quoting is also a prerequisite for ever using wikilinks as property values, since a bare `[[slug]]` parses as a nested sequence rather than a link. Double-quoted style makes `\` an escape character: an item containing a backslash or a literal `"` must escape it as `\\` or `\"`. This applies to `wiki/` pages only; `raw/` is immutable.
 - **Citations.** Every non-trivial claim cites either a `wiki/sources/<slug>.md` page or a `raw/` file path.
 - **Contested vs superseded.**
   - *Contested*: two current sources actively disagree. Surface both under a "Contested claims" section on the relevant page. Set `status: contested`.

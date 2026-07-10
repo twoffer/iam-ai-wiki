@@ -3,12 +3,12 @@ title: Session Hijacking
 category: concept
 status: stable
 confidence: high
-aliases: [session hijack, session ID theft, session hijack prompt injection, session hijack impersonation]
-enterprise_analogs: [OWASP session management (hijacking/fixation), HTTP session cookie theft, session-ID entropy requirements, RFC 6750 bearer tokens (credential vs session distinction)]
+aliases: ["session hijack", "session ID theft", "session hijack prompt injection", "session hijack impersonation"]
+enterprise_analogs: ["OWASP session management (hijacking/fixation)", "HTTP session cookie theft", "session-ID entropy requirements", "RFC 6750 bearer tokens (credential vs session distinction)"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices]
-related: [mcp-authorization, token-theft, prompt-injection, tool-use-authorization, security-considerations, confused-deputy, local-mcp-server-security]
-tags: [security, session, prompt-injection, threat-model, core-concept]
+sources: ["mcp-security-best-practices"]
+related: ["mcp-authorization", "token-theft", "prompt-injection", "tool-use-authorization", "security-considerations", "confused-deputy", "local-mcp-server-security"]
+tags: ["security", "session", "prompt-injection", "threat-model", "core-concept"]
 ---
 
 # Session Hijacking

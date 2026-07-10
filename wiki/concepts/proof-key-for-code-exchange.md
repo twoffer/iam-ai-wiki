@@ -3,12 +3,12 @@ title: Proof Key for Code Exchange (PKCE)
 category: concept
 status: stable
 confidence: high
-aliases: [PKCE, code_challenge, code_verifier, RFC 7636]
-enterprise_analogs: [RFC 7636 PKCE, OAuth 2.1 §4.1.1 (mandatory PKCE + S256), OAuth 2.1 §7.5.2 code interception, authorization code injection defense]
+aliases: ["PKCE", "code_challenge", "code_verifier", "RFC 7636"]
+enterprise_analogs: ["RFC 7636 PKCE", "OAuth 2.1 §4.1.1 (mandatory PKCE + S256)", "OAuth 2.1 §7.5.2 code interception", "authorization code injection defense"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [mcp-authorization, oauth-2-1, rfc-7636-pkce, rfc-8414-authorization-server-metadata, openid-connect-discovery, authorization-server-mix-up, confused-deputy, security-considerations, public-vs-confidential-client]
-tags: [oauth, pkce, security, core-concept]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["mcp-authorization", "oauth-2-1", "rfc-7636-pkce", "rfc-8414-authorization-server-metadata", "openid-connect-discovery", "authorization-server-mix-up", "confused-deputy", "security-considerations", "public-vs-confidential-client"]
+tags: ["oauth", "pkce", "security", "core-concept"]
 ---
 
 # Proof Key for Code Exchange (PKCE)

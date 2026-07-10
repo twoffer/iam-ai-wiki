@@ -3,12 +3,12 @@ title: RFC 7591 — OAuth 2.0 Dynamic Client Registration Protocol
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 7591, Dynamic Client Registration, DCR, /register]
+aliases: ["RFC 7591", "Dynamic Client Registration", "DCR", "/register"]
 enterprise_analogs: []
 last_updated: 2026-07-08
-sources: [mcp-authorization-client-registration, mcp-authorization-overview, mcp-security-best-practices]
-related: [client-registration, oauth-client-id-metadata-documents, openid-connect-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, confused-deputy]
-tags: [oauth, client-registration, dcr, spec, ietf, reference]
+sources: ["mcp-authorization-client-registration", "mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["client-registration", "oauth-client-id-metadata-documents", "openid-connect-dynamic-client-registration", "rfc-8414-authorization-server-metadata", "mcp-authorization", "confused-deputy"]
+tags: ["oauth", "client-registration", "dcr", "spec", "ietf", "reference"]
 ---
 
 # RFC 7591 — OAuth 2.0 Dynamic Client Registration Protocol

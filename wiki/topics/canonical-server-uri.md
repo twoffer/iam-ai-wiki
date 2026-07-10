@@ -3,12 +3,12 @@ title: Canonical Server URI & the Resource Parameter
 category: topic
 status: stable
 confidence: high
-aliases: [canonical server URI, resource parameter, resource indicator, canonical MCP URI]
-enterprise_analogs: [RFC 8707 Resource Indicators, RFC 9728 resource identifier, RFC 3986 URI normalization]
+aliases: ["canonical server URI", "resource parameter", "resource indicator", "canonical MCP URI"]
+enterprise_analogs: ["RFC 8707 Resource Indicators", "RFC 9728 resource identifier", "RFC 3986 URI normalization"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-overview, mcp-authorization-security-considerations]
-related: [token-audience-binding, rfc-8707-resource-indicators, rfc-9728-protected-resource-metadata, mcp-authorization, security-considerations]
-tags: [oauth, resource-indicators, audience, uri, mcp]
+sources: ["mcp-authorization-overview", "mcp-authorization-security-considerations"]
+related: ["token-audience-binding", "rfc-8707-resource-indicators", "rfc-9728-protected-resource-metadata", "mcp-authorization", "security-considerations"]
+tags: ["oauth", "resource-indicators", "audience", "uri", "mcp"]
 ---
 
 # Canonical Server URI & the Resource Parameter

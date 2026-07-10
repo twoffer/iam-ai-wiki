@@ -3,12 +3,12 @@ title: MCP Authorization — Security Considerations
 category: topic
 status: stable
 confidence: high
-aliases: [MCP security considerations, MCP authorization security]
-enterprise_analogs: [OAuth 2.1 §7 Security Considerations, RFC 9700 OAuth 2.0 Security BCP, RFC 6819 OAuth threat model, RFC 9207 issuer identification, RFC 8707 audience restriction, RFC 9068 JWT access tokens]
+aliases: ["MCP security considerations", "MCP authorization security"]
+enterprise_analogs: ["OAuth 2.1 §7 Security Considerations", "RFC 9700 OAuth 2.0 Security BCP", "RFC 6819 OAuth threat model", "RFC 9207 issuer identification", "RFC 8707 audience restriction", "RFC 9068 JWT access tokens"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview, mcp-security-best-practices]
-related: [mcp-authorization, token-audience-binding, token-passthrough, confused-deputy, authorization-server-mix-up, proof-key-for-code-exchange, open-redirection, token-theft, server-side-request-forgery, oauth-client-id-metadata-documents, canonical-server-uri, oauth-2-1, mcp-security-best-practices, session-hijacking, local-mcp-server-security, authorization-url-injection, prompt-injection]
-tags: [security, threat-model, mcp]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["mcp-authorization", "token-audience-binding", "token-passthrough", "confused-deputy", "authorization-server-mix-up", "proof-key-for-code-exchange", "open-redirection", "token-theft", "server-side-request-forgery", "oauth-client-id-metadata-documents", "canonical-server-uri", "oauth-2-1", "mcp-security-best-practices", "session-hijacking", "local-mcp-server-security", "authorization-url-injection", "prompt-injection"]
+tags: ["security", "threat-model", "mcp"]
 ---
 
 # MCP Authorization — Security Considerations

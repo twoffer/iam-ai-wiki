@@ -3,12 +3,12 @@ title: Confused Deputy
 category: concept
 status: stable
 confidence: high
-aliases: [confused deputy problem, confused deputy attack, deputy confusion, MCP proxy server attack]
-enterprise_analogs: [OAuth 2.0 mix-up attack, CSRF, RFC 9700 OAuth 2.0 Security BCP, ambient authority, consent-cookie bypass]
+aliases: ["confused deputy problem", "confused deputy attack", "deputy confusion", "MCP proxy server attack"]
+enterprise_analogs: ["OAuth 2.0 mix-up attack", "CSRF", "RFC 9700 OAuth 2.0 Security BCP", "ambient authority", "consent-cookie bypass"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices, mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [token-audience-binding, token-passthrough, authorization-server-mix-up, client-registration, mcp-authorization, security-considerations, agentic-identity, delegated-authorization, mcp-security-best-practices, open-redirection, human-in-the-loop-authorization, prompt-injection]
-tags: [security, confused-deputy, threat-model, core-concept]
+sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["token-audience-binding", "token-passthrough", "authorization-server-mix-up", "client-registration", "mcp-authorization", "security-considerations", "agentic-identity", "delegated-authorization", "mcp-security-best-practices", "open-redirection", "human-in-the-loop-authorization", "prompt-injection"]
+tags: ["security", "confused-deputy", "threat-model", "core-concept"]
 ---
 
 # Confused Deputy

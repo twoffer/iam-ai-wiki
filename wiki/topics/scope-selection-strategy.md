@@ -3,12 +3,12 @@ title: Scope Selection Strategy
 category: topic
 status: stable
 confidence: high
-aliases: [scope selection, scope strategy, scope minimization, scopes_supported, scope challenge handling]
-enterprise_analogs: [OAuth scopes (RFC 6749 §3.3), RFC 6750 §3 WWW-Authenticate scope, least privilege, RFC 9728 scopes_supported, blast-radius reduction]
+aliases: ["scope selection", "scope strategy", "scope minimization", "scopes_supported", "scope challenge handling"]
+enterprise_analogs: ["OAuth scopes (RFC 6749 §3.3)", "RFC 6750 §3 WWW-Authenticate scope", "least privilege", "RFC 9728 scopes_supported", "blast-radius reduction"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview, mcp-security-best-practices]
-related: [mcp-authorization, step-up-authorization, human-in-the-loop-authorization, tool-use-authorization, rfc-6750-bearer-token-usage, rfc-9728-protected-resource-metadata, token-theft, mcp-security-best-practices]
-tags: [oauth, scopes, least-privilege, mcp]
+sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["mcp-authorization", "step-up-authorization", "human-in-the-loop-authorization", "tool-use-authorization", "rfc-6750-bearer-token-usage", "rfc-9728-protected-resource-metadata", "token-theft", "mcp-security-best-practices"]
+tags: ["oauth", "scopes", "least-privilege", "mcp"]
 ---
 
 # Scope Selection Strategy

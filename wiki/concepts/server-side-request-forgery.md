@@ -3,12 +3,12 @@ title: Server-Side Request Forgery (SSRF)
 category: concept
 status: stable
 confidence: high
-aliases: [SSRF, server-side request forgery, AS abuse protection, metadata fetch SSRF, discovery metadata SSRF]
-enterprise_analogs: [classic web SSRF (OWASP A10:2021), OAuth Client ID Metadata Document draft §6 SSRF, RFC 9728 §7.7 private-range blocking, outbound-fetch allowlisting, egress proxies, cloud metadata endpoint hardening]
+aliases: ["SSRF", "server-side request forgery", "AS abuse protection", "metadata fetch SSRF", "discovery metadata SSRF"]
+enterprise_analogs: ["classic web SSRF (OWASP A10:2021)", "OAuth Client ID Metadata Document draft §6 SSRF", "RFC 9728 §7.7 private-range blocking", "outbound-fetch allowlisting", "egress proxies", "cloud metadata endpoint hardening"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices, mcp-authorization-security-considerations]
-related: [oauth-client-id-metadata-documents, client-registration, security-considerations, mcp-authorization, machine-identity, authorization-server-discovery, rfc-9728-protected-resource-metadata, oauth-2-1, authorization-url-injection]
-tags: [security, ssrf, cimd, discovery, threat-model, core-concept]
+sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations"]
+related: ["oauth-client-id-metadata-documents", "client-registration", "security-considerations", "mcp-authorization", "machine-identity", "authorization-server-discovery", "rfc-9728-protected-resource-metadata", "oauth-2-1", "authorization-url-injection"]
+tags: ["security", "ssrf", "cimd", "discovery", "threat-model", "core-concept"]
 ---
 
 # Server-Side Request Forgery (SSRF)

@@ -3,12 +3,12 @@ title: Local MCP Server Security
 category: topic
 status: stable
 confidence: high
-aliases: [local MCP server compromise, one-click MCP install security, stdio transport security, MCP proxy stdio escalation]
-enterprise_analogs: [OS consent prompts (UAC, Gatekeeper), application sandboxing (containers, chroot), code signing and software distribution trust, unix domain socket permissions, DNS rebinding defenses for localhost services]
+aliases: ["local MCP server compromise", "one-click MCP install security", "stdio transport security", "MCP proxy stdio escalation"]
+enterprise_analogs: ["OS consent prompts (UAC, Gatekeeper)", "application sandboxing (containers, chroot)", "code signing and software distribution trust", "unix domain socket permissions", "DNS rebinding defenses for localhost services"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices]
-related: [mcp-authorization, human-in-the-loop-authorization, authorization-url-injection, machine-identity, session-hijacking, security-considerations, tool-use-authorization]
-tags: [mcp, local, sandboxing, consent, stdio, threat-model]
+sources: ["mcp-security-best-practices"]
+related: ["mcp-authorization", "human-in-the-loop-authorization", "authorization-url-injection", "machine-identity", "session-hijacking", "security-considerations", "tool-use-authorization"]
+tags: ["mcp", "local", "sandboxing", "consent", "stdio", "threat-model"]
 ---
 
 # Local MCP Server Security

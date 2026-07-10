@@ -3,12 +3,12 @@ title: RFC 9728 — OAuth 2.0 Protected Resource Metadata
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 9728, Protected Resource Metadata, PRM, oauth-protected-resource, resource_metadata]
+aliases: ["RFC 9728", "Protected Resource Metadata", "PRM", "oauth-protected-resource", "resource_metadata"]
 enterprise_analogs: []
 last_updated: 2026-07-08
-sources: [mcp-authorization-security-considerations, mcp-authorization-server-discovery, mcp-authorization-overview, mcp-security-best-practices]
-related: [authorization-server-discovery, mcp-authorization, scope-selection-strategy, rfc-8414-authorization-server-metadata, token-audience-binding, rfc-8707-resource-indicators, client-registration, server-side-request-forgery]
-tags: [oauth, discovery, metadata, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-server-discovery", "mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["authorization-server-discovery", "mcp-authorization", "scope-selection-strategy", "rfc-8414-authorization-server-metadata", "token-audience-binding", "rfc-8707-resource-indicators", "client-registration", "server-side-request-forgery"]
+tags: ["oauth", "discovery", "metadata", "spec", "ietf", "reference"]
 ---
 
 # RFC 9728 — OAuth 2.0 Protected Resource Metadata

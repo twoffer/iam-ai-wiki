@@ -3,12 +3,12 @@ title: Tool-Use Authorization
 category: concept
 status: stub
 confidence: medium
-aliases: [tool authorization, tool scoping, tool-call authorization, tool permissions]
-enterprise_analogs: [OAuth scopes, RBAC/ABAC, RFC 8693 token exchange, fine-grained API authorization]
+aliases: ["tool authorization", "tool scoping", "tool-call authorization", "tool permissions"]
+enterprise_analogs: ["OAuth scopes", "RBAC/ABAC", "RFC 8693 token exchange", "fine-grained API authorization"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview, mcp-security-best-practices]
-related: [mcp-authorization, scope-selection-strategy, step-up-authorization, delegated-authorization, agentic-identity, session-hijacking, prompt-injection]
-tags: [tool-use, scopes, authorization, agentic, stub]
+sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["mcp-authorization", "scope-selection-strategy", "step-up-authorization", "delegated-authorization", "agentic-identity", "session-hijacking", "prompt-injection"]
+tags: ["tool-use", "scopes", "authorization", "agentic", "stub"]
 ---
 
 # Tool-Use Authorization

@@ -3,12 +3,12 @@ title: MCP Security Best Practices
 category: source
 status: stable
 confidence: high
-aliases: [MCP Security Best Practices, security_best_practices, MCP security guide, MCP token passthrough guide]
-enterprise_analogs: [RFC 9700 OAuth 2.0 Security BCP, RFC 6819 OAuth threat model, OWASP session management, OWASP SSRF prevention, Content Security Policy, OS consent prompts and sandboxing]
+aliases: ["MCP Security Best Practices", "security_best_practices", "MCP security guide", "MCP token passthrough guide"]
+enterprise_analogs: ["RFC 9700 OAuth 2.0 Security BCP", "RFC 6819 OAuth threat model", "OWASP session management", "OWASP SSRF prevention", "Content Security Policy", "OS consent prompts and sandboxing"]
 last_updated: 2026-07-08
-sources: [raw/MCPSecurityBestPractices.md]
-related: [security-considerations, mcp-authorization, confused-deputy, token-passthrough, server-side-request-forgery, session-hijacking, local-mcp-server-security, authorization-url-injection, open-redirection, scope-selection-strategy, step-up-authorization, human-in-the-loop-authorization, rfc-9700-oauth-security-bcp, oauth-2-1, mcp-specification, prompt-injection]
-tags: [mcp, security, threat-model, guide, source]
+sources: ["raw/MCPSecurityBestPractices.md"]
+related: ["security-considerations", "mcp-authorization", "confused-deputy", "token-passthrough", "server-side-request-forgery", "session-hijacking", "local-mcp-server-security", "authorization-url-injection", "open-redirection", "scope-selection-strategy", "step-up-authorization", "human-in-the-loop-authorization", "rfc-9700-oauth-security-bcp", "oauth-2-1", "mcp-specification", "prompt-injection"]
+tags: ["mcp", "security", "threat-model", "guide", "source"]
 ---
 
 # MCP Security Best Practices

@@ -3,12 +3,12 @@ title: RFC 9068 — JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 9068, JWT access token profile, JWT access tokens, aud claim]
+aliases: ["RFC 9068", "JWT access token profile", "JWT access tokens", "aud claim"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations]
-related: [token-audience-binding, token-passthrough, rfc-8707-resource-indicators, security-considerations, mcp-authorization]
-tags: [oauth, jwt, audience, token, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations"]
+related: ["token-audience-binding", "token-passthrough", "rfc-8707-resource-indicators", "security-considerations", "mcp-authorization"]
+tags: ["oauth", "jwt", "audience", "token", "spec", "ietf", "reference"]
 ---
 
 # RFC 9068 — JSON Web Token (JWT) Profile for OAuth 2.0 Access Tokens
