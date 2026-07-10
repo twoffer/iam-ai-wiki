@@ -3,12 +3,12 @@ title: Authorization Server Mix-Up
 category: concept
 status: stable
 confidence: high
-aliases: [mix-up attack, AS mix-up, OAuth mix-up, issuer mix-up]
-enterprise_analogs: [RFC 9207 Authorization Server Issuer Identification, RFC 9700 OAuth 2.0 Security BCP, OAuth mix-up attack]
+aliases: ["mix-up attack", "AS mix-up", "OAuth mix-up", "issuer mix-up"]
+enterprise_analogs: ["RFC 9207 Authorization Server Issuer Identification", "RFC 9700 OAuth 2.0 Security BCP", "OAuth mix-up attack"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-server-discovery, mcp-authorization-overview]
-related: [rfc-9207-authorization-server-issuer-identification, authorization-server-discovery, rfc-8414-authorization-server-metadata, confused-deputy, proof-key-for-code-exchange, security-considerations, mcp-authorization]
-tags: [security, mix-up, oauth, threat-model, core-concept]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-server-discovery", "mcp-authorization-overview"]
+related: ["rfc-9207-authorization-server-issuer-identification", "authorization-server-discovery", "rfc-8414-authorization-server-metadata", "confused-deputy", "proof-key-for-code-exchange", "security-considerations", "mcp-authorization"]
+tags: ["security", "mix-up", "oauth", "threat-model", "core-concept"]
 ---
 
 # Authorization Server Mix-Up

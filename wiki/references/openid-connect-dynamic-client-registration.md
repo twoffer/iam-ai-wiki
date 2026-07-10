@@ -3,12 +3,12 @@ title: OpenID Connect Dynamic Client Registration 1.0
 category: reference
 status: stable
 confidence: high
-aliases: [OIDC Dynamic Client Registration, OpenID Connect Registration, OIDC DCR]
+aliases: ["OIDC Dynamic Client Registration", "OpenID Connect Registration", "OIDC DCR"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-client-registration, mcp-authorization-overview]
-related: [client-registration, rfc-7591-dynamic-client-registration, oauth-client-id-metadata-documents, openid-connect-discovery, mcp-authorization]
-tags: [oidc, client-registration, dcr, spec, openid-foundation, reference]
+sources: ["mcp-authorization-client-registration", "mcp-authorization-overview"]
+related: ["client-registration", "rfc-7591-dynamic-client-registration", "oauth-client-id-metadata-documents", "openid-connect-discovery", "mcp-authorization"]
+tags: ["oidc", "client-registration", "dcr", "spec", "openid-foundation", "reference"]
 ---
 
 # OpenID Connect Dynamic Client Registration 1.0

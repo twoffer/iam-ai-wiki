@@ -111,3 +111,13 @@ Ingested raw/MCPSecurityBestPractices.md (the non-spec guide the Security Consid
 - agentic-identity: linked the prompt-injection stub
 - _index.md: added 5 entries, moved mcp-security-best-practices References → Sources, updated human-in-the-loop and SSRF lines
 - note: no incident pages — the guide documents attack classes and mitigations, not real-world incidents
+
+## [2026-07-10] lint | Double-quote every frontmatter list item
+- convention: added "Frontmatter list quoting" to CLAUDE.md Conventions — every item in `aliases`, `enterprise_analogs`, `sources`, `related`, `tags` is double-quoted unconditionally, empty lists written `[]`; rationale is that an unquoted `,` splits an item and an unquoted `: ` coerces it to a dictionary, both invisibly
+- convention: updated the CLAUDE.md frontmatter template to model the quoted form
+- convention: added a matching Lint health-check item for unquoted or silently split/coerced list items
+- authorization-url-injection: repaired `enterprise_analogs` — `DOM-based XSS via javascript: URIs` had parsed as the dictionary `{"DOM-based XSS via javascript": "URIs"}`
+- human-in-the-loop-authorization: repaired `enterprise_analogs` — `OS elevation prompts (UAC, Gatekeeper)` had parsed as two items, `OS elevation prompts (UAC` and `Gatekeeper)`
+- local-mcp-server-security: repaired `enterprise_analogs` — `OS consent prompts (UAC, Gatekeeper)` and `application sandboxing (containers, chroot)` had each parsed as two items
+- all 48 wiki pages: mechanically double-quoted every frontmatter list item; verified parsed values are identical to before except the three repairs above, and that no prose changed
+- _index.md: unchanged — it carries no frontmatter, and no page summary, status, or confidence was affected

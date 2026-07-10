@@ -3,12 +3,12 @@ title: RFC 7636 — Proof Key for Code Exchange (PKCE)
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 7636, PKCE spec, code_challenge, code_verifier]
+aliases: ["RFC 7636", "PKCE spec", "code_challenge", "code_verifier"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [proof-key-for-code-exchange, oauth-2-1, mcp-authorization, rfc-8414-authorization-server-metadata, security-considerations]
-tags: [oauth, pkce, security, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["proof-key-for-code-exchange", "oauth-2-1", "mcp-authorization", "rfc-8414-authorization-server-metadata", "security-considerations"]
+tags: ["oauth", "pkce", "security", "spec", "ietf", "reference"]
 ---
 
 # RFC 7636 — Proof Key for Code Exchange (PKCE)

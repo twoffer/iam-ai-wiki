@@ -3,12 +3,12 @@ title: MCP Authorization Extensions (ext-auth)
 category: reference
 status: stub
 confidence: high
-aliases: [ext-auth, MCP authorization extensions, MCP auth extensions]
+aliases: ["ext-auth", "MCP authorization extensions", "MCP auth extensions"]
 enterprise_analogs: []
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, mcp-specification]
-tags: [mcp, extensions, authorization, reference, stub]
+sources: ["mcp-authorization-overview"]
+related: ["mcp-authorization", "mcp-specification"]
+tags: ["mcp", "extensions", "authorization", "reference", "stub"]
 ---
 
 # MCP Authorization Extensions (ext-auth)

@@ -3,12 +3,12 @@ title: Step-Up Authorization
 category: concept
 status: stable
 confidence: high
-aliases: [step-up auth, incremental authorization, scope step-up, insufficient_scope handling]
-enterprise_analogs: [RFC 6750 §3.1 insufficient_scope, OAuth incremental authorization, RFC 9470 step-up authentication challenge, OIDC claims request]
+aliases: ["step-up auth", "incremental authorization", "scope step-up", "insufficient_scope handling"]
+enterprise_analogs: ["RFC 6750 §3.1 insufficient_scope", "OAuth incremental authorization", "RFC 9470 step-up authentication challenge", "OIDC claims request"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview, mcp-security-best-practices]
-related: [scope-selection-strategy, mcp-authorization, tool-use-authorization, delegated-authorization, human-in-the-loop-authorization, token-theft]
-tags: [oauth, scopes, step-up, authorization, core-concept]
+sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["scope-selection-strategy", "mcp-authorization", "tool-use-authorization", "delegated-authorization", "human-in-the-loop-authorization", "token-theft"]
+tags: ["oauth", "scopes", "step-up", "authorization", "core-concept"]
 ---
 
 # Step-Up Authorization

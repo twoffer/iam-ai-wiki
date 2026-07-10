@@ -3,12 +3,12 @@ title: RFC 8707 — Resource Indicators for OAuth 2.0
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 8707, Resource Indicators, resource parameter, audience parameter]
+aliases: ["RFC 8707", "Resource Indicators", "resource parameter", "audience parameter"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [token-audience-binding, canonical-server-uri, mcp-authorization, rfc-9728-protected-resource-metadata, rfc-9068-jwt-access-tokens, token-passthrough]
-tags: [oauth, resource-indicators, audience, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["token-audience-binding", "canonical-server-uri", "mcp-authorization", "rfc-9728-protected-resource-metadata", "rfc-9068-jwt-access-tokens", "token-passthrough"]
+tags: ["oauth", "resource-indicators", "audience", "spec", "ietf", "reference"]
 ---
 
 # RFC 8707 — Resource Indicators for OAuth 2.0

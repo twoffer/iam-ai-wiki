@@ -3,12 +3,12 @@ title: MCP Authorization Specification — Authorization Server Discovery
 category: source
 status: stable
 confidence: high
-aliases: [MCP Authorization Server Discovery, MCP AS discovery spec, authorization server discovery spec]
-enterprise_analogs: [RFC 9728 Protected Resource Metadata, RFC 9728 §5.1 WWW-Authenticate, RFC 9728 §7.6 Authorization Servers selection, RFC 8414 §3.1 Authorization Server Metadata Request, RFC 8414 §3.3 Validation, RFC 8414 §5 Compatibility Notes, OpenID Connect Discovery 1.0 §4.3, RFC 6749 §2.2 client identifier uniqueness]
+aliases: ["MCP Authorization Server Discovery", "MCP AS discovery spec", "authorization server discovery spec"]
+enterprise_analogs: ["RFC 9728 Protected Resource Metadata", "RFC 9728 §5.1 WWW-Authenticate", "RFC 9728 §7.6 Authorization Servers selection", "RFC 8414 §3.1 Authorization Server Metadata Request", "RFC 8414 §3.3 Validation", "RFC 8414 §5 Compatibility Notes", "OpenID Connect Discovery 1.0 §4.3", "RFC 6749 §2.2 client identifier uniqueness"]
 last_updated: 2026-06-19
-sources: [raw/MCPAuthorization_AuthorizationServerDiscovery.md]
-related: [mcp-authorization, mcp-authorization-overview, authorization-server-discovery, rfc-9728-protected-resource-metadata, rfc-8414-authorization-server-metadata, openid-connect-discovery, authorization-server-mix-up, client-registration, mcp-authorization-security-considerations]
-tags: [mcp, oauth, authorization, discovery, spec, source]
+sources: ["raw/MCPAuthorization_AuthorizationServerDiscovery.md"]
+related: ["mcp-authorization", "mcp-authorization-overview", "authorization-server-discovery", "rfc-9728-protected-resource-metadata", "rfc-8414-authorization-server-metadata", "openid-connect-discovery", "authorization-server-mix-up", "client-registration", "mcp-authorization-security-considerations"]
+tags: ["mcp", "oauth", "authorization", "discovery", "spec", "source"]
 ---
 
 # MCP Authorization Specification — Authorization Server Discovery

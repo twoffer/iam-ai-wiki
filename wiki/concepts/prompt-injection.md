@@ -3,12 +3,12 @@ title: Prompt Injection as Authorization Bypass
 category: concept
 status: stub
 confidence: medium
-aliases: [prompt injection, indirect prompt injection, injection-driven authorization bypass]
-enterprise_analogs: [SQL injection (in-band control/data confusion), CSRF (attacker-directed use of a victim's authority), confused deputy]
+aliases: ["prompt injection", "indirect prompt injection", "injection-driven authorization bypass"]
+enterprise_analogs: ["SQL injection (in-band control/data confusion)", "CSRF (attacker-directed use of a victim's authority)", "confused deputy"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices]
-related: [confused-deputy, agentic-identity, session-hijacking, tool-use-authorization, human-in-the-loop-authorization, security-considerations]
-tags: [prompt-injection, security, agentic, auth-bypass, stub]
+sources: ["mcp-security-best-practices"]
+related: ["confused-deputy", "agentic-identity", "session-hijacking", "tool-use-authorization", "human-in-the-loop-authorization", "security-considerations"]
+tags: ["prompt-injection", "security", "agentic", "auth-bypass", "stub"]
 ---
 
 # Prompt Injection as Authorization Bypass

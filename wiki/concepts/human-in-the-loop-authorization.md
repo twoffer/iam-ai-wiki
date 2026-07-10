@@ -3,12 +3,12 @@ title: Human-in-the-Loop Authorization
 category: concept
 status: evolving
 confidence: high
-aliases: [human-in-the-loop, HITL authorization, user consent, interactive consent, consent UI]
-enterprise_analogs: [OAuth 2.1 authorization/consent endpoint, OIDC `prompt=consent`, OAuth incremental consent, OS elevation prompts (UAC, Gatekeeper)]
+aliases: ["human-in-the-loop", "HITL authorization", "user consent", "interactive consent", "consent UI"]
+enterprise_analogs: ["OAuth 2.1 authorization/consent endpoint", "OIDC `prompt=consent`", "OAuth incremental consent", "OS elevation prompts (UAC, Gatekeeper)"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview, mcp-security-best-practices]
-related: [delegated-authorization, step-up-authorization, scope-selection-strategy, mcp-authorization, agentic-identity, confused-deputy, local-mcp-server-security, prompt-injection]
-tags: [consent, human-in-the-loop, authorization]
+sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["delegated-authorization", "step-up-authorization", "scope-selection-strategy", "mcp-authorization", "agentic-identity", "confused-deputy", "local-mcp-server-security", "prompt-injection"]
+tags: ["consent", "human-in-the-loop", "authorization"]
 ---
 
 # Human-in-the-Loop Authorization

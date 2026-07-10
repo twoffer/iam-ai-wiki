@@ -3,12 +3,12 @@ title: Public vs. Confidential Clients
 category: concept
 status: stable
 confidence: high
-aliases: [public client, confidential client, OAuth client types, client authentication, token_endpoint_auth_method]
-enterprise_analogs: [RFC 6749 §2.1 Client Types, OAuth 2.1 client authentication, RFC 7636 PKCE, RFC 8252 OAuth for Native Apps, private_key_jwt (RFC 7523 / OIDC client auth), RFC 6749 §4.4 client_credentials]
+aliases: ["public client", "confidential client", "OAuth client types", "client authentication", "token_endpoint_auth_method"]
+enterprise_analogs: ["RFC 6749 §2.1 Client Types", "OAuth 2.1 client authentication", "RFC 7636 PKCE", "RFC 8252 OAuth for Native Apps", "private_key_jwt (RFC 7523 / OIDC client auth)", "RFC 6749 §4.4 client_credentials"]
 last_updated: 2026-06-19
-sources: [mcp-authorization-overview, mcp-authorization-client-registration, mcp-authorization-security-considerations]
-related: [proof-key-for-code-exchange, oauth-2-1, client-registration, oauth-client-id-metadata-documents, mcp-authorization, token-theft, machine-identity]
-tags: [oauth, client-authentication, public-client, confidential-client, pkce, mcp]
+sources: ["mcp-authorization-overview", "mcp-authorization-client-registration", "mcp-authorization-security-considerations"]
+related: ["proof-key-for-code-exchange", "oauth-2-1", "client-registration", "oauth-client-id-metadata-documents", "mcp-authorization", "token-theft", "machine-identity"]
+tags: ["oauth", "client-authentication", "public-client", "confidential-client", "pkce", "mcp"]
 ---
 
 # Public vs. Confidential Clients

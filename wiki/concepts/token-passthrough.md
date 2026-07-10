@@ -3,12 +3,12 @@ title: Token Passthrough (Anti-Pattern)
 category: concept
 status: stable
 confidence: high
-aliases: [token passthrough, token pass-through, token forwarding, confused token relay]
-enterprise_analogs: [RFC 8707 audience restriction, OAuth 2.1 §5.2 audience validation, RFC 9068 JWT audience claim, RFC 8693 token exchange (the correct alternative)]
+aliases: ["token passthrough", "token pass-through", "token forwarding", "confused token relay"]
+enterprise_analogs: ["RFC 8707 audience restriction", "OAuth 2.1 §5.2 audience validation", "RFC 9068 JWT audience claim", "RFC 8693 token exchange (the correct alternative)"]
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices, mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [token-audience-binding, confused-deputy, mcp-authorization, security-considerations, rfc-9068-jwt-access-tokens, mcp-security-best-practices]
-tags: [security, token, anti-pattern, core-concept]
+sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["token-audience-binding", "confused-deputy", "mcp-authorization", "security-considerations", "rfc-9068-jwt-access-tokens", "mcp-security-best-practices"]
+tags: ["security", "token", "anti-pattern", "core-concept"]
 ---
 
 # Token Passthrough (Anti-Pattern)

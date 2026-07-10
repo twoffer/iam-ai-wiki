@@ -3,12 +3,12 @@ title: IETF OAuth Working Group
 category: entity
 status: stub
 confidence: high
-aliases: [IETF OAuth WG, OAuth Working Group, oauth wg]
+aliases: ["IETF OAuth WG", "OAuth Working Group", "oauth wg"]
 enterprise_analogs: []
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [oauth-2-1, rfc-6750-bearer-token-usage, rfc-8414-authorization-server-metadata, rfc-7591-dynamic-client-registration, rfc-8707-resource-indicators, rfc-9728-protected-resource-metadata, rfc-9207-authorization-server-issuer-identification, oauth-client-id-metadata-documents, rfc-7636-pkce]
-tags: [entity, standards-body, ietf, oauth]
+sources: ["mcp-authorization-overview"]
+related: ["oauth-2-1", "rfc-6750-bearer-token-usage", "rfc-8414-authorization-server-metadata", "rfc-7591-dynamic-client-registration", "rfc-8707-resource-indicators", "rfc-9728-protected-resource-metadata", "rfc-9207-authorization-server-issuer-identification", "oauth-client-id-metadata-documents", "rfc-7636-pkce"]
+tags: ["entity", "standards-body", "ietf", "oauth"]
 ---
 
 # IETF OAuth Working Group

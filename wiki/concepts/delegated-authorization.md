@@ -3,12 +3,12 @@ title: Delegated Authorization
 category: concept
 status: stable
 confidence: high
-aliases: [delegation, on-behalf-of authorization, resource owner delegation]
-enterprise_analogs: [OAuth 2.1 authorization code grant, RFC 6749 §1.1 resource owner / client, RFC 8693 token exchange, OAuth 2.0 on-behalf-of]
+aliases: ["delegation", "on-behalf-of authorization", "resource owner delegation"]
+enterprise_analogs: ["OAuth 2.1 authorization code grant", "RFC 6749 §1.1 resource owner / client", "RFC 8693 token exchange", "OAuth 2.0 on-behalf-of"]
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [mcp-authorization, agentic-identity, human-in-the-loop-authorization, tool-use-authorization, token-audience-binding, step-up-authorization]
-tags: [oauth, delegation, authorization, core-concept]
+sources: ["mcp-authorization-overview"]
+related: ["mcp-authorization", "agentic-identity", "human-in-the-loop-authorization", "tool-use-authorization", "token-audience-binding", "step-up-authorization"]
+tags: ["oauth", "delegation", "authorization", "core-concept"]
 ---
 
 # Delegated Authorization

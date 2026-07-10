@@ -3,12 +3,12 @@ title: Model Context Protocol (MCP) Specification
 category: reference
 status: evolving
 confidence: high
-aliases: [MCP, Model Context Protocol, modelcontextprotocol.io, MCP spec]
+aliases: ["MCP", "Model Context Protocol", "modelcontextprotocol.io", "MCP spec"]
 enterprise_analogs: []
 last_updated: 2026-07-08
-sources: [mcp-authorization-overview, mcp-authorization-server-discovery]
-related: [mcp-authorization, anthropic, mcp-authorization-extensions, authorization-server-discovery, client-registration, security-considerations, mcp-security-best-practices]
-tags: [mcp, protocol, spec, reference]
+sources: ["mcp-authorization-overview", "mcp-authorization-server-discovery"]
+related: ["mcp-authorization", "anthropic", "mcp-authorization-extensions", "authorization-server-discovery", "client-registration", "security-considerations", "mcp-security-best-practices"]
+tags: ["mcp", "protocol", "spec", "reference"]
 ---
 
 # Model Context Protocol (MCP) Specification

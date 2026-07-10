@@ -3,12 +3,12 @@ title: RFC 9700 — Best Current Practice for OAuth 2.0 Security
 category: reference
 status: stub
 confidence: high
-aliases: [RFC 9700, OAuth 2.0 Security BCP, OAuth Security Best Current Practice, OAuth 2.0 security best practices]
+aliases: ["RFC 9700", "OAuth 2.0 Security BCP", "OAuth Security Best Current Practice", "OAuth 2.0 security best practices"]
 enterprise_analogs: []
 last_updated: 2026-07-08
-sources: [mcp-security-best-practices]
-related: [oauth-2-1, security-considerations, mcp-security-best-practices, confused-deputy, open-redirection, token-theft, authorization-server-mix-up]
-tags: [oauth, security, bcp, ietf, reference, stub]
+sources: ["mcp-security-best-practices"]
+related: ["oauth-2-1", "security-considerations", "mcp-security-best-practices", "confused-deputy", "open-redirection", "token-theft", "authorization-server-mix-up"]
+tags: ["oauth", "security", "bcp", "ietf", "reference", "stub"]
 ---
 
 # RFC 9700 — Best Current Practice for OAuth 2.0 Security

@@ -3,12 +3,12 @@ title: MCP Authorization Specification — Overview
 category: source
 status: stable
 confidence: high
-aliases: [MCP Authorization Overview, modelcontextprotocol authorization, MCP auth spec]
-enterprise_analogs: [OAuth 2.1 draft-ietf-oauth-v2-1-13, RFC 6750 Bearer Token Usage, RFC 8414 Authorization Server Metadata, RFC 7591 Dynamic Client Registration, RFC 8707 Resource Indicators, RFC 9728 Protected Resource Metadata, RFC 9207 Authorization Server Issuer Identification]
+aliases: ["MCP Authorization Overview", "modelcontextprotocol authorization", "MCP auth spec"]
+enterprise_analogs: ["OAuth 2.1 draft-ietf-oauth-v2-1-13", "RFC 6750 Bearer Token Usage", "RFC 8414 Authorization Server Metadata", "RFC 7591 Dynamic Client Registration", "RFC 8707 Resource Indicators", "RFC 9728 Protected Resource Metadata", "RFC 9207 Authorization Server Issuer Identification"]
 last_updated: 2026-06-18
-sources: [raw/MCPAuthorization_Overview.md]
-related: [mcp-authorization, mcp-specification, oauth-2-1, authorization-server-discovery, client-registration, scope-selection-strategy, canonical-server-uri, security-considerations]
-tags: [mcp, oauth, authorization, spec, source]
+sources: ["raw/MCPAuthorization_Overview.md"]
+related: ["mcp-authorization", "mcp-specification", "oauth-2-1", "authorization-server-discovery", "client-registration", "scope-selection-strategy", "canonical-server-uri", "security-considerations"]
+tags: ["mcp", "oauth", "authorization", "spec", "source"]
 ---
 
 # MCP Authorization Specification — Overview

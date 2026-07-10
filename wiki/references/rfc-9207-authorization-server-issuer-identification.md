@@ -3,12 +3,12 @@ title: RFC 9207 — OAuth 2.0 Authorization Server Issuer Identification
 category: reference
 status: stable
 confidence: high
-aliases: [RFC 9207, Issuer Identification, iss parameter, authorization_response_iss_parameter_supported]
+aliases: ["RFC 9207", "Issuer Identification", "iss parameter", "authorization_response_iss_parameter_supported"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview]
-related: [authorization-server-mix-up, mcp-authorization, authorization-server-discovery, proof-key-for-code-exchange, confused-deputy, security-considerations]
-tags: [oauth, security, mix-up, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview"]
+related: ["authorization-server-mix-up", "mcp-authorization", "authorization-server-discovery", "proof-key-for-code-exchange", "confused-deputy", "security-considerations"]
+tags: ["oauth", "security", "mix-up", "spec", "ietf", "reference"]
 ---
 
 # RFC 9207 — OAuth 2.0 Authorization Server Issuer Identification

@@ -3,12 +3,12 @@ title: OpenID Foundation
 category: entity
 status: stub
 confidence: high
-aliases: [OpenID Foundation, OIDF]
+aliases: ["OpenID Foundation", "OIDF"]
 enterprise_analogs: []
 last_updated: 2026-06-18
-sources: [mcp-authorization-overview]
-related: [openid-connect-discovery, openid-connect-dynamic-client-registration, mcp-authorization]
-tags: [entity, standards-body, openid, oidc]
+sources: ["mcp-authorization-overview"]
+related: ["openid-connect-discovery", "openid-connect-dynamic-client-registration", "mcp-authorization"]
+tags: ["entity", "standards-body", "openid", "oidc"]
 ---
 
 # OpenID Foundation

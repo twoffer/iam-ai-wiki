@@ -3,12 +3,12 @@ title: OAuth 2.1 (draft-ietf-oauth-v2-1)
 category: reference
 status: evolving
 confidence: high
-aliases: [OAuth 2.1, oauth-v2-1, draft-ietf-oauth-v2-1-13]
-enterprise_analogs: [RFC 6749 OAuth 2.0, RFC 6750, RFC 7636 PKCE, RFC 8252]
+aliases: ["OAuth 2.1", "oauth-v2-1", "draft-ietf-oauth-v2-1-13"]
+enterprise_analogs: ["RFC 6749 OAuth 2.0", "RFC 6750", "RFC 7636 PKCE", "RFC 8252"]
 last_updated: 2026-07-08
-sources: [mcp-authorization-security-considerations, mcp-authorization-overview, mcp-security-best-practices]
-related: [mcp-authorization, proof-key-for-code-exchange, rfc-6750-bearer-token-usage, token-audience-binding, rfc-7636-pkce, security-considerations, token-theft, open-redirection, ietf-oauth-working-group, public-vs-confidential-client]
-tags: [oauth, spec, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-overview", "mcp-security-best-practices"]
+related: ["mcp-authorization", "proof-key-for-code-exchange", "rfc-6750-bearer-token-usage", "token-audience-binding", "rfc-7636-pkce", "security-considerations", "token-theft", "open-redirection", "ietf-oauth-working-group", "public-vs-confidential-client"]
+tags: ["oauth", "spec", "ietf", "reference"]
 ---
 
 # OAuth 2.1 (draft-ietf-oauth-v2-1)

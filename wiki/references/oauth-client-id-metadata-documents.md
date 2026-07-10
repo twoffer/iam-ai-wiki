@@ -3,12 +3,12 @@ title: OAuth Client ID Metadata Documents (draft)
 category: reference
 status: evolving
 confidence: high
-aliases: [Client ID Metadata Documents, CIMD, URL client_id, draft-ietf-oauth-client-id-metadata-document]
+aliases: ["Client ID Metadata Documents", "CIMD", "URL client_id", "draft-ietf-oauth-client-id-metadata-document"]
 enterprise_analogs: []
 last_updated: 2026-06-19
-sources: [mcp-authorization-security-considerations, mcp-authorization-client-registration, mcp-authorization-overview]
-related: [client-registration, rfc-7591-dynamic-client-registration, rfc-8414-authorization-server-metadata, mcp-authorization, security-considerations, server-side-request-forgery, open-redirection, public-vs-confidential-client]
-tags: [oauth, client-registration, cimd, draft, ietf, reference]
+sources: ["mcp-authorization-security-considerations", "mcp-authorization-client-registration", "mcp-authorization-overview"]
+related: ["client-registration", "rfc-7591-dynamic-client-registration", "rfc-8414-authorization-server-metadata", "mcp-authorization", "security-considerations", "server-side-request-forgery", "open-redirection", "public-vs-confidential-client"]
+tags: ["oauth", "client-registration", "cimd", "draft", "ietf", "reference"]
 ---
 
 # OAuth Client ID Metadata Documents (draft)
