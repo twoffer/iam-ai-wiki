@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: ["confused deputy problem", "confused deputy attack", "deputy confusion", "MCP proxy server attack"]
 enterprise_analogs: ["OAuth 2.0 mix-up attack", "CSRF", "RFC 9700 OAuth 2.0 Security BCP", "ambient authority", "consent-cookie bypass"]
-last_updated: 2026-07-08
-sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview"]
-related: ["token-audience-binding", "token-passthrough", "authorization-server-mix-up", "client-registration", "mcp-authorization", "security-considerations", "agentic-identity", "delegated-authorization", "mcp-security-best-practices", "open-redirection", "human-in-the-loop-authorization", "prompt-injection"]
+last_updated: 2026-07-14
+sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview", "owasp-llm-top-10-2025"]
+related: ["token-audience-binding", "token-passthrough", "authorization-server-mix-up", "client-registration", "mcp-authorization", "security-considerations", "agentic-identity", "delegated-authorization", "mcp-security-best-practices", "open-redirection", "human-in-the-loop-authorization", "prompt-injection", "excessive-agency", "vector-store-access-control"]
 tags: ["security", "confused-deputy", "threat-model", "core-concept"]
 ---
 
@@ -23,6 +23,10 @@ An MCP client holds tokens delegated by a user and connects to multiple servers.
 - **Authorization-server mix-up.** A client tricked into talking to the wrong AS, or redeeming a code at the wrong endpoint, can leak a code/token to an attacker. MCP's mandatory [[rfc-9207-authorization-server-issuer-identification|`iss` validation]] and discovery rules defend this; see [[authorization-server-mix-up]].
 
 The [[mcp-authorization-overview]] lists "mix-up and confused deputy attacks" among the threats its [[security-considerations]] chapter addresses normatively, and the [[mcp-authorization-security-considerations|Security Considerations]] document gives the canonical MCP instance below.
+
+## The generic LLM-application instance (OWASP)
+
+Outside MCP's protocol frame, the [[owasp-llm-top-10|OWASP LLM Top 10]] supplies the everyday agentic instance: its [[excessive-agency|LLM06 Excessive Agency]] scenario is an email-assistant extension that, steered by an indirect [[prompt-injection|injection]] in an incoming email, scans the user's inbox for sensitive information and forwards it to the attacker — the deputy's legitimate mailbox authority applied to an attacker-chosen request ([[owasp-llm-top-10-2025]], LLM06 *Example Attack Scenarios*; the entry's own reference list includes an "Embrace the Red: Confused Deputy Problem" write-up). The exploitability of the deputy is a direct function of its excessive agency — functionality, permissions, and autonomy beyond the task — which is why OWASP's mitigations (minimization, user-context execution, complete mediation, [[human-in-the-loop-authorization|human approval]]) are all authority-bounding rather than confusion-preventing. The RAG variant, where a shared retrieval pipeline exercises broad read authority on behalf of differently privileged queriers, is covered at [[vector-store-access-control]] (cf. the ConfusedPilot attack referenced by LLM08).
 
 ## The proxy-server / consent case
 

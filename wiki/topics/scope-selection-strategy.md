@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: ["scope selection", "scope strategy", "scope minimization", "scopes_supported", "scope challenge handling"]
 enterprise_analogs: ["OAuth scopes (RFC 6749 §3.3)", "RFC 6750 §3 WWW-Authenticate scope", "least privilege", "RFC 9728 scopes_supported", "blast-radius reduction"]
-last_updated: 2026-07-08
-sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
-related: ["mcp-authorization", "step-up-authorization", "human-in-the-loop-authorization", "tool-use-authorization", "rfc-6750-bearer-token-usage", "rfc-9728-protected-resource-metadata", "token-theft", "mcp-security-best-practices"]
+last_updated: 2026-07-14
+sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025"]
+related: ["mcp-authorization", "step-up-authorization", "human-in-the-loop-authorization", "tool-use-authorization", "rfc-6750-bearer-token-usage", "rfc-9728-protected-resource-metadata", "token-theft", "mcp-security-best-practices", "excessive-agency"]
 tags: ["oauth", "scopes", "least-privilege", "mcp"]
 ---
 
@@ -50,6 +50,8 @@ The [[mcp-security-best-practices|Security Best Practices]] guide (*Scope Minimi
 - **Consent abandonment** — users decline dialogs listing excessive scopes ([[human-in-the-loop-authorization]]).
 
 The prescribed model is progressive least privilege: a **minimal initial scope set** (e.g., `mcp:tools-basic` for low-risk discovery/read operations), **incremental elevation** via targeted `WWW-Authenticate` `scope="..."` challenges when privileged operations are first attempted ([[step-up-authorization]]), and **down-scoping tolerance** — servers accept reduced-scope tokens, and the AS MAY issue a subset of what was requested. Servers should emit precise challenges rather than the full catalog and log elevation events (scope requested, subset granted) with correlation IDs; clients should begin with baseline scopes and cache recent denials to avoid repeated elevation loops.
+
+The OWASP LLM Top 10 states the application-side version of the same rule: minimal scopes are one of the fixes for the *excessive permissions* root cause of [[excessive-agency]] — extensions execute in the user's context via "user-authenticated OAuth session[s] with the minimum scope required," e.g. the email-assistant scenario's fix of a read-only mail scope ([[owasp-llm-top-10-2025]], LLM06).
 
 The guide's *Common Mistakes* list is a useful design lint: publishing all possible scopes in `scopes_supported` (reinforcing that it should stay the minimal-basic set); wildcard or omnibus scopes (`*`, `all`, `full-access`); bundling unrelated privileges to preempt future prompts; returning the entire scope catalog in every challenge; silently changing scope semantics without versioning; and treating claimed scopes in a token as sufficient **without server-side authorization logic** — scopes gate entry, but the resource server still authorizes each operation (see [[tool-use-authorization]]).
 

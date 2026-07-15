@@ -5,9 +5,9 @@ status: evolving
 confidence: medium
 aliases: ["agent identity", "AI agent identity", "agentic IAM"]
 enterprise_analogs: ["OAuth 2.1 client / resource owner separation", "RFC 6749 delegated authorization", "RFC 8693 token exchange", "workload identity (SPIFFE)"]
-last_updated: 2026-07-08
-sources: ["mcp-authorization-overview"]
-related: ["delegated-authorization", "machine-identity", "mcp-authorization", "tool-use-authorization", "human-in-the-loop-authorization", "confused-deputy", "token-audience-binding", "prompt-injection"]
+last_updated: 2026-07-14
+sources: ["mcp-authorization-overview", "owasp-llm-top-10-2025"]
+related: ["delegated-authorization", "machine-identity", "mcp-authorization", "tool-use-authorization", "human-in-the-loop-authorization", "confused-deputy", "token-audience-binding", "prompt-injection", "excessive-agency"]
 tags: ["agentic", "identity", "core-concept", "domain-anchor"]
 ---
 
@@ -24,7 +24,7 @@ An agent action typically involves **two distinct identities** that pre-AI IAM a
 1. **The principal being acted for** — the human resource owner who delegated authority. Carried as a user-consented OAuth token in MCP ([[delegated-authorization]]).
 2. **The agent/workload itself** — the running client software, which may also have its own identity for non-delegated (`client_credentials`) actions or for attestation. See [[machine-identity]].
 
-Conflating these — letting the agent's broad standing authority stand in for a narrowly delegated user grant, or vice versa — is the root of many agentic auth failures, including [[confused-deputy]] patterns.
+Conflating these — letting the agent's broad standing authority stand in for a narrowly delegated user grant, or vice versa — is the root of many agentic auth failures, including [[confused-deputy]] patterns; the OWASP LLM Top 10 names exactly this substitution (a per-user operation run under "a generic high-privileged identity") as a root cause of [[excessive-agency]] ([[owasp-llm-top-10-2025]], LLM06).
 
 ## How the MCP Authorization spec touches this
 

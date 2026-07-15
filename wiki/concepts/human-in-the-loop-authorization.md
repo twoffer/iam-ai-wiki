@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: ["human-in-the-loop", "HITL authorization", "user consent", "interactive consent", "consent UI"]
 enterprise_analogs: ["OAuth 2.1 authorization/consent endpoint", "OIDC `prompt=consent`", "OAuth incremental consent", "OS elevation prompts (UAC, Gatekeeper)"]
-last_updated: 2026-07-08
-sources: ["mcp-authorization-overview", "mcp-security-best-practices"]
-related: ["delegated-authorization", "step-up-authorization", "scope-selection-strategy", "mcp-authorization", "agentic-identity", "confused-deputy", "local-mcp-server-security", "prompt-injection"]
+last_updated: 2026-07-14
+sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025"]
+related: ["delegated-authorization", "step-up-authorization", "scope-selection-strategy", "mcp-authorization", "agentic-identity", "confused-deputy", "local-mcp-server-security", "prompt-injection", "excessive-agency", "tool-use-authorization"]
 tags: ["consent", "human-in-the-loop", "authorization"]
 ---
 
@@ -28,6 +28,10 @@ The [[mcp-security-best-practices|Security Best Practices]] guide turns consent 
 **Local-server pre-execution consent.** An MCP client offering one-click [[local-mcp-server-security|local server]] configuration **MUST** obtain consent before executing anything: show the exact command **without truncation** (arguments included), identify it as a potentially dangerous operation that executes code on the user's system, require explicit approval, and allow cancellation — with SHOULD-level guardrails such as highlighting dangerous patterns (`sudo`, `rm -rf`) and warning on access to SSH keys or system directories. Here the human approves not an OAuth scope but a *process execution* — HITL as the last control before arbitrary code runs with the client's privileges.
 
 Both surfaces share a design principle: the dialog must give the human the **material facts of the delegation** (who is asking, what authority, where results flow), and the system must **enforce downstream exactly what was approved**.
+
+## The third surface: per-action approval (OWASP)
+
+The [[owasp-llm-top-10|OWASP LLM Top 10]] adds the runtime surface: approval of individual agent *actions*, not just of authority grants. LLM01 lists "require human approval for high-risk actions" — human-in-the-loop controls for privileged operations — among the mitigations that work even when [[prompt-injection]] succeeds, and LLM06 names its absence as a root cause of [[excessive-agency]]: **excessive autonomy** is "an LLM-based application or extension fail[ing] to independently verify and approve high-impact actions," e.g. deleting a user's documents without confirmation ([[owasp-llm-top-10-2025]], LLM01 *Prevention*, LLM06 *Common Examples*). Two implementation notes carry weight: the approval routine may live "in a downstream system (outside the scope of the LLM application) or within the LLM extension itself" — e.g., inside the extension that implements the 'post' operation of a social-media agent — and in the worked email-assistant scenario the fix for excessive autonomy is "requiring the user to manually review and hit 'send' on every mail drafted by the LLM extension." OWASP classes logging and rate limiting as damage limiters that complement but do not replace approval (*Prevention*).
 
 ## Relation to pre-AI IAM
 

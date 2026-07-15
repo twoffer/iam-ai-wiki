@@ -121,3 +121,23 @@ Ingested raw/MCPSecurityBestPractices.md (the non-spec guide the Security Consid
 - local-mcp-server-security: repaired `enterprise_analogs` — `OS consent prompts (UAC, Gatekeeper)` and `application sandboxing (containers, chroot)` had each parsed as two items
 - all 48 wiki pages: mechanically double-quoted every frontmatter list item; verified parsed values are identical to before except the three repairs above, and that no prose changed
 - _index.md: unchanged — it carries no frontmatter, and no page summary, status, or confidence was affected
+
+## [2026-07-14] ingest | OWASP Top 10 for LLM Applications 2025
+Ingested raw/owasp-llm-top-10-2025.pdf (45 pages, first PDF and first non-MCP source in the corpus; provenance sidecar raw/owasp-llm-top-10-2025.md). First high-confidence non-spec source; 6 new pages, 9 pages updated. In-scope core: LLM01 (Prompt Injection), LLM06 (Excessive Agency), LLM07 (System Prompt Leakage), LLM08 access-control slice; LLM03/09/10 and most of LLM02/04 out of scope.
+- owasp-llm-top-10-2025: new source page — scope-filtered coverage map of all ten entries, key claims for LLM01/02/04/05/06/07/08, out-of-scope inventory, bridging (the "assume the model is subverted, bound its authority" inversion)
+- owasp-llm-top-10: new reference — the document series (v1.0/v1.1/2025), what changed in 2025, wiki confidence anchor
+- owasp-genai-security-project: new entity — publisher of the Top 10; leads, vendor-neutral stance, CC BY-SA licensing
+- excessive-agency: new concept (LLM06) — three root causes (functionality/permissions/autonomy), cause-independence, the mitigation stack in IAM terms, email-assistant worked scenario, full bridging (over-privileged service accounts; latent vs continuously reachable privilege)
+- system-prompt-leakage: new concept (LLM07) — prompt is not a secret nor a security control; four leak classes; enforce privilege separation and authorization bounds checks outside the model; multi-agent least-privilege decomposition; full bridging (secrets in client-side code, CWE-798)
+- vector-store-access-control: new topic (LLM08 auth slice) — unauthorized embedding access, multi-tenant cross-context leakage, permission-aware stores, partitioning, immutable retrieval logs; corpus poisoning as injection delivery; full bridging (enterprise search security trimming; embeddings strip ACLs, retrieval runs under service identity)
+- prompt-injection: stub → evolving, confidence medium → high — added OWASP direct/indirect/jailbreak taxonomy, authorization-relevant impacts, injection-resistant authorization design (privilege control, HITL, content segregation, model-as-untrusted-user), delivery vectors (RAG corpus, CVE-2024-5184, multimodal/obfuscation), full bridging (no parameterized-queries analog exists)
+- tool-use-authorization: stub → evolving, confidence medium → high — added the OWASP LLM06 design rules (minimize tool set/functionality/permissions, avoid open-ended tools, user-context execution, complete mediation) alongside the MCP scope substrate
+- human-in-the-loop-authorization: added third consent surface — per-action approval (LLM01 mitigation 5, LLM06 excessive autonomy, approval in downstream system or extension, review-before-send)
+- confused-deputy: added the generic LLM-application instance (LLM06 email-assistant scenario; agency as the deputy's exploitability dial; ConfusedPilot/RAG pointer)
+- delegated-authorization: added "Delegation vs. the standing service identity" (LLM06 execute-in-user's-context; generic high-privileged identity anti-pattern)
+- machine-identity: added the substitution failure (broad machine identity standing in for narrow user delegation, LLM06); stays stub
+- agentic-identity: linked excessive-agency on the identity-conflation point
+- scope-selection-strategy: added the OWASP application-side statement of scope minimization (LLM06 minimum-scope OAuth)
+- token-theft: added credentials-in-system-prompt as an agentic leakage surface (LLM07 scenario 1)
+- _index.md: added 6 entries (1 concept ×2, 1 topic, 1 reference, 1 entity, 1 source); bumped prompt-injection and tool-use-authorization lines
+- note: no incident pages — the document names real CVEs and attacks (CVE-2024-5184, ConfusedPilot) as references, but describes risk classes rather than documenting specific incidents; candidate incidents to research separately
