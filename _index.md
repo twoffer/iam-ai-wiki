@@ -7,19 +7,21 @@
 - [[authorization-url-injection]] — malicious authorization URLs from MCP servers: `javascript:` XSS, shell-injection RCE; scheme allowlists, no shell opening · stable · high
 - [[confused-deputy]] — privileged agent tricked into misusing its delegated authority · stable · high
 - [[delegated-authorization]] — an agent acting on a resource on behalf of a consenting user · stable · high
-- [[human-in-the-loop-authorization]] — explicit human consent for agent authority/actions; proxy consent pages and pre-execution dialogs · evolving · high
+- [[excessive-agency]] — OWASP LLM06: excessive functionality/permissions/autonomy turn model manipulation into damaging actions · stable · high
+- [[human-in-the-loop-authorization]] — explicit human consent for agent authority/actions; proxy consent pages, pre-execution dialogs, per-action approval · evolving · high
 - [[machine-identity]] — an agent's own (workload) identity vs. the user authority it carries · stub · medium
 - [[open-redirection]] — malicious/lax `redirect_uri` for phishing or code capture; exact matching + `state` · stable · high
-- [[prompt-injection]] — untrusted content steering an agent's delegated authority; injection as authorization bypass · stub · medium
+- [[prompt-injection]] — untrusted content steering an agent's delegated authority; injection as authorization bypass, unpreventable and thus designed-around · evolving · high
 - [[proof-key-for-code-exchange]] — PKCE: binds an auth code to the requesting client; mandatory in MCP, with support discovery · stable · high
 - [[public-vs-confidential-client]] — OAuth client types; MCP assumes public by default and accommodates confidential, shaping the PKCE flow · stable · high
 - [[server-side-request-forgery]] — SSRF on both sides: the AS fetching CIMD URLs, the MCP client fetching discovery metadata · stable · high
 - [[session-hijacking]] — stolen/guessed MCP session IDs: impersonation, and prompt injection into the agent's event stream · stable · high
 - [[step-up-authorization]] — runtime escalation of scopes via `insufficient_scope` challenges · stable · high
+- [[system-prompt-leakage]] — OWASP LLM07: the system prompt is not a secret and not a security control; enforce authorization outside the model · stable · high
 - [[token-audience-binding]] — issuing/validating tokens for a specific resource audience (RFC 8707) · stable · high
 - [[token-passthrough]] — anti-pattern: accepting or forwarding tokens not issued for you · stable · high
 - [[token-theft]] — stolen/leaked tokens; secure storage, short-lived tokens, refresh rotation · stable · high
-- [[tool-use-authorization]] — what an agent may do when it invokes a tool; scopes as the unit · stub · medium
+- [[tool-use-authorization]] — what an agent may do when it invokes a tool; scopes, minimization, user-context execution, complete mediation · evolving · high
 
 ## Topics
 
@@ -30,6 +32,7 @@
 - [[mcp-authorization]] — MCP's transport-level authorization model, a profile of OAuth 2.1 · evolving · high
 - [[scope-selection-strategy]] — least-privilege scope selection for domain-blind clients · stable · high
 - [[security-considerations]] — normative threat model: audience binding, token theft, PKCE discovery, mix-up, open redirect, CIMD security, confused deputy, privilege restriction · stable · high
+- [[vector-store-access-control]] — permission-aware RAG retrieval: embedding-store ACLs, multi-tenant partitioning, retrieval logging · evolving · high
 
 ## References
 
@@ -39,6 +42,7 @@
 - [[oauth-client-id-metadata-documents]] — URL-as-`client_id`; preferred MCP client identity (draft) · evolving · high
 - [[openid-connect-discovery]] — `.well-known/openid-configuration` AS discovery · stable · high
 - [[openid-connect-dynamic-client-registration]] — OIDC profile of runtime client registration · stable · high
+- [[owasp-llm-top-10]] — the OWASP risk list for LLM applications; 2025 version current · evolving · high
 - [[rfc-6750-bearer-token-usage]] — bearer header, `WWW-Authenticate`, `insufficient_scope` · stable · high
 - [[rfc-7591-dynamic-client-registration]] — runtime `/register` client registration (deprecated in MCP) · stable · high
 - [[rfc-7636-pkce]] — Proof Key for Code Exchange spec · stable · high
@@ -54,6 +58,7 @@
 - [[anthropic]] — AI company that originated the Model Context Protocol · stub · medium
 - [[ietf-oauth-working-group]] — IETF body producing the OAuth RFCs/drafts MCP depends on · stub · high
 - [[openid-foundation]] — standards body for OpenID Connect (Discovery, Dynamic Registration) · stub · high
+- [[owasp-genai-security-project]] — OWASP project publishing the Top 10 for LLM Applications · stable · high
 
 ## Incidents
 
@@ -66,3 +71,4 @@ _None yet._
 - [[mcp-authorization-security-considerations]] — summary of MCP Authorization spec, doc 4 of 4 (Security Considerations) · stable · high
 - [[mcp-authorization-server-discovery]] — summary of MCP Authorization spec, doc 2 of 4 (AS Discovery) · stable · high
 - [[mcp-security-best-practices]] — summary of the MCP Security Best Practices guide: eight attack classes beyond the normative spec · stable · high
+- [[owasp-llm-top-10-2025]] — summary of the OWASP Top 10 for LLM Applications 2025, filtered to the wiki's IAM scope · stable · high

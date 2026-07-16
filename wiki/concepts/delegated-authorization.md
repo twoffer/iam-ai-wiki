@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: ["delegation", "on-behalf-of authorization", "resource owner delegation"]
 enterprise_analogs: ["OAuth 2.1 authorization code grant", "RFC 6749 §1.1 resource owner / client", "RFC 8693 token exchange", "OAuth 2.0 on-behalf-of"]
-last_updated: 2026-06-18
-sources: ["mcp-authorization-overview"]
-related: ["mcp-authorization", "agentic-identity", "human-in-the-loop-authorization", "tool-use-authorization", "token-audience-binding", "step-up-authorization"]
+last_updated: 2026-07-14
+sources: ["mcp-authorization-overview", "owasp-llm-top-10-2025"]
+related: ["mcp-authorization", "agentic-identity", "human-in-the-loop-authorization", "tool-use-authorization", "token-audience-binding", "step-up-authorization", "excessive-agency", "machine-identity"]
 tags: ["oauth", "delegation", "authorization", "core-concept"]
 ---
 
@@ -23,6 +23,10 @@ In MCP terms ([[mcp-authorization-overview]]): the **MCP client** "make[s] prote
 - **Consented.** A user authorization/consent step (the browser leg of the flow) records the owner's approval. See [[human-in-the-loop-authorization]].
 - **Audience-restricted.** The delegated token is bound to a specific resource ([[token-audience-binding]]) so it cannot be reused elsewhere.
 - **Revocable and expiring.** Tokens expire; refresh tokens (when issued) let the client maintain delegated access without re-prompting.
+
+## Delegation vs. the standing service identity
+
+The [[owasp-llm-top-10|OWASP LLM Top 10]] makes user delegation a named mitigation for agentic systems: [[excessive-agency|LLM06]] requires that extensions "execute in the user's context" — actions on downstream systems run under the specific requesting user's authority with minimum privileges, "for example, an LLM extension that reads a user's code repo should require the user to authenticate via OAuth and with the minimum scope required." The corresponding anti-pattern is *excessive permissions*: a per-user operation performed under "a generic high-privileged identity" with access to every user's data — a broad [[machine-identity]] silently substituting for a narrow user delegation ([[owasp-llm-top-10-2025]], LLM06 *Common Examples*, *Prevention*).
 
 ## Relation to pre-AI IAM
 

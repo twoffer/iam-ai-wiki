@@ -5,9 +5,9 @@ status: stub
 confidence: medium
 aliases: ["machine identity", "workload identity", "non-human identity", "NHI"]
 enterprise_analogs: ["RFC 6749 §4.4 client_credentials", "mutual TLS / X.509", "SPIFFE/SPIRE SVID", "API keys", "service accounts"]
-last_updated: 2026-06-18
-sources: ["mcp-authorization-overview"]
-related: ["agentic-identity", "delegated-authorization", "mcp-authorization", "tool-use-authorization", "public-vs-confidential-client"]
+last_updated: 2026-07-14
+sources: ["mcp-authorization-overview", "owasp-llm-top-10-2025"]
+related: ["agentic-identity", "delegated-authorization", "mcp-authorization", "tool-use-authorization", "public-vs-confidential-client", "excessive-agency"]
 tags: ["machine-identity", "workload", "agentic", "stub"]
 ---
 
@@ -22,6 +22,10 @@ The [[mcp-authorization-overview]] mostly concerns *delegated user* authority, b
 - **STDIO transport.** Implementations using a STDIO transport "SHOULD NOT" follow the OAuth flow and instead "retrieve credentials from the environment" (*Protocol Requirements*) — i.e., a workload/service credential supplied out of band, not a user-delegated token.
 - **`client_credentials` clients.** The [[step-up-authorization]] section distinguishes clients "acting on their own behalf (`client_credentials` clients)" from clients acting for a user — the former use a pure machine identity (RFC 6749 §4.4).
 
+## The substitution failure (OWASP)
+
+The [[owasp-llm-top-10|OWASP LLM Top 10]] names the central machine-identity misuse in agentic systems: an extension "designed to perform operations in the context of an individual user" that instead connects downstream "with a generic high-privileged identity" — e.g., a document-store account with access to all users' files — is *excessive permissions*, one of the root causes of [[excessive-agency]] ([[owasp-llm-top-10-2025]], LLM06 *Common Examples*). The rule it violates is that a broad standing machine identity must never stand in for a narrow per-user delegation; the fix is executing in the user's context via user-authenticated OAuth with minimum scope ([[delegated-authorization]]).
+
 ## Relation to pre-AI IAM
 
 Standard ground: a service's own identity is `client_credentials`, mutual TLS / X.509 client certs, API keys, cloud service accounts, or a SPIFFE SVID. Nothing here is AI-specific yet.
@@ -30,4 +34,4 @@ Standard ground: a service's own identity is `client_credentials`, mutual TLS / 
 
 The open questions — attesting that a credential belongs to a *specific model/agent build*, binding a short-lived workload identity to a delegated user grant, and preventing an agent's broad machine identity from substituting for a narrow user delegation — are agentic extensions not yet settled by this spec. See [[agentic-identity]].
 
-> **Status:** stub. Seeded from the MCP overview's STDIO and `client_credentials` mentions; to be expanded by future workload-identity / SPIFFE / attestation sources.
+> **Status:** stub. Seeded from the MCP overview's STDIO and `client_credentials` mentions, with the OWASP LLM06 substitution failure added; to be expanded by future workload-identity / SPIFFE / attestation sources.
