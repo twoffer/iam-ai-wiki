@@ -1,12 +1,13 @@
-> Source: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
-> Download URL: https://genai.owasp.org/download/43299/?tmstv=1731900559
-> Date pulled: 2026-07-14
-
+---
+source: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+download_url: https://genai.owasp.org/download/43299/?tmstv=1731900559
+created: 2026-07-14
+file: owasp-llm-top-10-2025.pdf
 ---
 
 # Provenance note — OWASP Top 10 for LLM Applications 2025
 
-This is a **provenance sidecar** for the binary document `owasp-llm-top-10-2025.pdf` in this directory. The PDF is a graphics-heavy publication and cannot carry an inline `Source:` header the way the other (Markdown) files in `raw/` do, so its provenance is recorded here under the same slug. The PDF itself is the immutable source; this note is not a substitute for it and does not summarize its claims.
+This is a **provenance sidecar** for the binary document `owasp-llm-top-10-2025.pdf` in this directory. A binary cannot carry the provenance frontmatter that the Markdown files in `raw/` do, so the PDF's provenance is recorded here under the same slug, with the `file` property naming the artifact this note documents. The PDF itself is the immutable source; this note is not a substitute for it and does not summarize its claims.
 
 - **Title:** OWASP Top 10 for LLM Applications 2025
 - **Version:** 2025 (Version 2025), released 2024-11-18

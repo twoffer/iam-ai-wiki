@@ -1,6 +1,6 @@
-> Source: https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-> Date pulled: 2026-07-08
-
+---
+source: https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
+created: 2026-07-08
 ---
 
 > ## Documentation Index
