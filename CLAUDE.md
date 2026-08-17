@@ -25,7 +25,7 @@
 
 ## Layout
 
-- `raw/` — immutable source documents. Never modified.
+- `raw/` — source documents. The document body is immutable and never modified; the only repo-authored part is the provenance frontmatter block at the top (see *Provenance frontmatter* under Conventions).
 - `wiki/` — curated pages. Owned by Claude.
   - `wiki/concepts/` — foundational ideas
   - `wiki/topics/` — specific subjects with active discourse
@@ -84,7 +84,7 @@ Override the generic rule with these tiers for this domain.
 ## Workflows
 
 ### General
-- Never modify files under `raw/`
+- Never modify the body of a file under `raw/` — the provenance frontmatter block is the only editable part (see *Provenance frontmatter*)
 - All wiki edits land under `wiki/`
 - Every change updates `_index.md` and appends to `log.md`
 
@@ -114,14 +114,25 @@ Override the generic rule with these tiers for this domain.
    - Gaps in coverage relative to the in-scope list
    - Pages missing the bridging sections where defaults call for them
    - Frontmatter list items that are not double-quoted, and any item silently split or coerced by an unquoted `,` or `: ` (see *Frontmatter list quoting*)
+   - Files in `raw/` whose provenance frontmatter is missing, fails to parse as YAML, or lacks either required property, and binaries with no same-slug sidecar (see *Provenance frontmatter*). The quoting style of capture-tool properties is not a finding — those are exempt
 2. Apply fixes (update pages, add stubs, repair links, adjust `status`)
 3. Update `_index.md` and append to `log.md`
 
 ## Conventions
 
 - **Wikilinks + standard markdown.** Use `[[slug]]` for internal links.
-- **Never hard-wrap prose.** Write each paragraph and each list item as a single continuous line and rely on the editor's soft-wrap (Obsidian, VS Code, GitHub). Do not insert fixed-column line breaks inside `.md` files, and do not use trailing-two-space or trailing-backslash hard breaks. Headings, tables, code fences, and the blank lines between blocks stay on their own lines as usual. This applies to every markdown file the wiki owns — `wiki/`, `_index.md`, `log.md`, `README.md`, and `CLAUDE.md` itself — but never to `raw/`, which is immutable and keeps whatever wrapping its source had. It governs Markdown only: git commit messages are hard-wrapped as usual.
-- **Frontmatter list quoting.** Every item in every frontmatter list (`aliases`, `enterprise_analogs`, `sources`, `related`, `tags`) MUST be wrapped in double quotes, including bare kebab-case slugs: `related: ["mcp-authorization", "token-theft"]`. Write an empty list as `[]`. The rule is unconditional so that no author has to notice the hazard: inside a YAML flow sequence a bare `,` is an item separator and a bare `: ` is the mapping indicator, so an unquoted `OS elevation prompts (UAC, Gatekeeper)` silently becomes two list items and an unquoted `DOM-based XSS via javascript: URIs` silently becomes a nested dictionary. Both corruptions are invisible in the source text. Quoting is also a prerequisite for ever using wikilinks as property values, since a bare `[[slug]]` parses as a nested sequence rather than a link. Double-quoted style makes `\` an escape character: an item containing a backslash or a literal `"` must escape it as `\\` or `\"`. This applies to `wiki/` pages only; `raw/` is immutable.
+- **Never hard-wrap prose.** Write each paragraph and each list item as a single continuous line and rely on the editor's soft-wrap (Obsidian, VS Code, GitHub). Do not insert fixed-column line breaks inside `.md` files, and do not use trailing-two-space or trailing-backslash hard breaks. Headings, tables, code fences, and the blank lines between blocks stay on their own lines as usual. This applies to every markdown file the wiki owns — `wiki/`, `_index.md`, `log.md`, `README.md`, and `CLAUDE.md` itself — but never to the document bodies in `raw/`, which are immutable and keep whatever wrapping their source arrived with (repo-authored text there — a provenance sidecar's prose — does follow the rule). It governs Markdown only: git commit messages are hard-wrapped as usual.
+- **Frontmatter list quoting.** Every item in every frontmatter list (`aliases`, `enterprise_analogs`, `sources`, `related`, `tags`) MUST be wrapped in double quotes, including bare kebab-case slugs: `related: ["mcp-authorization", "token-theft"]`. Write an empty list as `[]`. The rule is unconditional so that no author has to notice the hazard: inside a YAML flow sequence a bare `,` is an item separator and a bare `: ` is the mapping indicator, so an unquoted `OS elevation prompts (UAC, Gatekeeper)` silently becomes two list items and an unquoted `DOM-based XSS via javascript: URIs` silently becomes a nested dictionary. Both corruptions are invisible in the source text. Quoting is also a prerequisite for ever using wikilinks as property values, since a bare `[[slug]]` parses as a nested sequence rather than a link. Double-quoted style makes `\` an escape character: an item containing a backslash or a literal `"` must escape it as `\\` or `\"`. This applies to `wiki/` pages, and to any list written by hand into the provenance frontmatter of a `raw/` file. Properties carried over from a capture tool — a web clipper's `tags`, most often — are **exempt** and are kept exactly as emitted, never restyled to satisfy this rule: a serializer already quotes and escapes what needs it, so the hazard the rule guards against does not arise, and a clipping should land compliant without hand-editing. Raw document *bodies* remain immutable.
+- **Provenance frontmatter (`raw/`).** Every markdown file in `raw/` opens with a YAML frontmatter block recording where the document came from. Two properties are required — `source`, the canonical upstream URL of the page being cited, and `created`, the date the snapshot was pulled. Everything else is optional: `download_url` when the cited page and the retrieved artifact are different URLs (a PDF behind a landing page), `file` on a sidecar to name the binary it documents, and any additional properties a capture tool emitted (`title`, `author`, `published`, `description`, `tags`, …), which are kept as emitted rather than normalized away. The shape matches the Obsidian Web Clipper's default output on purpose, so a clipping is compliant as captured and needs no restructuring; hand-added sources get the same block written by hand.
+
+  ```yaml
+  ---
+  source: https://example.org/some-article
+  created: 2026-08-16
+  ---
+  ```
+
+  This block is the only part of a `raw/` file this project authors — everything below it is verbatim and immutable, so the block is added when the file lands rather than edited in later. In properties written by hand, quote any scalar containing `: ` or a leading YAML indicator, and quote list items per *Frontmatter list quoting*; properties a capture tool emitted are left exactly as captured, quoted or not. Binaries cannot carry frontmatter, so a PDF's provenance goes in a same-slug markdown sidecar carrying the block plus `file`; the sidecar records provenance only and never summarizes the document's claims — that is the job of its `wiki/sources/` page.
 - **Citations.** Every non-trivial claim cites either a `wiki/sources/<slug>.md` page or a `raw/` file path.
 - **Contested vs superseded.**
   - *Contested*: two current sources actively disagree. Surface both under a "Contested claims" section on the relevant page. Set `status: contested`.

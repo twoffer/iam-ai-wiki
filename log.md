@@ -141,3 +141,15 @@ Ingested raw/owasp-llm-top-10-2025.pdf (45 pages, first PDF and first non-MCP so
 - token-theft: added credentials-in-system-prompt as an agentic leakage surface (LLM07 scenario 1)
 - _index.md: added 6 entries (1 concept ×2, 1 topic, 1 reference, 1 entity, 1 source); bumped prompt-injection and tool-use-authorization lines
 - note: no incident pages — the document names real CVEs and attacks (CVE-2024-5184, ConfusedPilot) as references, but describes risk classes rather than documenting specific incidents; candidate incidents to research separately
+
+## [2026-08-16] lint | Standardize raw/ provenance on YAML frontmatter
+- convention: replaced the `> Source:` / `> Date pulled:` blockquote header in `raw/` with a YAML frontmatter block — required `source` (upstream URL) and `created` (snapshot date), optional `download_url` (when the cited page and the retrieved artifact differ), `file` (binary a sidecar documents), and any properties a capture tool emitted, kept as emitted
+- convention: rationale is that the shape matches the Obsidian Web Clipper's default output, so a clipped article is compliant as captured instead of needing its header hand-rewritten; the block is also machine-readable and shows up in Obsidian's Properties pane
+- convention: added *Provenance frontmatter (`raw/`)* to CLAUDE.md Conventions, with a matching Lint health-check item for files missing the block or a required property and for binaries with no same-slug sidecar
+- convention: narrowed the raw/ immutability rule — the document *body* is immutable; the provenance block is the one repo-authored part, added when the file lands rather than edited in later. Updated the Layout line and the Workflows/General bullet accordingly
+- convention: scoped *Frontmatter list quoting* by authorship rather than by directory — it covers `wiki/` pages and any list hand-written into `raw/` provenance frontmatter, and explicitly exempts properties a capture tool emitted (a clipper's `tags`), which are kept exactly as captured. The rule exists because a human or Claude typing YAML by hand misses the `,` and `: ` hazards; a serializer quotes correctly on its own, so requiring a touch-up per clipping would cost hand-editing and buy nothing. Lint checks that a raw block parses, not how a capture tool styled it
+- raw/README.md: rewrote the Provenance section around the frontmatter block with an example; the licensing pointers now cite the `source` property rather than a header line
+- raw/*.md: migrated all 6 files (4 MCP Authorization docs, MCP Security Best Practices, OWASP sidecar) — headers converted mechanically, verified each block parses and carries both required properties, and verified no document body changed
+- raw/owasp-llm-top-10-2025.md: added `file: owasp-llm-top-10-2025.pdf` and reworded the sidecar note, which referred to the retired `Source:` header
+- README.md: updated the `raw/` line in the layout tree
+- _index.md: unchanged — no wiki page was touched

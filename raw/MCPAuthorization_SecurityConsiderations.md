@@ -1,6 +1,6 @@
-> Source: https://modelcontextprotocol.io/specification/draft/basic/authorization/security-considerations
-> Date pulled: 2026-06-17
-
+---
+source: https://modelcontextprotocol.io/specification/draft/basic/authorization/security-considerations
+created: 2026-06-17
 ---
 
 > ## Documentation Index
