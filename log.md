@@ -153,3 +153,19 @@ Ingested raw/owasp-llm-top-10-2025.pdf (45 pages, first PDF and first non-MCP so
 - raw/owasp-llm-top-10-2025.md: added `file: owasp-llm-top-10-2025.pdf` and reworded the sidecar note, which referred to the retired `Source:` header
 - README.md: updated the `raw/` line in the layout tree
 - _index.md: unchanged — no wiki page was touched
+
+## [2026-08-17] ingest | Invariant Labs GitHub MCP vulnerability
+Ingested raw/InvariantGitHubMCPVulnerability.md (Invariant Labs blog, Milanta & Beurer-Kellner, 2025-05-26). First incident page in the corpus. Vendor research, so confidence capped at medium. 7 new pages, 5 pages updated.
+- invariant-github-mcp-vulnerability: new source page — core claims (public-issue injection → private-repo exfiltration via public PR under one over-broad token), toxic-agent-flow framing, "not a GitHub code bug / not model-fixable", alignment-and-detectors-insufficient, Always-Allow consent fatigue, and the two recommended mitigations (granular/dynamic perms + continuous monitoring)
+- github-mcp-private-repo-leak: new incident (wiki's first) — full setup/flow, the IAM decomposition (injection=confusion, cross-repo agency=authority, boundary-inside-the-token, HITL bypassed), scope/mitigations, full bridging (confused deputy + CSRF; confusion enters through data the deputy must read, no spoofed protocol channel to check)
+- toxic-agent-flow: new concept — Invariant's term for injection-triggered malicious tool-call sequences; trusted tools + untrusted data, emergent boundary crossing, flow-aware runtime policy; contrast with tool-poisoning; full bridging (confused deputy / exploit-gadget chain)
+- invariant-labs: new entity (stub) — AI-security vendor; Guardrails, MCP-scan, Explorer; vendor-claim caveat
+- github-mcp-server: new entity (stub) — GitHub's official MCP integration; the trusted tool in the leak; fix belongs at the agent-system authz layer, not the server
+- gitlab-duo-prompt-injection: new incident (stub, low) — Legit Security GitLab Duo report, known only via secondary mention; flagged for direct ingest
+- tool-poisoning: new concept (stub, low) — MCP attack where the tool definition is the vector; contrasted with toxic agent flows; flagged for direct ingest of Invariant's dedicated post
+- prompt-injection: added tool-results-from-external-platforms delivery vector (GitHub MCP issue injection; aligned model + detectors insufficient)
+- confused-deputy: added the GitHub MCP real-world instance — confused through data it was asked to read, no protocol channel spoofed, fix is authority-bounding
+- excessive-agency: added the leak as a real-world demonstration of injection=confusion / cross-repo agency=authority; "one repo per session" as minimization
+- tool-use-authorization: added the per-call/argument-aware point — each call within grant, only composition leaks; Guardrails "one repo per session" as flow-aware tool-use authz
+- human-in-the-loop-authorization: added the Always-Allow consent-fatigue failure of the per-tool-call gate
+- _index.md: added 2 concepts, 2 entities, 2 incidents (new section, replacing "None yet"), 1 source; bumped tool-use-authorization/prompt-injection/confused-deputy/excessive-agency/human-in-the-loop-authorization dates via their pages

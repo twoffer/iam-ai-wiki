@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: ["prompt injection", "direct prompt injection", "indirect prompt injection", "injection-driven authorization bypass", "jailbreaking", "LLM01:2025"]
 enterprise_analogs: ["SQL injection (in-band control/data confusion)", "CSRF (attacker-directed use of a victim's authority)", "confused deputy", "parameterized queries (the missing analog)"]
-last_updated: 2026-07-14
-sources: ["mcp-security-best-practices", "owasp-llm-top-10-2025"]
-related: ["confused-deputy", "excessive-agency", "agentic-identity", "session-hijacking", "tool-use-authorization", "human-in-the-loop-authorization", "system-prompt-leakage", "vector-store-access-control", "security-considerations"]
+last_updated: 2026-08-17
+sources: ["mcp-security-best-practices", "owasp-llm-top-10-2025", "invariant-github-mcp-vulnerability"]
+related: ["confused-deputy", "excessive-agency", "agentic-identity", "session-hijacking", "tool-use-authorization", "human-in-the-loop-authorization", "system-prompt-leakage", "vector-store-access-control", "security-considerations", "toxic-agent-flow", "github-mcp-private-repo-leak"]
 tags: ["prompt-injection", "security", "agentic", "auth-bypass", "owasp"]
 ---
 
@@ -40,6 +40,7 @@ The same design conclusion appears in LLM07's rule that privilege separation and
 
 - **MCP session-hijack injection.** The [[mcp-security-best-practices|MCP Security Best Practices]] guide provides an infrastructure-level vector: an attacker writes into a session-keyed event queue and the victim's client acts on the injected payload — including silently acquiring server tools via a forged `notifications/tools/list_changed` (see [[session-hijacking]], [[tool-use-authorization]]).
 - **The retrieval corpus.** RAG documents are an indirect-injection channel: OWASP's scenarios include an attacker-modified repository document that alters outputs when retrieved, and a résumé with hidden white-on-white instructions steering a RAG screening system ([[vector-store-access-control]]).
+- **Tool results from external platforms.** Content an agent pulls through a legitimately authorized tool is an injection channel: in the [[github-mcp-private-repo-leak|GitHub MCP leak]], a malicious GitHub issue read via the trusted [[github-mcp-server|GitHub MCP server]] injected the agent, which then chained its standing authority into an exfiltration [[toxic-agent-flow]] ([[invariant-github-mcp-vulnerability]]). Invariant reports that a highly aligned model (Claude 4 Opus) and off-the-shelf injection detectors did not stop a "relatively simplistic" injection — reinforcing that filtering and alignment are likelihood reducers, not boundaries.
 - **Application-level exploits.** CVE-2024-5184, prompt injection in an LLM email assistant giving access to sensitive information and mail manipulation; a support chatbot directly injected into ignoring guidelines, querying private data stores, and sending email — "unauthorized access and privilege escalation" ([[owasp-llm-top-10-2025]], LLM01 *Example Attack Scenarios*).
 - **Evasion encodings.** Multimodal injection (instructions hidden in images accompanying benign text, with cross-modal attacks flagged as hard to detect), payload splitting across multiple inputs, adversarial suffixes, and multilingual/Base64/emoji obfuscation defeat input filters — reinforcing that filtering is a likelihood reducer, not a boundary.
 

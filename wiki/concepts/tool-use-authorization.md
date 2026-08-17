@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: ["tool authorization", "tool scoping", "tool-call authorization", "tool permissions", "extension permissions"]
 enterprise_analogs: ["OAuth scopes", "RBAC/ABAC", "RFC 8693 token exchange", "fine-grained API authorization", "complete mediation (Saltzer–Schroeder 1975)"]
-last_updated: 2026-07-14
-sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025"]
-related: ["mcp-authorization", "scope-selection-strategy", "step-up-authorization", "delegated-authorization", "excessive-agency", "agentic-identity", "session-hijacking", "prompt-injection", "system-prompt-leakage"]
+last_updated: 2026-08-17
+sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025", "invariant-github-mcp-vulnerability"]
+related: ["mcp-authorization", "scope-selection-strategy", "step-up-authorization", "delegated-authorization", "excessive-agency", "agentic-identity", "session-hijacking", "prompt-injection", "system-prompt-leakage", "github-mcp-private-repo-leak", "toxic-agent-flow"]
 tags: ["tool-use", "scopes", "authorization", "agentic"]
 ---
 
@@ -40,3 +40,5 @@ Mapping tool operations to OAuth scopes is ordinary **fine-grained API authoriza
 ## Why pre-AI IAM is insufficient
 
 The novelty is that **the caller is an autonomous, non-deterministic agent** choosing tools and arguments at runtime, potentially under adversarial influence — OWASP's excessive-agency triggers (hallucination, [[prompt-injection|injection]], compromised extensions, malicious peer agents) are all ways the tool-selecting logic itself goes wrong. Authorization must therefore be decided per call against the *actual arguments and context*, not pre-bound at integration time, and the tool layer must be designed so that a steered agent's reachable actions are already minimal. Per-operation scope challenges ([[step-up-authorization]]) and LLM06's minimization discipline are early answers; richer argument-aware policy and binding tool calls to user intent remain open agentic concerns.
+
+The [[github-mcp-private-repo-leak|GitHub MCP leak]] shows why per-call, argument-aware authorization matters in practice: each of the agent's calls (list public issues, read private repo, open public PR) was within its token's static grant, and only their *composition* leaked data ([[invariant-github-mcp-vulnerability]]). Invariant's proposed defense is exactly runtime, flow-aware tool-use authorization — a [[invariant-labs|Guardrails]] policy that inspects successive tool calls' `owner`/`repo` arguments and blocks a session that spans more than one repository ("one repo per session"), enforcing minimization over the tool-call *sequence* rather than at integration time. See [[toxic-agent-flow]].

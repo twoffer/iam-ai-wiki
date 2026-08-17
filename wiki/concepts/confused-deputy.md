@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: ["confused deputy problem", "confused deputy attack", "deputy confusion", "MCP proxy server attack"]
 enterprise_analogs: ["OAuth 2.0 mix-up attack", "CSRF", "RFC 9700 OAuth 2.0 Security BCP", "ambient authority", "consent-cookie bypass"]
-last_updated: 2026-07-14
-sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview", "owasp-llm-top-10-2025"]
-related: ["token-audience-binding", "token-passthrough", "authorization-server-mix-up", "client-registration", "mcp-authorization", "security-considerations", "agentic-identity", "delegated-authorization", "mcp-security-best-practices", "open-redirection", "human-in-the-loop-authorization", "prompt-injection", "excessive-agency", "vector-store-access-control"]
+last_updated: 2026-08-17
+sources: ["mcp-security-best-practices", "mcp-authorization-security-considerations", "mcp-authorization-overview", "owasp-llm-top-10-2025", "invariant-github-mcp-vulnerability"]
+related: ["token-audience-binding", "token-passthrough", "authorization-server-mix-up", "client-registration", "mcp-authorization", "security-considerations", "agentic-identity", "delegated-authorization", "mcp-security-best-practices", "open-redirection", "human-in-the-loop-authorization", "prompt-injection", "excessive-agency", "vector-store-access-control", "github-mcp-private-repo-leak", "toxic-agent-flow"]
 tags: ["security", "confused-deputy", "threat-model", "core-concept"]
 ---
 
@@ -27,6 +27,8 @@ The [[mcp-authorization-overview]] lists "mix-up and confused deputy attacks" am
 ## The generic LLM-application instance (OWASP)
 
 Outside MCP's protocol frame, the [[owasp-llm-top-10|OWASP LLM Top 10]] supplies the everyday agentic instance: its [[excessive-agency|LLM06 Excessive Agency]] scenario is an email-assistant extension that, steered by an indirect [[prompt-injection|injection]] in an incoming email, scans the user's inbox for sensitive information and forwards it to the attacker — the deputy's legitimate mailbox authority applied to an attacker-chosen request ([[owasp-llm-top-10-2025]], LLM06 *Example Attack Scenarios*; the entry's own reference list includes an "Embrace the Red: Confused Deputy Problem" write-up). The exploitability of the deputy is a direct function of its excessive agency — functionality, permissions, and autonomy beyond the task — which is why OWASP's mitigations (minimization, user-context execution, complete mediation, [[human-in-the-loop-authorization|human approval]]) are all authority-bounding rather than confusion-preventing. The RAG variant, where a shared retrieval pipeline exercises broad read authority on behalf of differently privileged queriers, is covered at [[vector-store-access-control]] (cf. the ConfusedPilot attack referenced by LLM08).
+
+A documented real-world instance is the [[github-mcp-private-repo-leak|GitHub MCP private-repo leak]]: a malicious GitHub issue injects an agent that then applies its own delegated GitHub authority — under a single over-broad token spanning public and private repositories — to read private data and leak it into a public pull request ([[invariant-github-mcp-vulnerability]]). Unlike the proxy/consent case below, no protocol channel is spoofed; the deputy is confused through *data it was legitimately asked to read*, and the fix is authority-bounding (least-privilege repo scope, "one repo per session"), not a `state` or issuer check. See [[toxic-agent-flow]].
 
 ## The proxy-server / consent case
 
