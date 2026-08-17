@@ -5,9 +5,9 @@ status: evolving
 confidence: high
 aliases: ["human-in-the-loop", "HITL authorization", "user consent", "interactive consent", "consent UI"]
 enterprise_analogs: ["OAuth 2.1 authorization/consent endpoint", "OIDC `prompt=consent`", "OAuth incremental consent", "OS elevation prompts (UAC, Gatekeeper)"]
-last_updated: 2026-07-14
-sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025"]
-related: ["delegated-authorization", "step-up-authorization", "scope-selection-strategy", "mcp-authorization", "agentic-identity", "confused-deputy", "local-mcp-server-security", "prompt-injection", "excessive-agency", "tool-use-authorization"]
+last_updated: 2026-08-17
+sources: ["mcp-authorization-overview", "mcp-security-best-practices", "owasp-llm-top-10-2025", "invariant-github-mcp-vulnerability"]
+related: ["delegated-authorization", "step-up-authorization", "scope-selection-strategy", "mcp-authorization", "agentic-identity", "confused-deputy", "local-mcp-server-security", "prompt-injection", "excessive-agency", "tool-use-authorization", "github-mcp-private-repo-leak"]
 tags: ["consent", "human-in-the-loop", "authorization"]
 ---
 
@@ -39,4 +39,4 @@ This is the ordinary OAuth **consent screen** and authorization endpoint, plus p
 
 ## Why pre-AI IAM is insufficient
 
-Classic consent is a **one-time, up-front** event for a known app requesting a known scope set. Agentic systems need consent that is **per-operation, runtime, and legible** — the user must understand what an autonomous, possibly [[prompt-injection|injection-influenced]] agent is about to do, often mid-task and for actions the developer did not enumerate in advance. The MCP corpus now codifies pieces of this: per-downstream-client consent at proxies (because the "app" population is open and dynamically registered) and pre-execution consent for local servers (because installing agent tooling is a casual, high-frequency act). What remains open is keeping such consent meaningful under agent autonomy — avoiding rubber-stamping while limiting friction — which scope challenges and consent dialogs only partially address.
+Classic consent is a **one-time, up-front** event for a known app requesting a known scope set. Agentic systems need consent that is **per-operation, runtime, and legible** — the user must understand what an autonomous, possibly [[prompt-injection|injection-influenced]] agent is about to do, often mid-task and for actions the developer did not enumerate in advance. The MCP corpus now codifies pieces of this: per-downstream-client consent at proxies (because the "app" population is open and dynamically registered) and pre-execution consent for local servers (because installing agent tooling is a casual, high-frequency act). What remains open is keeping such consent meaningful under agent autonomy — avoiding rubber-stamping while limiting friction — which scope challenges and consent dialogs only partially address. The [[github-mcp-private-repo-leak|GitHub MCP leak]] is a concrete failure of exactly this: Claude Desktop's default per-tool-call confirmation is a runtime HITL gate, but Invariant notes that users routinely switch to "Always Allow" and stop monitoring, so consent fatigue — not any attacker capability — defeated the control ([[invariant-github-mcp-vulnerability]]). A per-action gate that is present but reflexively approved provides no protection, which is why the corpus pairs HITL with authority-bounding controls rather than relying on it alone.

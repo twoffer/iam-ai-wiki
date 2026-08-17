@@ -21,7 +21,9 @@
 - [[token-audience-binding]] — issuing/validating tokens for a specific resource audience (RFC 8707) · stable · high
 - [[token-passthrough]] — anti-pattern: accepting or forwarding tokens not issued for you · stable · high
 - [[token-theft]] — stolen/leaked tokens; secure storage, short-lived tokens, refresh rotation · stable · high
+- [[tool-poisoning]] — MCP attack where the tool definition itself is the vector; contrast with toxic agent flows · stub · low
 - [[tool-use-authorization]] — what an agent may do when it invokes a tool; scopes, minimization, user-context execution, complete mediation · evolving · high
+- [[toxic-agent-flow]] — indirect injection triggering a malicious tool-call sequence; trusted tools, untrusted data, emergent boundary crossing · evolving · medium
 
 ## Topics
 
@@ -56,16 +58,20 @@
 ## Entities
 
 - [[anthropic]] — AI company that originated the Model Context Protocol · stub · medium
+- [[github-mcp-server]] — GitHub's official MCP integration; trusted tool in the private-repo leak · stub · medium
 - [[ietf-oauth-working-group]] — IETF body producing the OAuth RFCs/drafts MCP depends on · stub · high
+- [[invariant-labs]] — AI-security vendor; coined "toxic agent flow", makes Guardrails/MCP-scan · stub · medium
 - [[openid-foundation]] — standards body for OpenID Connect (Discovery, Dynamic Registration) · stub · high
 - [[owasp-genai-security-project]] — OWASP project publishing the Top 10 for LLM Applications · stable · high
 
 ## Incidents
 
-_None yet._
+- [[github-mcp-private-repo-leak]] — malicious GitHub issue coerces an agent into leaking private-repo data via a public PR; injection-driven confused deputy · stable · medium
+- [[gitlab-duo-prompt-injection]] — remote prompt injection in GitLab Duo (Legit Security); cited as a parallel to the GitHub MCP leak · stub · low
 
 ## Sources
 
+- [[invariant-github-mcp-vulnerability]] — summary of Invariant Labs' GitHub MCP private-repo leak writeup; toxic agent flows · stable · medium
 - [[mcp-authorization-client-registration]] — summary of MCP Authorization spec, doc 3 of 4 (Client Registration) · stable · high
 - [[mcp-authorization-overview]] — summary of MCP Authorization spec, doc 1 of 4 (Overview) · stable · high
 - [[mcp-authorization-security-considerations]] — summary of MCP Authorization spec, doc 4 of 4 (Security Considerations) · stable · high

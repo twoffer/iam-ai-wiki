@@ -5,9 +5,9 @@ status: stable
 confidence: high
 aliases: ["LLM06:2025", "excessive functionality", "excessive permissions", "excessive autonomy", "over-permissioned agent"]
 enterprise_analogs: ["over-privileged service accounts", "OAuth over-scoping (RFC 6749 §3.3)", "least privilege / complete mediation (Saltzer–Schroeder 1975)", "RBAC role explosion and privilege creep", "change-approval workflows"]
-last_updated: 2026-07-14
-sources: ["owasp-llm-top-10-2025"]
-related: ["tool-use-authorization", "delegated-authorization", "human-in-the-loop-authorization", "confused-deputy", "prompt-injection", "scope-selection-strategy", "machine-identity", "agentic-identity", "system-prompt-leakage"]
+last_updated: 2026-08-17
+sources: ["owasp-llm-top-10-2025", "invariant-github-mcp-vulnerability"]
+related: ["tool-use-authorization", "delegated-authorization", "human-in-the-loop-authorization", "confused-deputy", "prompt-injection", "scope-selection-strategy", "machine-identity", "agentic-identity", "system-prompt-leakage", "github-mcp-private-repo-leak", "toxic-agent-flow"]
 tags: ["agentic", "least-privilege", "authorization", "owasp", "core-concept"]
 ---
 
@@ -37,6 +37,8 @@ Every LLM06 mitigation is a classical authorization control relocated around the
 - **Sanitize LLM inputs and outputs** — standard ASVS discipline, acknowledging the model boundary as an untrusted interface.
 
 Logging/monitoring of extension activity and rate limiting are explicitly classed as damage *limiters* that "will not prevent" excessive agency — detection and blast-radius controls, not authorization.
+
+The [[github-mcp-private-repo-leak|GitHub MCP private-repo leak]] is a real-world demonstration of the same shape ([[invariant-github-mcp-vulnerability]]): a single session holds both private-repo read and public-PR-create authority, so an injected agent can chain them into exfiltration — the injection supplies the confusion, the excessive cross-repository agency supplies the authority. The mitigation is a minimization of exactly this kind: a runtime "one repo per session" rule shrinks the reachable authority so the [[toxic-agent-flow]] cannot form.
 
 OWASP's worked scenario is the canonical agentic confused deputy: an email-assistant extension needs read access to a mailbox, but the chosen plugin also sends mail (excessive functionality), authenticates with broad standing credentials (excessive permissions), and acts on what it reads without review (excessive autonomy) — so an indirect injection in an incoming email can command it to forward the inbox's sensitive content to the attacker. Each root cause is fixed independently: a read-only extension, a read-only OAuth scope, and a human review before every send ([[owasp-llm-top-10-2025]], LLM06 *Example Attack Scenarios*).
 
